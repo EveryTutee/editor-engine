@@ -8,7 +8,7 @@ function App() {
   const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
   return (
     <div className="app">
-      <Bold />
+      <Bold editorState={editorState} />
       <Editor editorState={editorState} onChange={setEditorState} />
       <div className="output" dangerouslySetInnerHTML={{ __html: editorState.content }} />
 

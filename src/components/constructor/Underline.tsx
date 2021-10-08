@@ -1,17 +1,17 @@
 import React, { useMemo } from "react";
 import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
-import { Bold } from "../components.types";
-import { FaBold } from 'react-icons/fa';
-import { boldHandlerFn } from "../handler/bold";
+import { Underline } from "../components.types";
+import { FaUnderline } from 'react-icons/fa';
+import { underlineHandlerFn } from "../handler/underline";
 
 const config = {
     name: 'Bold',
     type: 'click',
-    buttonIcon: <FaBold />,
-    handlerFn: boldHandlerFn
+    buttonIcon: <FaUnderline />,
+    handlerFn: underlineHandlerFn
 } as ModelConfig
-export default function Bold({ editorState }: Bold) {
+export default function Underline({ editorState }: Underline) {
 
     return (
         <Model

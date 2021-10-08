@@ -1,17 +1,17 @@
 import React, { useMemo } from "react";
 import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
-import { Bold } from "../components.types";
-import { FaBold } from 'react-icons/fa';
-import { boldHandlerFn } from "../handler/bold";
+import { Italics } from "../components.types";
+import { FaItalic } from 'react-icons/fa';
+import { italicsHandlerFn } from "../handler/italics";
 
 const config = {
-    name: 'Bold',
+    name: 'Italics',
     type: 'click',
-    buttonIcon: <FaBold />,
-    handlerFn: boldHandlerFn
+    buttonIcon: <FaItalic />,
+    handlerFn: italicsHandlerFn
 } as ModelConfig
-export default function Bold({ editorState }: Bold) {
+export default function Italics({ editorState }: Italics) {
 
     return (
         <Model

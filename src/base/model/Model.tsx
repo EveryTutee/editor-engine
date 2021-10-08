@@ -1,4 +1,4 @@
-import React, { MouseEvent, useRef, useState } from 'react';
+import React, { MouseEvent, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { EditorStateType, ModelConfig } from '../base.types'
 
@@ -19,6 +19,21 @@ export default function Model({ editorState, config, attachToDiv }: ModelProps) 
                 ReactDOM.render(sub, attachToDiv || btnRef.current);
         }
     }
+
+    useEffect(() => {
+        if (!editorState.editor) return;
+
+        function listener(e: Event) {
+
+        }
+
+        editorState.editor.addEventListener('select', listener, false)
+
+        return () => {
+            editorState.editor?.removeEventListener('select', listener, false);
+        }
+    }, [])
+
     return (
         <button id={name} title={name} onClick={handleClick} ref={btnRef}>
             {buttonIcon}

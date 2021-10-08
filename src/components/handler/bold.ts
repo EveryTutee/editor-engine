@@ -1,5 +1,5 @@
 import { EditorStateType } from "../../base/base.types";
 
-export function boldHanderFn(this: EditorStateType) {
-    console.log(this);
+export function boldHandlerFn(editorState: EditorStateType) {
+    editorState.__document__.execCommand('bold', false, 'true');
 }
