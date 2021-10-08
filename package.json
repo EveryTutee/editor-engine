@@ -3,15 +3,22 @@
   "version": "1.0.0",
   "description": "Base Engine to create a WYSISYG editor",
   "scripts": {
-    "dev": "tsc --watch --outDir 'demo/src/dist'",
-    "build": "tsc -outDir 'dist'",
-    "demo": "tsc --outDir 'demo/src/dist'"
+    "dev_tsc": "tsc --watch --outDir 'demo/src/dist'",
+    "dev_sass": "sass -w src/editor.scss:demo/src/dist/editor.css",
+    "dev": "concurrently 'npm run dev_tsc' 'npm run dev_sass'",
+    "build_tsc": "tsc -outDir 'dist'",
+    "build_sass": "sass src/editor.scss:dist/editor.css",
+    "build": "npm run build_tsc && npm run build_scss",
+    "demo_tsc": "tsc --outDir 'demo/src/dist'",
+    "demo_sass": "sass src/editor.scss:demo/src/dist/editor.css",
+    "demo": "npm run demo_tsc && npm run demo_scss"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^17.0.27",
+    "concurrently": "^6.3.0",
     "typescript": "^4.4.3"
   },
   "dependencies": {

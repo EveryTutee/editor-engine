@@ -1,23 +1,15 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Editor, EditorState } from './dist/index';
+import './dist/editor.css'
 
 function App() {
+  const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Editor editorState={editorState} onChange={setEditorState} />
+      <div className="output" dangerouslySetInnerHTML={{ __html: editorState.content }} />
+
     </div>
   );
 }
