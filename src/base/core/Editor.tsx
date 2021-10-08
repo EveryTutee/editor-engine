@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { EditorProps } from '../component.types';
+import { EditorProps } from '../base.types';
 
 // Returns the Editor or MainTextArea :)
 export default function Editor({ editorState, placeholder, readonly, id, onChange }: EditorProps) {

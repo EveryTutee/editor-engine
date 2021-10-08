@@ -1,5 +1,5 @@
 import { createElement } from "react";
-import { EditorStateType } from "../component.types";
+import { EditorStateType } from "../base.types";
 
 const EditorState = {
     __document__: document,
@@ -23,6 +23,8 @@ const EditorState = {
         this.undoStack = [];
         this.redoStack = [];
         this.editor = null;
+
+        this.init();
 
         return this;
     },

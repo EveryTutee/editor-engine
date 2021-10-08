@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 
 export interface EditorProps {
     editorState: EditorStateType;
@@ -24,3 +25,10 @@ export interface EditorStateType {
     redo: () => string;
 
 };
+
+export interface ModelConfig {
+    name: string;
+    buttonIcon: JSX.Element | SVGAElement;
+    type: 'click' | 'submenu';
+    handlerFn: (editorState: EditorStateType) => JSX.Element | void;
+}
