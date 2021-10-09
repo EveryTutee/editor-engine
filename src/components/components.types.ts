@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { EditorStateType } from "../base/base.types";
 
 interface Constructor {
@@ -15,5 +16,5 @@ export interface Underline extends Constructor {
 }
 
 export interface FontStyle extends Constructor {
-    onClick: (value: string) => void;
+    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
 }

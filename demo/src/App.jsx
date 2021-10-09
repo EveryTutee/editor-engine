@@ -11,15 +11,15 @@ function App() {
   return (
     <div className="app">
       <nav className="nav" >
-        {!showNav && <div>
+        <div>
           <Bold editorState={editorState} />
           <Italics editorState={editorState} />
           <Underline editorState={editorState} />
           <FontStyle editorState={editorState} onClick={setShowNav} />
-        </div>}
+        </div>
 
         {showNav && <div id="expanded">
-          sadasd
+          {showNav}
         </div>}
 
 

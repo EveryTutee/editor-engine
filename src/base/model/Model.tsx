@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, MouseEvent, useEffect, useRef, useState } from 'react';
+import React, { Dispatch, HTMLAttributes, MouseEvent, SetStateAction, useEffect, useRef, useState } from 'react';
 import ReactDOM, { createPortal, render, unmountComponentAtNode } from 'react-dom';
 import { EditorStateType, ModelConfig } from '../base.types'
 
@@ -7,9 +7,8 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
     const btnRef = useRef<HTMLButtonElement | null>(null);
     const [currAttributes, setCurrAttributes] = useState<HTMLAttributes<HTMLButtonElement> | null>(null);
 
-    function onBack(container: Element | null) {
-        if (container)
-            unmountComponentAtNode(container);
+    function onBack() {
+        subMenuView?.(null)
     }
 
     function handleClick(e: MouseEvent<HTMLButtonElement>) {
@@ -21,22 +20,25 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
         // toggle to show expanded bar
         else if (type === 'submenu') {
             if (!subMenuView) throw Error("Sub menu is not provided");
-
-            subMenuView(name);
+            const subMenu = handlerFn(name, editorState, onBack);
+            if (subMenu)
+                subMenuView((prev) => {
+                    if (prev?.props.id === subMenu.props.id) return null;
+                    return subMenu;
+                });
         }
     }
 
     useEffect(() => {
         if (!editorState.editor) return;
-        console.log("object")
 
         function listener(e: Event) {
             // styling highlights is still underway
             const selection = editorState.__document__.getSelection();
+            console.log(selection)
             if (!selection) return;
 
             const node = selection.focusNode?.parentElement;
-            console.log(node)
             if (!node) return;
 
             const styles = window.getComputedStyle(node);
@@ -64,6 +66,6 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
 interface ModelProps {
     editorState: EditorStateType;
     config: ModelConfig;
-    subMenuView?: (value: string) => void;
+    subMenuView?: Dispatch<SetStateAction<JSX.Element | null>>;
     onCurrentStyle?: (styles: CSSStyleDeclaration) => HTMLAttributes<HTMLButtonElement>
 }

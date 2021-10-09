@@ -6,7 +6,9 @@ export default function fontstyleHandlerFn(name: string, editorState: EditorStat
         const element = e.target as HTMLLIElement;
         if (!element) return;
 
+
         const value = element.id;
+        console.log(value)
 
         editorState.__document__.execCommand('fontName', false, value);
 
@@ -19,16 +21,26 @@ export default function fontstyleHandlerFn(name: string, editorState: EditorStat
                 <span>{name}</span>
             </div>
 
-            <ul>
+            <div>
                 {fontStyleArray.map((value, key) => (
-                    <li id={value} key={value + key} onClick={onClick}>{value}</li>
+                    <button id={value} key={value + key} onClick={onClick}>{value}</button>
                 ))}
-            </ul>
+            </div>
 
         </div>
     )
 }
 
 export const fontStyleArray = [
+    "Arial",
+    "Verdana",
+    "Helvetica",
+    "Tahoma",
+    "Trebuchet MS",
+    "Times New Roman",
+    "Georgia",
+    "Garamond",
+    "Courier New",
+    "Brush Script MT"
 
 ]
