@@ -13,3 +13,7 @@ export interface Italics extends Constructor {
 export interface Underline extends Constructor {
 
 }
+
+export interface FontStyle extends Constructor {
+    onClick: (value: string) => void;
+}

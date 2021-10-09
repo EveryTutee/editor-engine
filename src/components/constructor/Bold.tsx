@@ -17,6 +17,13 @@ export default function Bold({ editorState }: Bold) {
         <Model
             editorState={editorState}
             config={config}
+            onCurrentStyle={(styles) => {
+                return {
+                    style: {
+                        backgroundColor: styles.fontWeight === 'bold' ? 'green' : 'white'
+                    }
+                }
+            }}
         />
     )
 }
