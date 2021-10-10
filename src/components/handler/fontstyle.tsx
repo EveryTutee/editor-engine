@@ -2,8 +2,8 @@ import React, { MouseEvent, useRef } from 'react'
 import { EditorStateType } from '../../base/base.types'
 
 export default function fontstyleHandlerFn(name: string, editorState: EditorStateType, onBack: (container: Element | null) => void) {
-    function onClick(e: MouseEvent<HTMLLIElement>) {
-        const element = e.target as HTMLLIElement;
+    function onClick(e: MouseEvent<HTMLButtonElement>) {
+        const element = e.target as HTMLButtonElement;
         if (!element) return;
 
 

@@ -5,6 +5,7 @@ export interface EditorProps {
     placeholder?: string;
     readonly?: string;
     id: string;
+    type: 'editor' | 'canvas';
 }
 
 export interface EditorStateType {
@@ -22,6 +23,8 @@ export interface EditorStateType {
 
     undo: () => string;
     redo: () => string;
+
+    setContent: (content: string) => void;
 
 };
 

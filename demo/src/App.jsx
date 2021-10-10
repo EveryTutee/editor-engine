@@ -5,7 +5,14 @@ import './dist/editor.css'
 import { Bold, FontStyle, Italics, Underline } from './dist/components';
 
 function App() {
-  const [editorState, setEditorState] = React.useState(() => EditorState.createEmpty());
+  const [editorState, setEditorState] = React.useState(() => new EditorState());
+  const [canvas, setCanvas] = React.useState(() => new EditorState());
+
+
+  console.log(canvas.editor)
+
+  const [canva, setCanva] = React.useState([]);
+
   // showNav : ...types | null 
   const [showNav, setShowNav] = React.useState(null);
   return (
@@ -22,10 +29,29 @@ function App() {
           {showNav}
         </div>}
 
-
       </nav>
 
-      <Editor editorState={editorState} onChange={setEditorState} />
+      <Editor editorState={editorState} onChange={setEditorState} id="mainEditor" />
+
+      <nav className="nav">
+        Hello
+      </nav>
+      <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" />
+
+      <button onClick={() => {
+        const __canvas__ = canvas.content;
+        canvas.setContent("<p><br/></p>");
+        setCanva(x => [__canvas__, ...x]);
+      }}>Save Canvas</button>
+
+      <div>
+        {canva.map((v, i) => (
+          <div dangerouslySetInnerHTML={{ __html: v }} key={v + i} onClick={() => {
+            editorState.editor.innerHTML += v;
+          }} />
+        ))}
+      </div>
+
       <div className="output" dangerouslySetInnerHTML={{ __html: editorState.content }} />
 
     </div>

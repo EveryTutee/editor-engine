@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { EditorProps } from '../base.types';
 
 // Returns the Editor or MainTextArea :)
-export default function Editor({ editorState, placeholder, readonly, id, onChange }: EditorProps) {
+var c = 0
+export default function Editor({ editorState, placeholder, readonly, id, onChange, type = 'editor' }: EditorProps) {
     const editorRef = useRef<HTMLDivElement | null>(null);
-
-
     useEffect(() => {
+        console.log(c++)
         if (!editorRef.current) return;
 
         editorState.setEditor(editorRef.current);
@@ -18,31 +18,32 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
                 content: innerHTML,
             }
 
-            newState.setUndoStack(newState.content);
-
-
+            newState?.setUndoStack?.(newState.content);
             onChange?.(newState);
-
-
 
         });
         return () => {
             obs?.disconnect();
+            editorRef.current = null;
         }
         //eslint-disable-next-line
-    }, [editorRef.current])
+    }, [])
 
     return (
         <div
-            className="main_editor"
+            key={id}
+            ref={editorRef}
+            className={"main_editor " + id}
             contentEditable={!readonly}
             id={id}
             placeholder={placeholder}
-            ref={editorRef}
             suppressContentEditableWarning={true}
+            style={{
+                position: type === 'canvas' ? 'relative' : 'static'
+            }}
         >
             <p><br /></p>
-        </div>
+        </div >
     )
 }
 

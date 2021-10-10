@@ -1,49 +1,44 @@
-import { createElement } from "react";
 import { EditorStateType } from "../base.types";
 
-const EditorState = {
-    __document__: document,
-    editor: null,
-    content: "",
-    undoStack: [],
-    redoStack: [],
+class EditorState {
+    __document__ = document;
+    editor: HTMLDivElement | null = null;
+    content = "";
+    undoStack: string[] = [];
+    redoStack: string[] = [];
 
-    init: function () {
+    constructor() {
+        this.init();
+    }
+
+    init() {
         this.__document__ = this.editor?.ownerDocument || document;
         this.__document__.execCommand('styleWithCSS', false, "true");
         this.__document__.execCommand('defaultParagraphSeparator', false, "p");
         this.content = "";
-    },
-    setEditor: function (node) {
+    }
+
+    setEditor = (node: HTMLDivElement) => {
         if (this.editor) return;
         this.editor = node;
-    },
-    createEmpty: function () {
-        this.content = "";
-        this.undoStack = [];
-        this.redoStack = [];
-        this.editor = null;
+    }
 
-        this.init();
-
-        return this;
-    },
-    setUndoStack: function (content: string) {
+    setUndoStack = (content: string) => {
         this.undoStack.push(content);
-    },
-    setRedoStack: function (content: string) {
+    }
+    setRedoStack = (content: string) => {
         this.redoStack.push(content);
-    },
+    }
 
-    undo: function () {
+    undo = () => {
         const content = this.undoStack.pop();
         if (!content) return;
 
         this.setRedoStack(content);
         return content;
-    },
+    }
 
-    redo: function () {
+    redo = () => {
         const content = this.redoStack.pop();
         if (!content) return;
 
@@ -51,11 +46,82 @@ const EditorState = {
         return content;
     }
 
+    setContent = (content: string) => {
+        console.log(this.editor)
+        if (!this.editor) return;
+        this.content = content;
+        this.undoStack = [];
+        this.redoStack = [];
+
+        this.editor.innerHTML = content;
+    }
+}
+
+// const EditorState = {
+//     __document__: document,
+//     editor: null,
+//     content: "",
+//     undoStack: [],
+//     redoStack: [],
+
+//     init: function () {
+//         this.__document__ = this.editor?.ownerDocument || document;
+//         this.__document__.execCommand('styleWithCSS', false, "true");
+//         this.__document__.execCommand('defaultParagraphSeparator', false, "p");
+//         this.content = "";
+//     },
+//     setEditor: function (node) {
+//         if (this.editor) return;
+//         this.editor = node;
+//     },
+//     createEmpty: function () {
+//         this.content = "";
+//         this.undoStack = [];
+//         this.redoStack = [];
+//         this.editor = null;
+
+//         this.init();
+
+//         return this;
+//     },
+//     setUndoStack: function (content: string) {
+//         this.undoStack.push(content);
+//     },
+//     setRedoStack: function (content: string) {
+//         this.redoStack.push(content);
+//     },
+
+//     undo: function () {
+//         const content = this.undoStack.pop();
+//         if (!content) return;
+
+//         this.setRedoStack(content);
+//         return content;
+//     },
+
+//     redo: function () {
+//         const content = this.redoStack.pop();
+//         if (!content) return;
+
+//         this.setUndoStack(content);
+//         return content;
+//     },
+
+//     setContent: function (content: string) {
+//         console.log(this.editor)
+//         if (!this.editor) return;
+//         this.content = content;
+//         this.undoStack = [];
+//         this.redoStack = [];
+
+//         this.editor.innerHTML = content;
+//     }
 
 
 
 
 
-} as EditorStateType;
+
+// } as EditorStateType;
 
 export default EditorState;
