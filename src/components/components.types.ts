@@ -18,3 +18,7 @@ export interface Underline extends Constructor {
 export interface FontStyle extends Constructor {
     onClick: Dispatch<SetStateAction<JSX.Element | null>>;
 }
+
+export interface Textbox extends Constructor {
+
+}
