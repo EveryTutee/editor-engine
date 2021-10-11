@@ -1,10 +1,18 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { Fragment, useCallback, useEffect, useRef } from 'react';
+import { onResizeMouseDownHandler } from '../../utils/resizeHandler';
 import { EditorProps } from '../base.types';
 
 // Returns the Editor or MainTextArea :)
 var c = 0
 export default function Editor({ editorState, placeholder, readonly, id, onChange, type = 'editor' }: EditorProps) {
     const editorRef = useRef<HTMLDivElement | null>(null);
+
+    function resizeEditor(e: MouseEvent | TouchEvent) {
+        if (!editorState.editor) return;
+        onResizeMouseDownHandler(editorState, editorState.editor, e, 'y');
+
+    }
+
     useEffect(() => {
         console.log(c++)
         if (!editorRef.current) return;
@@ -30,20 +38,24 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
     }, [])
 
     return (
-        <div
-            key={id}
-            ref={editorRef}
-            className={"main_editor " + id}
-            contentEditable={!readonly}
-            id={id}
-            placeholder={placeholder}
-            suppressContentEditableWarning={true}
-            style={{
-                position: type === 'canvas' ? 'relative' : 'static'
-            }}
-        >
-            <p><br /></p>
-        </div >
+        <Fragment>
+            <div
+                key={id}
+                ref={editorRef}
+                className={"main_editor " + id}
+                contentEditable={!readonly}
+                id={id}
+                placeholder={placeholder}
+                suppressContentEditableWarning={true}
+                style={{
+                    position: type === 'canvas' ? 'relative' : 'static'
+                }}
+            >
+                <p><br /></p>
+            </div >
+            {/* @ts-expect-error */}
+            {type === 'canvas' && <button className="canvasResizer" onMouseDown={resizeEditor} onTouchStart={resizeEditor} />}
+        </Fragment>
     )
 }
 

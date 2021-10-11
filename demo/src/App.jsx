@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Editor, EditorState } from './dist/index';
 import './dist/editor.css'
-import { Bold, FontStyle, Italics, Underline } from './dist/components';
+import { Bold, FontStyle, Italics, Textbox, Underline } from './dist/components';
 
 function App() {
   const [editorState, setEditorState] = React.useState(() => new EditorState());
@@ -34,7 +34,7 @@ function App() {
       <Editor editorState={editorState} onChange={setEditorState} id="mainEditor" />
 
       <nav className="nav">
-        Hello
+        <Textbox editorState={canvas} />
       </nav>
       <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" />
 
