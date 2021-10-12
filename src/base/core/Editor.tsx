@@ -57,17 +57,6 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
         //eslint-disable-next-line
     }, [])
 
-    useEffect(() => {
-        if (type !== 'canvas') return;
-        if (!editorRef.current) return;
-
-        //@ts-ignore
-        editorRef.current.addEventListener('deletebox', deleteBoxEventHandler, false);
-        return () => {
-            //@ts-ignore
-            editorRef.current?.removeEventListener('deletebox', deleteBoxEventHandler, false);
-        }
-    }, [])
 
     return (
         <Fragment>
