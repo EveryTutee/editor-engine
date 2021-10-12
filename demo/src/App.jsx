@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './App.css';
 import { Editor, EditorState } from './dist/index';
 import './dist/editor.css'
@@ -39,14 +39,14 @@ function App() {
       <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" />
 
       <button onClick={() => {
-        const __canvas__ = canvas.content;
+        const __canvas__ = `<div style="position:relative;" contenteditable="false">${canvas.content}</div>`;
         canvas.setContent("<p><br/></p>");
         setCanva(x => [__canvas__, ...x]);
       }}>Save Canvas</button>
 
       <div>
         {canva.map((v, i) => (
-          <div dangerouslySetInnerHTML={{ __html: v }} key={v + i} onClick={() => {
+          <Fragment dangerouslySetInnerHTML={{ __html: v }} key={v + i} onClick={() => {
             editorState.editor.innerHTML += v;
           }} />
         ))}

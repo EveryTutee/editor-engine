@@ -5,7 +5,8 @@ import { clientCoord } from "./clientCoordinates";
 export function onResizeMouseDownHandler(editorState: EditorStateType,
     concern: HTMLElement,
     e: MouseEvent | TouchEvent,
-    dir: 'x' | 'y' | 'both') {
+    dir: 'x' | 'y' | 'both',
+    ignoreContainer?: boolean) {
 
     let mousePosition = clientCoord(e);
     const button = e.target as HTMLButtonElement;
@@ -31,14 +32,15 @@ export function onResizeMouseDownHandler(editorState: EditorStateType,
 
 
         if (dir === 'both' || dir === 'x') {
-            concern.style.setProperty('width', finalWidth);
+            if (ignoreContainer || mousePosition.x <= right)
+                concern.style.setProperty('width', finalWidth);
         }
 
         if (dir === 'both' || dir === 'y') {
-            concern.style.setProperty('height', finalHeight);
+            if (ignoreContainer || mousePosition.y <= bottom)
+                concern.style.setProperty('height', finalHeight);
         }
 
-        document.removeEventListener('touchend', onmouseup, false);
     }
     editorState.__document__.addEventListener('mousemove', onmousemove, false);
     editorState.__document__.addEventListener('touchmove', onmousemove, false);
@@ -51,7 +53,7 @@ export function onResizeMouseDownHandler(editorState: EditorStateType,
         editorState.__document__.removeEventListener('touchmove', onmousemove, false);
 
         editorState.__document__.removeEventListener('mouseup', onmouseup, false);
-
+        editorState.__document__.removeEventListener('touchend', onmouseup, false);
     }
 
 

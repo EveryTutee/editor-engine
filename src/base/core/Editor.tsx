@@ -1,7 +1,8 @@
 import React, { Fragment, MouseEvent, useCallback, useEffect, useRef } from 'react';
 import { onResizeMouseDownHandler } from '../../utils/resizeHandler';
 import { EditorProps } from '../base.types';
-import { deleteBoxEventHandler, removeContext } from './utils';
+import { defaultName } from '../model/Draggable';
+import { removeContext } from './utils';
 
 // Returns the Editor or MainTextArea :)
 var c = 0
@@ -10,7 +11,8 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
 
     function resizeEditor(e: globalThis.MouseEvent | TouchEvent) {
         if (!editorState.editor) return;
-        onResizeMouseDownHandler(editorState, editorState.editor, e, 'y');
+        console.log("ola amigas")
+        onResizeMouseDownHandler(editorState, editorState.editor, e, 'y', true);
 
     }
 
@@ -19,10 +21,10 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
         if (!editorState.editor) return;
 
         let target = e.target as HTMLElement;
-        target = target && target.classList.contains('textBox') ? target.parentElement as HTMLElement : target
+        target = target && !(target.classList.contains(defaultName)) ? target.parentElement as HTMLElement : target
         if (!target) return;
 
-        if (!target.classList.contains('textBoxWrapper')) {
+        if (!target.classList.contains(defaultName)) {
             console.log(target)
             removeContext(editorState.__document__);
         }
@@ -36,6 +38,7 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
 
         editorState.setEditor(editorRef.current);
         const obs = observeEditor(editorRef.current, () => {
+
             if (!editorRef.current) return;
             const innerHTML = editorRef.current.innerHTML;
             const newState = {
@@ -102,7 +105,8 @@ const observeEditor = (node: Node, callback: MutationCallback & EventListener) =
         observer.observe(node, {
             childList: true,
             subtree: true,
-            characterData: true
+            characterData: true,
+            attributeFilter: ["#contextMenu"]
         });
 
         return observer;

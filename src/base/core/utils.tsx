@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { findDOMNode, render, unmountComponentAtNode } from "react-dom";
 import ContextMenu from "../../UI/ContextMenu";
 import { EventDetails } from "../../utils/deleteHandler";
+import { EditorStateType } from "../base.types";
 
 export function removeContext(document: Document) {
     const boxes = document.querySelectorAll('.selectedBox') as NodeListOf<HTMLElement>;
@@ -18,19 +19,14 @@ export function removeContext(document: Document) {
 
 }
 
-export function deleteBoxEventHandler(e: CustomEvent) {
-    const { editorState, parent } = e.detail as EventDetails;
-
+export function cleanUpDraggables(editorState: EditorStateType) {
     const doc = editorState.__document__;
     const boxes = doc.querySelectorAll('.selectedBox') as NodeListOf<HTMLElement>;
     boxes.forEach(box => {
         const ctxMenuHolder = box.querySelector('.contextMenuWrapper') as Element;
         unmountComponentAtNode(ctxMenuHolder);
         ctxMenuHolder.remove();
-        const __box = box.querySelector('.textBox');
-        if (!__box) return;
-        unmountComponentAtNode(__box);
-        // box.remove();
+        box.remove();
     })
 
 }
