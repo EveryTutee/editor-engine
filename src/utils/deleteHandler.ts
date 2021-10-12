@@ -1,16 +1,13 @@
 import { unmountComponentAtNode } from "react-dom";
 import { EditorStateType } from "../base/base.types";
+import { removeDraggable } from "../base/model/Draggable";
 
 export function deleteHandler(editorState: EditorStateType, parent: HTMLElement) {
-    if (!editorState.editor) return;
-    const event = new CustomEvent('deletebox', {
-        detail: {
-            editorState,
-            parent: parent.id
-        } as EventDetails
-    });
+    const ctxMenuHolder = parent.querySelector('.contextMenuWrapper') as Element;
+    unmountComponentAtNode(ctxMenuHolder);
+    ctxMenuHolder.remove();
 
-    editorState.editor.dispatchEvent(event);
+    removeDraggable(editorState, parent);
 
 
 }

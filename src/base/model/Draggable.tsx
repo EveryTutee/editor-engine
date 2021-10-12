@@ -1,64 +1,64 @@
 import React, { CSSProperties, Fragment, ReactChild, useEffect, useRef } from 'react';
 import { createPortal, hydrate, render } from 'react-dom';
+import { renderToString } from 'react-dom/server';
 import ContextMenu from '../../UI/ContextMenu';
 import { EditorStateType } from '../base.types';
 
-export function Textbox({ className, parentId, children, style, editorState }: TextboxProps) {
-    const ref = useRef<HTMLDivElement | null>(null);
+export const defaultName = "draggable";
 
-    useEffect(() => {
-        if (!ref.current) return;
-        const parent = ref.current.parentElement as HTMLElement;
-        if (!parent) return;
-
-
-        parent.addEventListener('click', (e) => draggableOnClick(e, parent, editorState), false);
-
-        return () => {
-            parent.addEventListener('click', e => draggableOnClick(e, parent, editorState), false);
-
-        }
-    }, [ref.current])
+export function Textbox({ childClassName, parentClassName, parentId, children, parentStyle, childId, childStyle }: TextboxProps) {
 
     return (
-        <Fragment>
+        <div
+            id={parentId}
+            className={parentClassName + " " + defaultName}
+            style={parentStyle}
+        >
             <div
-                id={parentId}
-                style={style}
-                className={`${className}`}
-                ref={ref}
+                id={childId}
+                style={childStyle}
+                className={childClassName}
             >
                 {children}
             </div>
-        </Fragment>
+        </div>
     )
 }
 
-export const parentDiv = (className: string, parentId: string, style: { [key: string]: string }) => (`
-    <div 
-        id="${parentId}"
-        class="${className}"
-        style="${JSON.stringify(style)
-        .replaceAll("\"", "")
-        .replaceAll("{", "")
-        .replaceAll(",", ";")
-        .replaceAll("}", ";")}"
-        >
-    </div>
-`);
+export function insertDraggable(editorState: EditorStateType, markup: JSX.Element) {
+    const { editor } = editorState;
+    if (!editor) return;
+    const div = renderToString(markup);
 
+    editor.innerHTML += div;
+
+    const draggable = editor.querySelector("." + defaultName) as HTMLDivElement;
+    if (!draggable) return;
+
+    draggable.addEventListener('click', (e) => draggableOnClick(e, draggable, editorState), false);
+    draggable.focus();
+}
+
+export function removeDraggable(editorState: EditorStateType, draggable: HTMLElement) {
+    draggable.removeEventListener('click', (e) => draggableOnClick(e, draggable, editorState), false);
+    draggable.remove();
+    editorState.editor?.focus();
+}
 
 
 interface TextboxProps {
     parentId: string;
-    className: string;
+    childId: string;
+    parentClassName: string;
+    childClassName: string;
     children: ReactChild;
     contentEditable?: boolean;
-    style: CSSProperties;
+    parentStyle: CSSProperties;
+    childStyle: CSSProperties;
     editorState: EditorStateType
 }
 
-function draggableOnClick(e: Event, parent: HTMLElement, editorState: EditorStateType) {
+export function draggableOnClick(e: Event, parent: HTMLElement, editorState: EditorStateType) {
     if (parent.classList.contains('selectedBox')) return;
     parent.classList.add('selectedBox');
     parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>"

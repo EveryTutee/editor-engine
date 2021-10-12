@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { CSSProperties, Fragment, useEffect, useRef, useState } from 'react';
+import { renderToString } from 'react-dom/server';
 import { EditorStateType } from '../../base/base.types'
-import { parentDiv, Textbox } from '../../base/model/Draggable';
+import { defaultName, insertDraggable, Textbox } from '../../base/model/Draggable';
 import { uuid } from '../../utils/uuid';
 
 const textBoxStyle = {
@@ -14,18 +14,35 @@ const textBoxStyle = {
     cursor: "pointer"
 }
 
+const parentStyle = {
+    position: 'absolute',
+    width: '40%',
+    height: '40%',
+    minHeight: 'fit-content',
+    top: '60px',
+    zIndex: 1,
+    cursor: 'pointer'
+
+} as CSSProperties;
+
+const childStyle = {
+    padding: "0.25rem 0.75rem",
+    height: "100%",
+    width: "100%",
+} as CSSProperties;
+
+
 export default function textboxHandlerFn(name: string, editorState: EditorStateType) {
     const childId = uuid();
     const parentId = uuid();
     const __text__ = (
         <Textbox
-            className="textBox"
-            parentId={name + childId}
-            style={{
-                padding: "0.25rem 0.75rem",
-                height: "100%",
-                width: "100%",
-            }}
+            parentClassName="textBoxWrapper"
+            childClassName="textBox"
+            parentId={name + parentId}
+            childId={name + childId}
+            parentStyle={parentStyle}
+            childStyle={childStyle}
             editorState={editorState}
         >
             <p style={{
@@ -41,13 +58,7 @@ export default function textboxHandlerFn(name: string, editorState: EditorStateT
             </p>
         </Textbox>);
 
-    if (!editorState.editor) return null;
-    editorState.editor.innerHTML += parentDiv('textBoxWrapper', name + parentId, textBoxStyle)
-    const div = document.getElementById(name + parentId);
-    ReactDOM.render(
-        __text__,
-        div
-    )
+    insertDraggable(editorState, __text__);
 
     return null;
 }
