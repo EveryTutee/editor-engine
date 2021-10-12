@@ -1,15 +1,32 @@
-import React, { Fragment, useCallback, useEffect, useRef } from 'react';
+import React, { Fragment, MouseEvent, useCallback, useEffect, useRef } from 'react';
 import { onResizeMouseDownHandler } from '../../utils/resizeHandler';
 import { EditorProps } from '../base.types';
+import { deleteBoxEventHandler, removeContext } from './utils';
 
 // Returns the Editor or MainTextArea :)
 var c = 0
 export default function Editor({ editorState, placeholder, readonly, id, onChange, type = 'editor' }: EditorProps) {
     const editorRef = useRef<HTMLDivElement | null>(null);
 
-    function resizeEditor(e: MouseEvent | TouchEvent) {
+    function resizeEditor(e: globalThis.MouseEvent | TouchEvent) {
         if (!editorState.editor) return;
         onResizeMouseDownHandler(editorState, editorState.editor, e, 'y');
+
+    }
+
+    function canvasClick(e: MouseEvent<HTMLDivElement>) {
+        if (type !== 'canvas') return;
+        if (!editorState.editor) return;
+
+        let target = e.target as HTMLElement;
+        target = target && target.classList.contains('textBox') ? target.parentElement as HTMLElement : target
+        if (!target) return;
+
+        if (!target.classList.contains('textBoxWrapper')) {
+            console.log(target)
+            removeContext(editorState.__document__);
+        }
+
 
     }
 
@@ -37,6 +54,18 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
         //eslint-disable-next-line
     }, [])
 
+    useEffect(() => {
+        if (type !== 'canvas') return;
+        if (!editorRef.current) return;
+
+        //@ts-ignore
+        editorRef.current.addEventListener('deletebox', deleteBoxEventHandler, false);
+        return () => {
+            //@ts-ignore
+            editorRef.current?.removeEventListener('deletebox', deleteBoxEventHandler, false);
+        }
+    }, [])
+
     return (
         <Fragment>
             <div
@@ -50,11 +79,17 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
                 style={{
                     position: type === 'canvas' ? 'relative' : 'static'
                 }}
+                onClick={canvasClick}
             >
                 <p><br /></p>
             </div >
-            {/* @ts-expect-error */}
-            {type === 'canvas' && <button className="canvasResizer" onMouseDown={resizeEditor} onTouchStart={resizeEditor} />}
+            {type === 'canvas' &&
+                <button
+                    className="canvasResizer"
+                    //@ts-expect-error
+                    onMouseDown={resizeEditor}
+                    //@ts-expect-error
+                    onTouchStart={resizeEditor} />}
         </Fragment>
     )
 }

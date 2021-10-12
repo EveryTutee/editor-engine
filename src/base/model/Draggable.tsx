@@ -1,8 +1,9 @@
 import React, { CSSProperties, Fragment, ReactChild, useEffect, useRef } from 'react';
 import { createPortal, hydrate, render } from 'react-dom';
 import ContextMenu from '../../UI/ContextMenu';
+import { EditorStateType } from '../base.types';
 
-export function Textbox({ className, parentId, children, style }: TextboxProps) {
+export function Textbox({ className, parentId, children, style, editorState }: TextboxProps) {
     const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -11,10 +12,10 @@ export function Textbox({ className, parentId, children, style }: TextboxProps) 
         if (!parent) return;
 
 
-        parent.addEventListener('click', (e) => draggableOnClick(e, parent), false);
+        parent.addEventListener('click', (e) => draggableOnClick(e, parent, editorState), false);
 
         return () => {
-            parent.addEventListener('click', e => draggableOnClick(e, parent), false);
+            parent.addEventListener('click', e => draggableOnClick(e, parent, editorState), false);
 
         }
     }, [ref.current])
@@ -54,16 +55,19 @@ interface TextboxProps {
     children: ReactChild;
     contentEditable?: boolean;
     style: CSSProperties;
+    editorState: EditorStateType
 }
 
-function draggableOnClick(e: Event, parent: HTMLElement) {
+function draggableOnClick(e: Event, parent: HTMLElement, editorState: EditorStateType) {
+    if (parent.classList.contains('selectedBox')) return;
+    parent.classList.add('selectedBox');
     parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>"
     const contextMenuWrapper = document.querySelector('.contextMenuWrapper') as HTMLDivElement;
 
     render(
-        <ContextMenu parent={parent} />,
+        <ContextMenu parent={parent} editorState={editorState} />,
         contextMenuWrapper
     )
 
-    contextMenuWrapper.remove()
+    // contextMenuWrapper.remove()
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Fa500Px } from 'react-icons/fa';
+import { BsTextareaResize } from 'react-icons/bs';
 import { ModelConfig } from '../../base/base.types'
 import Model from '../../base/model/Model'
 import { Textbox } from '../components.types'
@@ -11,7 +11,7 @@ export default function Textbox({ editorState }: Textbox) {
     const config = {
         name: 'Textbox',
         type: 'click',
-        buttonIcon: <Fa500Px />,
+        buttonIcon: <BsTextareaResize />,
         handlerFn: textboxHandlerFn
 
     } as ModelConfig;

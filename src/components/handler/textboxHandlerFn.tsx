@@ -8,6 +8,7 @@ const textBoxStyle = {
     position: "absolute",
     width: "40%",
     height: "40%",
+    "min-height": 'fit-content',
     top: "60px",
     "z-index": "1",
     cursor: "pointer"
@@ -17,11 +18,16 @@ export default function textboxHandlerFn(name: string, editorState: EditorStateT
     const childId = uuid();
     const parentId = uuid();
     const __text__ = (
-        <Textbox className="textBox" parentId={name + childId} style={{
-            padding: "0.25rem 0.75rem",
-            height: "100%",
-            width: "100%",
-        }}>
+        <Textbox
+            className="textBox"
+            parentId={name + childId}
+            style={{
+                padding: "0.25rem 0.75rem",
+                height: "100%",
+                width: "100%",
+            }}
+            editorState={editorState}
+        >
             <p style={{
                 backgroundColor: 'transparent',
                 width: "100%",
