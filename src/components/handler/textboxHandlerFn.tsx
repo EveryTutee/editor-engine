@@ -33,6 +33,7 @@ export default function textboxHandlerFn(e: any, name: string, editorState: Edit
             parentStyle={parentStyle}
             childStyle={childStyle}
             editorState={editorState}
+            contentEditable={true}
         >
             <p style={{
                 backgroundColor: 'transparent',

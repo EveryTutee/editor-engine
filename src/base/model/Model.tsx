@@ -1,10 +1,10 @@
-import React, { Dispatch, Fragment, HTMLAttributes, MouseEvent, SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, Dispatch, Fragment, HTMLAttributes, MouseEvent, SetStateAction, useEffect, useRef, useState } from 'react';
 import ReactDOM, { createPortal, render, unmountComponentAtNode } from 'react-dom';
 import { EditorStateType, ModelConfig } from '../base.types'
 
 export default function Model({ editorState, config, subMenuView, onCurrentStyle, btnType, accept }: ModelProps) {
     const { name, buttonIcon, type, handlerFn } = config;
-    const btnRef = useRef<HTMLButtonElement | null>(null);
+    const btnRef = useRef<(HTMLButtonElement & HTMLLabelElement) | null>(null);
     const [currAttributes, setCurrAttributes] = useState<HTMLAttributes<HTMLButtonElement> | null>(null);
 
     function onBack() {
@@ -20,7 +20,7 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
         btn.click();
     }
 
-    function handleClick(e: MouseEvent<HTMLInputElement>) {
+    function handleClick(e: any) {
         e.preventDefault();
         e.stopPropagation();
 
@@ -37,6 +37,7 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
                 });
         }
     }
+
 
     useEffect(() => {
         if (!editorState.editor) return;
@@ -65,28 +66,27 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
         }
     }, [editorState.editor, editorState.__document__])
 
+    const file = (
+        <Fragment>
+            <label htmlFor={name} className="btn" ref={btnRef}>
+                <input type="file" style={{ display: 'none' }} id={name} onChange={handleClick} />
+                {buttonIcon}
+            </label>
+        </Fragment>
+    )
+
+    const button = (
+        <button id={name} title={name} className={name} onClick={handleClick} ref={btnRef}>
+            {buttonIcon}
+        </button>
+    )
+
     return (
         <Fragment>
-            <button
-                title={name}
-                ref={btnRef}
-                onClick={assertInputClick}
-            >
-                <input
-                    type={btnType}
-                    style={{ display: 'none' }}
-                    id={name}
-                    onClick={handleClick}
-                    accept={accept}
-                />
-                {buttonIcon}
-            </button>
+            {btnType === 'file' ? file : button}
 
         </Fragment>
     )
-    // <button id={name} title={name} onClick={handleClick} ref={btnRef} {...currAttributes}>
-    //     {buttonIcon}
-    // </button>
 }
 
 interface ModelProps {

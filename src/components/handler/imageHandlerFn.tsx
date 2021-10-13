@@ -6,7 +6,7 @@ import { uuid } from "../../utils/uuid";
 
 const parentStyle = {
     position: 'absolute',
-    width: '60%',
+    width: '100px',
     height: 'auto',
     minHeight: 'fit-content',
     top: '60px',
@@ -39,6 +39,7 @@ export default function imageHandlerFn(e: React.MouseEvent<HTMLInputElement>, na
                 parentStyle={parentStyle}
                 childStyle={childStyle}
                 editorState={editorState}
+                contentEditable={false}
             >
                 <img
                     src={src}
@@ -50,7 +51,7 @@ export default function imageHandlerFn(e: React.MouseEvent<HTMLInputElement>, na
                     }} />
             </Textbox>);
 
-        insertDraggable(editorState, __text__);
+        insertDraggable(editorState, __text__, name + parentId);
 
         target.value = "";
 

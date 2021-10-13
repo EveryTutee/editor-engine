@@ -7,7 +7,7 @@ import { EditorStateType } from '../base.types';
 
 export const defaultName = "draggable";
 
-export function Textbox({ childClassName, parentClassName, parentId, children, parentStyle, childId, childStyle }: TextboxProps) {
+export function Textbox({ childClassName, parentClassName, parentId, children, parentStyle, childId, childStyle, contentEditable }: TextboxProps) {
 
     return (
         <div
@@ -15,6 +15,7 @@ export function Textbox({ childClassName, parentClassName, parentId, children, p
             className={parentClassName + " " + defaultName}
             style={parentStyle}
             key={parentId + childId}
+            contentEditable={contentEditable}
         >
             <div
                 id={childId}
@@ -53,10 +54,10 @@ interface TextboxProps {
     parentClassName: string;
     childClassName: string;
     children: ReactChild;
-    contentEditable?: boolean;
     parentStyle: CSSProperties;
     childStyle: CSSProperties;
     editorState: EditorStateType
+    contentEditable: boolean;
 }
 
 export function draggableOnClick(parent: HTMLElement, editorState: EditorStateType) {
