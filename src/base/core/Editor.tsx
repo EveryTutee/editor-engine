@@ -1,7 +1,8 @@
 import React, { Fragment, MouseEvent, useCallback, useEffect, useRef } from 'react';
+import getParent from '../../utils/getParent';
 import { onResizeMouseDownHandler } from '../../utils/resizeHandler';
 import { EditorProps } from '../base.types';
-import { defaultName } from '../model/Draggable';
+import { defaultName, draggableOnClick } from '../model/Draggable';
 import { removeContext } from './utils';
 
 // Returns the Editor or MainTextArea :)
@@ -20,12 +21,14 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
         if (type !== 'canvas') return;
         if (!editorState.editor) return;
 
-        let target = e.target as HTMLElement;
-        target = target && !(target.classList.contains(defaultName)) ? target.parentElement as HTMLElement : target
-        if (!target) return;
+        const target = e.target as HTMLElement;
+        const parent = getParent(target, `.${defaultName}`);
+        if (!parent) return;
+        console.log("I am your father", parent);
 
-        if (!target.classList.contains(defaultName)) {
-            console.log(target)
+        if (parent.classList.contains(defaultName)) {
+            draggableOnClick(parent, editorState);
+        } else {
             removeContext(editorState.__document__);
         }
 

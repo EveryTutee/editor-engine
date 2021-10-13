@@ -2,6 +2,7 @@ import React, { CSSProperties, Fragment, ReactChild, useEffect, useRef } from 'r
 import { createPortal, hydrate, render } from 'react-dom';
 import { renderToString } from 'react-dom/server';
 import ContextMenu from '../../UI/ContextMenu';
+import getParent from '../../utils/getParent';
 import { EditorStateType } from '../base.types';
 
 export const defaultName = "draggable";
@@ -13,6 +14,7 @@ export function Textbox({ childClassName, parentClassName, parentId, children, p
             id={parentId}
             className={parentClassName + " " + defaultName}
             style={parentStyle}
+            key={parentId + childId}
         >
             <div
                 id={childId}
@@ -25,22 +27,21 @@ export function Textbox({ childClassName, parentClassName, parentId, children, p
     )
 }
 
-export function insertDraggable(editorState: EditorStateType, markup: JSX.Element) {
+export function insertDraggable(editorState: EditorStateType, markup: JSX.Element, identifier: string) {
     const { editor } = editorState;
     if (!editor) return;
     const div = renderToString(markup);
 
     editor.innerHTML += div;
-
-    const draggable = editor.querySelector("." + defaultName) as HTMLDivElement;
+    const draggable = editor.querySelector(`#${identifier}`) as HTMLElement;
     if (!draggable) return;
 
-    draggable.addEventListener('click', (e) => draggableOnClick(e, draggable, editorState), false);
+    draggable.addEventListener('click', () => draggableOnClick(draggable, editorState), false);
     draggable.focus();
 }
 
 export function removeDraggable(editorState: EditorStateType, draggable: HTMLElement) {
-    draggable.removeEventListener('click', (e) => draggableOnClick(e, draggable, editorState), false);
+    draggable.removeEventListener('click', () => draggableOnClick(draggable, editorState), false);
     draggable.remove();
     editorState.editor?.focus();
 }
@@ -58,11 +59,11 @@ interface TextboxProps {
     editorState: EditorStateType
 }
 
-export function draggableOnClick(e: Event, parent: HTMLElement, editorState: EditorStateType) {
+export function draggableOnClick(parent: HTMLElement, editorState: EditorStateType) {
     if (parent.classList.contains('selectedBox')) return;
     parent.classList.add('selectedBox');
     parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>"
-    const contextMenuWrapper = document.querySelector('.contextMenuWrapper') as HTMLDivElement;
+    const contextMenuWrapper = parent.querySelector('.contextMenuWrapper') as HTMLDivElement;
 
     render(
         <ContextMenu parent={parent} editorState={editorState} />,

@@ -47,7 +47,7 @@ export default function textboxHandlerFn(e: any, name: string, editorState: Edit
             </p>
         </Textbox>);
 
-    insertDraggable(editorState, __text__);
+    insertDraggable(editorState, __text__, name + parentId);
 
     return null;
 }
