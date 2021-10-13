@@ -15,6 +15,7 @@ export default function Underline({ editorState }: Underline) {
 
     return (
         <Model
+            btnType='button'
             editorState={editorState}
             config={config}
         />

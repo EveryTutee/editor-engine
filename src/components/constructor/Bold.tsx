@@ -15,6 +15,7 @@ export default function Bold({ editorState }: Bold) {
 
     return (
         <Model
+            btnType='button'
             editorState={editorState}
             config={config}
             onCurrentStyle={(styles) => {

@@ -1,18 +1,7 @@
-import React, { CSSProperties, Fragment, useEffect, useRef, useState } from 'react';
-import { renderToString } from 'react-dom/server';
+import React, { CSSProperties } from 'react';
 import { EditorStateType } from '../../base/base.types'
-import { defaultName, insertDraggable, Textbox } from '../../base/model/Draggable';
+import { insertDraggable, Textbox } from '../../base/model/Draggable';
 import { uuid } from '../../utils/uuid';
-
-const textBoxStyle = {
-    position: "absolute",
-    width: "40%",
-    height: "40%",
-    "min-height": 'fit-content',
-    top: "60px",
-    "z-index": "1",
-    cursor: "pointer"
-}
 
 const parentStyle = {
     position: 'absolute',
@@ -32,7 +21,7 @@ const childStyle = {
 } as CSSProperties;
 
 
-export default function textboxHandlerFn(name: string, editorState: EditorStateType) {
+export default function textboxHandlerFn(e: any, name: string, editorState: EditorStateType) {
     const childId = uuid();
     const parentId = uuid();
     const __text__ = (

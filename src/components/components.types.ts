@@ -22,3 +22,6 @@ export interface FontStyle extends Constructor {
 export interface Textbox extends Constructor {
 
 }
+export interface Image extends Constructor {
+
+}

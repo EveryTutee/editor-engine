@@ -1,8 +1,8 @@
-import React, { Dispatch, HTMLAttributes, MouseEvent, SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { Dispatch, Fragment, HTMLAttributes, MouseEvent, SetStateAction, useEffect, useRef, useState } from 'react';
 import ReactDOM, { createPortal, render, unmountComponentAtNode } from 'react-dom';
 import { EditorStateType, ModelConfig } from '../base.types'
 
-export default function Model({ editorState, config, subMenuView, onCurrentStyle }: ModelProps) {
+export default function Model({ editorState, config, subMenuView, onCurrentStyle, btnType, accept }: ModelProps) {
     const { name, buttonIcon, type, handlerFn } = config;
     const btnRef = useRef<HTMLButtonElement | null>(null);
     const [currAttributes, setCurrAttributes] = useState<HTMLAttributes<HTMLButtonElement> | null>(null);
@@ -11,16 +11,25 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
         subMenuView?.(null)
     }
 
-    function handleClick(e: MouseEvent<HTMLButtonElement>) {
+    function assertInputClick(e: MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!btnRef.current) return;
+        const btn = btnRef.current.querySelector(`input#${name}`) as HTMLInputElement;
+        if (!btn) throw Error("Button not found");
+        btn.click();
+    }
+
+    function handleClick(e: MouseEvent<HTMLInputElement>) {
         e.preventDefault();
         e.stopPropagation();
 
         // handlerFn is expected to return nothing
-        if (type === 'click') handlerFn(name, editorState, onBack);
+        if (type === 'click') handlerFn(e, name, editorState, onBack);
         // toggle to show expanded bar
         else if (type === 'submenu') {
             if (!subMenuView) throw Error("Sub menu is not provided");
-            const subMenu = handlerFn(name, editorState, onBack);
+            const subMenu = handlerFn(e, name, editorState, onBack);
             if (subMenu)
                 subMenuView((prev) => {
                     if (prev?.props.id === subMenu.props.id) return null;
@@ -57,10 +66,27 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
     }, [editorState.editor, editorState.__document__])
 
     return (
-        <button id={name} title={name} onClick={handleClick} ref={btnRef} {...currAttributes}>
-            {buttonIcon}
-        </button>
+        <Fragment>
+            <button
+                title={name}
+                ref={btnRef}
+                onClick={assertInputClick}
+            >
+                <input
+                    type={btnType}
+                    style={{ display: 'none' }}
+                    id={name}
+                    onClick={handleClick}
+                    accept={accept}
+                />
+                {buttonIcon}
+            </button>
+
+        </Fragment>
     )
+    // <button id={name} title={name} onClick={handleClick} ref={btnRef} {...currAttributes}>
+    //     {buttonIcon}
+    // </button>
 }
 
 interface ModelProps {
@@ -68,4 +94,6 @@ interface ModelProps {
     config: ModelConfig;
     subMenuView?: Dispatch<SetStateAction<JSX.Element | null>>;
     onCurrentStyle?: (styles: CSSStyleDeclaration) => HTMLAttributes<HTMLButtonElement>
+    btnType: 'file' | 'button' | 'text';
+    accept?: string;
 }

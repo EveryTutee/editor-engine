@@ -15,6 +15,7 @@ export default function Italics({ editorState }: Italics) {
 
     return (
         <Model
+            btnType='button'
             editorState={editorState}
             config={config}
         />

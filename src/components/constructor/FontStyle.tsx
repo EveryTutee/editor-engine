@@ -19,6 +19,7 @@ export default function FontStyle({ editorState, onClick }: FontStyle) {
             editorState={editorState}
             subMenuView={onClick}
 
+            btnType='button'
         />
     )
 }

@@ -6,19 +6,19 @@ import { Textbox } from '../components.types'
 import textboxHandlerFn from '../handler/textboxHandlerFn';
 
 
+const config = {
+    name: 'Textbox',
+    type: 'click',
+    buttonIcon: <BsTextareaResize />,
+    handlerFn: textboxHandlerFn
 
+} as ModelConfig;
 export default function Textbox({ editorState }: Textbox) {
-    const config = {
-        name: 'Textbox',
-        type: 'click',
-        buttonIcon: <BsTextareaResize />,
-        handlerFn: textboxHandlerFn
-
-    } as ModelConfig;
     return (
         <Model
             config={config}
             editorState={editorState}
+            btnType='button'
 
         />
     )
