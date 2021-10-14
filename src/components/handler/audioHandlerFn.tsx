@@ -6,21 +6,26 @@ import { uuid } from "../../utils/uuid";
 
 const parentStyle = {
     position: 'absolute',
-    width: '100px',
-    height: 'auto',
+    width: '90%',
+    height: '80px',
     minHeight: 'fit-content',
     top: '60px',
     zIndex: 1,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    backgroundColor: 'cyan',
+    borderRadius: '10px 45px 10px 45px',
 
 } as CSSProperties;
 
 const childStyle = {
     height: "100%",
     width: "100%",
+    pointerEvents: 'all',
+    margin: 'auto',
+    padding: '1rem'
 } as CSSProperties;
 
-export default function imageHandlerFn(e: React.MouseEvent<HTMLInputElement>, name: string, editorState: EditorStateType) {
+export default function audioHandlerFn(e: React.MouseEvent<HTMLInputElement>, name: string, editorState: EditorStateType) {
     const target = e.target as HTMLInputElement;
     if (!target.files) return null;
 
@@ -32,8 +37,8 @@ export default function imageHandlerFn(e: React.MouseEvent<HTMLInputElement>, na
         const parentId = uuid();
         const __text__ = (
             <Textbox
-                parentClassName="imageBoxWrapper"
-                childClassName="imageBox"
+                parentClassName="audioBoxWrapper"
+                childClassName="audioBox"
                 parentId={name + parentId}
                 childId={name + childId}
                 parentStyle={parentStyle}
@@ -41,15 +46,16 @@ export default function imageHandlerFn(e: React.MouseEvent<HTMLInputElement>, na
                 editorState={editorState}
                 contentEditable={false}
             >
-                <img
+                <audio
                     data-name={file.name}
                     src={src}
+                    controls={true}
+                    controlsList='nodownload'
                     style={{
-                        width: "100%",
-                        height: "100%",
-                        pointerEvents: "none",
-                        opacity: "inherit"
-                    }} />
+                        height: '100%',
+                        width: '100%'
+                    }}
+                />
             </Textbox>);
 
         insertDraggable(editorState, __text__, name + parentId);

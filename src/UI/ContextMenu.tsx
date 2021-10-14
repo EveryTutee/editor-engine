@@ -19,7 +19,7 @@ function ContextMenuItems({ editorState, parent }: ContextMenuItemsProps) {
     function __resizeHandler__(e: globalThis.MouseEvent | TouchEvent) {
         e.preventDefault();
         e.stopPropagation();
-        onResizeMouseDownHandler(editorState, parent, e, 'both');
+        onResizeMouseDownHandler(editorState, parent, e, parent.id.includes('Audio') ? 'x' : 'both');
     }
 
     function __deleteHandler__(e: MouseEvent<HTMLButtonElement>) {

@@ -25,3 +25,6 @@ export interface Textbox extends Constructor {
 export interface Image extends Constructor {
 
 }
+export interface Audio extends Constructor {
+
+}
