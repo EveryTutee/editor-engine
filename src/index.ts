@@ -1,13 +1,12 @@
 import Editor from './base/core/Editor';
 import EditorState from './base/state/EditorState';
+import Viewer from './base/core/Viewer';
 
-import { Bold } from './components';
+import * as Components from './components';
 
 export {
     Editor,
-    EditorState
-}
-
-export const components = {
-    Bold
+    EditorState,
+    Viewer,
+    Components
 }

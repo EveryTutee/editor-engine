@@ -6,7 +6,6 @@ import { defaultName, draggableOnClick } from '../model/Draggable';
 import { removeContext } from './utils';
 
 // Returns the Editor or MainTextArea :)
-var c = 0
 export default function Editor({ editorState, placeholder, readonly, id, onChange, type = 'editor' }: EditorProps) {
     const editorRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,7 +23,6 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
         const target = e.target as HTMLElement;
         const parent = getParent(target, `.${defaultName}`);
         if (!parent) return;
-        console.log("I am your father", parent);
 
         if (parent.classList.contains(defaultName)) {
             draggableOnClick(parent, editorState);
@@ -36,14 +34,16 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
     }
 
     useEffect(() => {
-        console.log(c++)
         if (!editorRef.current) return;
 
         editorState.setEditor(editorRef.current);
         const obs = observeEditor(editorRef.current, () => {
 
             if (!editorRef.current) return;
-            const innerHTML = editorRef.current.innerHTML;
+            const clone = editorRef.current.cloneNode(true) as HTMLElement;
+            removeContext(clone);
+            console.log(clone)
+            const innerHTML = clone.innerHTML;
             const newState = {
                 ...editorState,
                 content: innerHTML,
@@ -98,7 +98,6 @@ const observeEditor = (node: Node, callback: MutationCallback & EventListener) =
             childList: true,
             subtree: true,
             characterData: true,
-            attributeFilter: ["#contextMenu"]
         });
 
         return observer;

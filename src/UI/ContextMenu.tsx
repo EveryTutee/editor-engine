@@ -1,4 +1,4 @@
-import React, { useEffect, MouseEvent, Fragment } from 'react'
+import React, { useEffect, MouseEvent, Fragment, useState } from 'react'
 import { createPortal, hydrate, render } from 'react-dom'
 import { moveHandler } from '../utils/moveHandler'
 import { onResizeMouseDownHandler } from '../utils/resizeHandler';
@@ -38,15 +38,48 @@ function ContextMenuItems({ editorState, parent }: ContextMenuItemsProps) {
                 </button>
 
                 <button className="ctxBtn delete" onClick={__deleteHandler__}><AiFillDelete /></button>
+
             </div>
 
             {/* @ts-expect-error */}
             <button className="ctxBtn resize" onMouseDown={__resizeHandler__} onTouchStart={__resizeHandler__}></button>
 
+
         </div>
     )
 }
 
+function Interact({ editorState, parent }: ContextMenuItemsProps) {
+    function getInteraction() {
+        const child = parent.getElementsByClassName('iframeBox')[0] as HTMLDivElement;
+        if (!child) return false;
+
+        return child.style.pointerEvents === 'none';
+    }
+    const [interact, setInteract] = useState(() => getInteraction());
+
+    function __handleInteraction__() {
+        let res = !interact;
+
+        const child = parent.getElementsByClassName('iframeBox')[0] as HTMLDivElement;
+        if (!child) return;
+
+        child.style.setProperty('pointer-events', res ? "all" : "none");
+
+        setInteract(res);
+    }
+
+    return (
+        <button
+            className="ctxBtn interact"
+            data-interact={interact}
+            onClick={__handleInteraction__}
+        >
+            {interact ? "true" : "false"}
+        </button>
+    )
+
+}
 export default function ContextMenu({ editorState, parent }: ContextMenuWrapper) {
 
     return createPortal(

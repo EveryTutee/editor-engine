@@ -1,15 +1,12 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import { Editor, EditorState } from './dist/index';
+import { Editor, EditorState, Viewer } from './dist/index';
 import './dist/editor.css'
-import { Bold, FontStyle, Italics, Textbox, Underline, Image, Audio } from './dist/components';
+import { Bold, FontStyle, Italics, Textbox, Underline, Image, Audio, Iframe, SaveCanvas } from './dist/components';
 
 function App() {
   const [editorState, setEditorState] = React.useState(() => new EditorState());
   const [canvas, setCanvas] = React.useState(() => new EditorState());
-
-
-  console.log(canvas.editor)
 
   const [canva, setCanva] = React.useState([]);
 
@@ -37,20 +34,25 @@ function App() {
         <Textbox editorState={canvas} />
         <Image editorState={canvas} />
         <Audio editorState={canvas} />
+        <Iframe editorState={canvas} />
       </nav>
       <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" />
 
-      <button onClick={() => {
-        const __canvas__ = `<div style="position:relative;" contenteditable="false">${canvas.content}</div>`;
-        canvas.setContent("<p><br/></p>");
-        setCanva(x => [__canvas__, ...x]);
-      }}>Save Canvas</button>
-
+      <SaveCanvas
+        editorState={canvas}
+        display="Save Changes"
+        onClick={(value, dim) => {
+          setCanva(x => ([{ value, dim }, ...x]))
+        }}
+      />
       <div>
         {canva.map((v, i) => (
-          <Fragment dangerouslySetInnerHTML={{ __html: v }} key={v + i} onClick={() => {
-            editorState.editor.innerHTML += v;
-          }} />
+          <Viewer
+            key={i}
+            canvasDims={[v.dim.width, v.dim.height]}
+            content={v.value}
+            type='thumbnail'
+          />
         ))}
       </div>
 

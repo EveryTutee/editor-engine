@@ -63,7 +63,8 @@ interface TextboxProps {
 export function draggableOnClick(parent: HTMLElement, editorState: EditorStateType) {
     if (parent.classList.contains('selectedBox')) return;
     parent.classList.add('selectedBox');
-    parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>"
+    parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>";
+
     const contextMenuWrapper = parent.querySelector('.contextMenuWrapper') as HTMLDivElement;
 
     render(

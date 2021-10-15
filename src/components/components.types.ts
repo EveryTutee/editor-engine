@@ -28,3 +28,6 @@ export interface Image extends Constructor {
 export interface Audio extends Constructor {
 
 }
+export interface Iframe extends Constructor {
+
+}

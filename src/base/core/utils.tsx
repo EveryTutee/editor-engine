@@ -5,16 +5,18 @@ import ContextMenu from "../../UI/ContextMenu";
 import { EventDetails } from "../../utils/deleteHandler";
 import { EditorStateType } from "../base.types";
 
-export function removeContext(document: Document) {
+export function removeContext(document: Document | HTMLElement) {
     const boxes = document.querySelectorAll('.selectedBox') as NodeListOf<HTMLElement>;
-
+    console.log("Venom", boxes)
     boxes.forEach(box => {
         box.classList.remove('selectedBox');
         const ctxMenuHolder = box.querySelector('.contextMenuWrapper') as Element;
-        console.log(ctxMenuHolder)
+        const ctxMenu = box.querySelector('.contextMenu') as Element;
 
         unmountComponentAtNode(ctxMenuHolder);
+        unmountComponentAtNode(ctxMenu);
         ctxMenuHolder.remove()
+        ctxMenu.remove();
     })
 
 }
