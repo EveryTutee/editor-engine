@@ -11,3 +11,10 @@ export function clientCoord(e: MouseEvent | TouchEvent) {
         y: e?.clientY || 0
     }
 }
+
+export function getWindowDimensions() {
+    return {
+        width : window.innerWidth,
+        height: window.innerHeight
+    }
+}

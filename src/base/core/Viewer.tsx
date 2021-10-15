@@ -1,34 +1,25 @@
-import React, { useRef } from 'react'
+import React, { CSSProperties, useMemo, useRef } from 'react'
+import { getWindowDimensions } from '../../utils/clientCoordinates';
 
 export default function Viewer({ content, type, canvasDims }: ViewerProps) {
     const ref = useRef<HTMLDivElement | null>(null);
+
+    const style = useMemo<CSSProperties>(() => ({
+        width: type === 'thumbnail' ? "100px" : "100%",
+        height: type === 'thumbnail' ? `${(canvasDims[1] * 100) / canvasDims[0]}px` : canvasDims[1],
+    }), [canvasDims, type]);
 
     function setContent(r: HTMLDivElement) {
         if (!r) return;
         ref.current = r;
         r.innerHTML = content;
-
-        const { width, height } = r.getBoundingClientRect();
-        console.table({ r: [width, height], canvasDims })
-
-        const scale = Math.min(
-            width / canvasDims[0],
-            height / canvasDims[1]
-        );
-
-        r.style.transform = `scale(${scale})`;
-
-        // r.style.setProperty('transform', 'scale(' + scale + ');');
     }
 
     return (
         <div
             className={"viewer " + type}
             ref={setContent}
-            style={{
-                width: canvasDims[0],
-                height: canvasDims[1]
-            }}
+            style={style}
         />
     )
 }
@@ -38,3 +29,4 @@ interface ViewerProps {
     type: 'main' | 'canvas' | 'thumbnail';
     canvasDims: number[];
 }
+
