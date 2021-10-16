@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { Bold } from "../components.types";
@@ -18,13 +18,12 @@ export default function Bold({ editorState }: Bold) {
             btnType='button'
             editorState={editorState}
             config={config}
-            onCurrentStyle={(styles) => {
-                return {
-                    style: {
-                        backgroundColor: styles.fontWeight === 'bold' ? 'green' : 'white'
-                    }
+            onCurrentStyle={(styles) => ({
+                style: {
+                    backgroundColor: styles.fontWeight === '700' ? "green" : "red"
                 }
-            }}
+
+            })}
         />
     )
 }
