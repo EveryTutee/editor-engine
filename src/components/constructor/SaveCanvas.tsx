@@ -1,20 +1,34 @@
-import React from 'react'
+import React, { CSSProperties, Fragment, useRef } from 'react'
 import { EditorStateType } from '../../base/base.types'
-import { removeContext } from '../../base/core/utils';
+import html2canvas from 'html2canvas';
 
 export default function SaveCanvas({ editorState, onClick, display }: SaveCanvasProps) {
+    const displayRef = useRef<HTMLDivElement | null>(null);
 
     function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
+        if (!editorState.editor || !displayRef.current) return;
+
         const value = editorState.content;
-        if (!editorState.editor) return
-        onClick?.(value, editorState.editor.getBoundingClientRect())
-        editorState.setContent("<p><br/></p>");
+        let editor = editorState.editor;
+        const __display__ = displayRef.current;
+        __display__.innerHTML = value;
+
+        html2canvas(displayRef.current).then(canvas => {
+            const dataUrl = canvas.toDataURL('image/png');
+            onClick?.(dataUrl, editor.getBoundingClientRect());
+            editorState.setContent("<p><br/></p>");
+            __display__.innerHTML = "";
+        });
+
     }
 
     return (
-        <button onClick={handleClick}>
-            {display}
-        </button>
+        <Fragment>
+            <button onClick={handleClick}>
+                {display}
+            </button>
+            <div ref={displayRef} />
+        </Fragment>
     )
 }
 

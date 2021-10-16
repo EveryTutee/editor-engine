@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import { Editor, EditorState, Viewer } from './dist/index';
+import { Editor, EditorState, CanvasHolder } from './dist/index';
 import './dist/editor.css'
 import { Bold, FontStyle, Italics, Textbox, Underline, Image, Audio, Iframe, SaveCanvas } from './dist/components';
 
@@ -20,6 +20,8 @@ function App() {
           <Italics editorState={editorState} />
           <Underline editorState={editorState} />
           <FontStyle editorState={editorState} onClick={setShowNav} />
+          <Audio editorState={editorState} />
+          <Iframe editorState={editorState} />
         </div>
 
         {showNav && <div id="expanded">
@@ -33,8 +35,6 @@ function App() {
       <nav className="nav">
         <Textbox editorState={canvas} />
         <Image editorState={canvas} />
-        <Audio editorState={canvas} />
-        <Iframe editorState={canvas} />
       </nav>
       <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" />
 
@@ -42,19 +42,11 @@ function App() {
         editorState={canvas}
         display="Save Changes"
         onClick={(value, dim) => {
-          setCanva(x => ([{ value, dim }, ...x]))
+          setCanva(x => ([value, ...x]))
         }}
       />
-      <div>
-        {canva.map((v, i) => (
-          <Viewer
-            key={i}
-            canvasDims={[v.dim.width, v.dim.height]}
-            content={v.value}
-            type='thumbnail'
-          />
-        ))}
-      </div>
+
+      <CanvasHolder editorState={editorState} shelf={canva} />
 
       <div className="output" dangerouslySetInnerHTML={{ __html: editorState.content }} />
 

@@ -43,7 +43,7 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
             const clone = editorRef.current.cloneNode(true) as HTMLElement;
             removeContext(clone);
             console.log(clone)
-            const innerHTML = clone.innerHTML;
+            const innerHTML = clone.outerHTML;
             const newState = {
                 ...editorState,
                 content: innerHTML,

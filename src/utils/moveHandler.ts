@@ -29,7 +29,7 @@ export function moveHandler(
 
         if (dir === 'both' || dir === 'x') {
             if (x < width - concernRect.width && x > 0)
-                concern.style.setProperty('left', x + "px");
+                concern.style.setProperty('left', ((x / editorRect.width) * 100) + "%");
         }
 
         if (dir === 'both' || dir === 'y') {
