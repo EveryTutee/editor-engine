@@ -1,5 +1,4 @@
-import React, { CSSProperties, Fragment } from "react";
-import { renderToString } from "react-dom/server";
+import React, { CSSProperties } from "react";
 import { EditorStateType } from "../../base/base.types";
 import { insertDraggable, Textbox } from "../../base/model/Draggable";
 import { fileToDataUrl } from "../../utils/fileToDataUrl";
@@ -28,36 +27,38 @@ const childStyle = {
 
 export default function audioHandlerFn(e: React.MouseEvent<HTMLInputElement>, name: string, editorState: EditorStateType) {
     const target = e.target as HTMLInputElement;
-    const { editor } = editorState;
-    if (!target.files || !editor) return null;
+    if (!target.files) return null;
 
     const file = target.files[0];
     if (!file) return;
 
     fileToDataUrl(file).then(src => {
-
+        const childId = uuid();
         const parentId = uuid();
         const __text__ = (
-            <Fragment>
+            <Textbox
+                parentClassName="audioBoxWrapper"
+                childClassName="audioBox"
+                parentId={name + parentId}
+                childId={name + childId}
+                parentStyle={parentStyle}
+                childStyle={childStyle}
+                editorState={editorState}
+                contentEditable={false}
+            >
                 <audio
-                    id={"Audio " + parentId}
                     data-name={file.name}
                     src={src}
                     controls={true}
                     controlsList='nodownload'
-                    contextMenu=""
                     style={{
-                        height: '60px',
+                        height: '100%',
                         width: '100%'
                     }}
                 />
-                <p><br /></p>
-            </Fragment>);
+            </Textbox>);
 
-        const audio = renderToString(__text__);
-        editor.innerHTML += audio;
-
-
+        insertDraggable(editorState, __text__, name + parentId);
 
         target.value = "";
 
