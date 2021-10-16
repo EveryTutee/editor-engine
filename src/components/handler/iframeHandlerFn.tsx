@@ -1,14 +1,13 @@
-import React, { CSSProperties } from 'react';
+import React, { CSSProperties, Fragment } from 'react';
 import { EditorStateType } from '../../base/base.types'
 import { insertDraggable, Textbox } from '../../base/model/Draggable';
 import { uuid } from '../../utils/uuid';
 
 const parentStyle = {
-    position: 'absolute',
+    position: 'relative',
     width: '40%',
     height: '40%',
     minHeight: 'fit-content',
-    top: '60px',
     zIndex: 1,
     cursor: 'pointer',
 
@@ -29,28 +28,32 @@ export default function iframeHandlerFn(e: any, name: string, editorState: Edito
     const childId = uuid();
     const parentId = uuid();
     const __text__ = (
-        <Textbox
-            parentClassName="iframeBoxWrapper"
-            childClassName="iframeBox"
-            parentId={name + parentId}
-            childId={name + childId}
-            parentStyle={parentStyle}
-            childStyle={childStyle}
-            editorState={editorState}
-            contentEditable={false}
-        >
-            <iframe
-                frameBorder="0"
-                src={src}
-                width="100%"
-                height="100%"
-                style={{
-                    opacity: "inherit",
-                }}>
-            </iframe>
-        </Textbox>);
+        <Fragment>
+            <Textbox
+                parentClassName="iframeBoxWrapper"
+                childClassName="iframeBox"
+                parentId={name + parentId}
+                childId={name + childId}
+                parentStyle={parentStyle}
+                childStyle={childStyle}
+                editorState={editorState}
+                contentEditable={false}
+            >
+                <iframe
+                    frameBorder="0"
+                    src={src}
+                    width="100%"
+                    height="100%"
+                    style={{
+                        opacity: "inherit",
+                    }}>
+                </iframe>
+            </Textbox>
+            <p><br /></p>
+        </Fragment>
+    );
 
-    insertDraggable(editorState, __text__, name + parentId);
+    insertDraggable(editorState, __text__, name + parentId, ['resize']);
 
     return null;
 }
