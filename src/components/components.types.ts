@@ -1,8 +1,12 @@
 import { Dispatch, FunctionComponent, SetStateAction } from "react";
-import { EditorStateType, HandlerFnProps } from "../base/base.types";
+import { EditorStateType, HandlerFn, HandlerFnProps } from "../base/base.types";
 
+export interface ShowNavType {
+    Menu: FunctionComponent<HandlerFnProps>;
+    props: any;
+}
+type OnClick = Dispatch<SetStateAction<ShowNavType | null>>;
 
-type OnClick = Dispatch<SetStateAction<{ Menu: FunctionComponent<HandlerFnProps>; props: any; } | null>>;
 interface Constructor {
     editorState: EditorStateType
 }

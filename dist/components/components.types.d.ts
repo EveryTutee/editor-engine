@@ -1,9 +1,10 @@
 import { Dispatch, FunctionComponent, SetStateAction } from "react";
 import { EditorStateType, HandlerFnProps } from "../base/base.types";
-declare type OnClick = Dispatch<SetStateAction<{
+export interface ShowNavType {
     Menu: FunctionComponent<HandlerFnProps>;
     props: any;
-} | null>>;
+}
+declare type OnClick = Dispatch<SetStateAction<ShowNavType | null>>;
 interface Constructor {
     editorState: EditorStateType;
 }
