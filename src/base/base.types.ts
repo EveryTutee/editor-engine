@@ -21,8 +21,8 @@ export interface EditorStateType {
     setUndoStack: (content: string) => void;
     setRedoStack: (content: string) => void;
 
-    undo: () => string;
-    redo: () => string;
+    undo: () => string | undefined;
+    redo: () => string | undefined;
 
     setContent: (content: string) => void;
 
