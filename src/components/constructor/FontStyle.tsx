@@ -9,7 +9,7 @@ import fontstyleHandlerFn from '../handler/fontstyle';
 const config = {
     type: 'submenu',
     name: 'font', // to be the current fontstyle
-    buttonIcon: <BiFontFamily />,
+    buttonIcon: <p>Font</p>,
     handlerFn: fontstyleHandlerFn
 } as ModelConfig;
 
