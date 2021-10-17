@@ -2,7 +2,7 @@ import React from 'react';
 import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 import { execBlockStyle } from '../../utils/domManipulation';
 
-export default function ({ name, editorState, onBack }: HandlerFnProps) {
+export default function lineheightHandlerFn({ name, editorState, onBack }: HandlerFnProps) {
 
     function onClick(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLElement;

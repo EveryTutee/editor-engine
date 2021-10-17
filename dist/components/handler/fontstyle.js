@@ -1,0 +1,77 @@
+import React from 'react';
+export default function fontstyleHandlerFn({ editorState, onBack, name }) {
+    function onClick(e) {
+        const element = e.target;
+        if (!element)
+            return;
+        const value = element.id;
+        console.log(value);
+        editorState.__document__.execCommand('fontName', false, value);
+    }
+    return (React.createElement("div", { id: "subMenu" + name },
+        React.createElement("div", null,
+            React.createElement("button", { onClick: () => onBack(document.getElementById("subMenu" + name)) }, "Back"),
+            React.createElement("span", null, name)),
+        React.createElement("div", null, fontStyleArray.map((value, key) => (React.createElement("button", { id: value, key: value + key, onClick: onClick }, value))))));
+}
+export const fontStyleArray = [
+    'Arial',
+    'Arial Black',
+    'Courier New',
+    'Times New Roman',
+    'Abhaya Libre',
+    'Alfa slab one',
+    'Amatic SC',
+    'Andada Pro',
+    'Anton',
+    'Archivo',
+    'Bebas Neue',
+    'BioRhyme',
+    'Bungee',
+    'cabin sketch',
+    'Caveat',
+    'Caveat brush',
+    'codystar',
+    'comfortaa',
+    'cookie',
+    'Cormorant',
+    'Courier prime',
+    'EB garamond',
+    'Encode Sans',
+    'Epilogue',
+    'ewert',
+    'Great Vibes',
+    'Hahmlet',
+    'Inter',
+    'JetBrains Mono',
+    'kalam',
+    'Lato',
+    'lobster',
+    'Lora',
+    'Manrope',
+    'marienda',
+    'Merrieweather',
+    'monofett',
+    'Monoton',
+    'Montserrat',
+    'mountains of Christmas',
+    'Nunito',
+    'Old Standard TT',
+    'Open Sans',
+    'Oswald',
+    'Oxygen',
+    'Pacifico',
+    'Patrick hand',
+    'Playfair Display',
+    'Poppins',
+    'Raleway',
+    'Roboto',
+    'Sacramento',
+    'shadows into light',
+    'Sora',
+    'Source Sans Pro',
+    'Special Elite',
+    'Spectral',
+    'staatliches',
+    'Work Sans',
+];

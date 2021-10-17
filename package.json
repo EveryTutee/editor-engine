@@ -8,7 +8,7 @@
     "dev": "concurrently 'npm run dev_tsc' 'npm run dev_sass'",
     "build_tsc": "tsc -outDir 'dist'",
     "build_sass": "sass src/editor.scss:dist/editor.css --no-source-map --style=compressed",
-    "build": "npm run build_tsc && npm run build_scss",
+    "build": "npm run build_tsc && npm run build_sass",
     "demo_tsc": "tsc --outDir 'demo/src/dist'",
     "demo_sass": "sass src/editor.scss:demo/src/dist/editor.css --no-source-map --style=compressed",
     "demo": "npm run demo_tsc && npm run demo_scss"

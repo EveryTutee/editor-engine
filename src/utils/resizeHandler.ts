@@ -14,7 +14,7 @@ export function onResizeMouseDownHandler(editorState: EditorStateType,
 
     if (!editor || !button || !concern) return;
 
-    const { right, bottom, width, height } = editor.getBoundingClientRect();
+    const { right, bottom, width } = editor.getBoundingClientRect();
     const concernRect = concern.getBoundingClientRect();
     let isDown = true;
 

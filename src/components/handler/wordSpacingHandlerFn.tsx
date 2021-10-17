@@ -4,7 +4,7 @@ import { execBlockStyle } from '../../utils/domManipulation';
 
 const baseWordSpacing = 0.25
 
-export default function ({ editorState, name, onBack }: HandlerFnProps) {
+export default function wordSpacingHandlerFn({ editorState, name, onBack }: HandlerFnProps) {
 
     function onClick(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLElement;

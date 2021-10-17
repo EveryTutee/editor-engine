@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
-export default function ({ editorState, onBack, name }: HandlerFnProps) {
+export default function fontSizeHandlerFn({ editorState, onBack, name }: HandlerFnProps) {
 
     function onClick(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLElement;

@@ -66,7 +66,7 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
                 editorState.editor?.removeEventListener(trigger, listener, false);
             })
         }
-    }, [editorState.editor, editorState.__document__])
+    }, [editorState.editor, editorState.__document__, onCurrentStyle])
 
     const file = (
         <Fragment>

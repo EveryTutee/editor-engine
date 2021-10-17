@@ -21,7 +21,7 @@ export function moveHandler(
         if (!isDown) return;
 
         mousePosition = clientCoord(e);
-        const { right, bottom, width, height } = editorRect;
+        const { width, height } = editorRect;
         const concernRect = concern.getBoundingClientRect();
 
         let x = mousePosition.x - editorRect.x;
