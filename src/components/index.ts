@@ -11,6 +11,8 @@ import FontSize from "./constructor/FontSize";
 import AlignRight from "./constructor/AlignRight";
 import AlignLeft from "./constructor/AlignLeft";
 import AlignCenter from "./constructor/AlignCenter";
+import Subscript from "./constructor/Subscript";
+import Superscript from "./constructor/Superscript";
 
 export {
     Bold,
@@ -25,5 +27,7 @@ export {
     FontSize,
     AlignLeft,
     AlignRight,
-    AlignCenter
+    AlignCenter,
+    Superscript,
+    Subscript
 }

@@ -20,7 +20,7 @@ export default function AlignLeft({ editorState }: Align) {
             config={config}
             //@ts-ignore
             onCurrentStyle={(styles) => ({
-                "data-selected": styles.textAlign === 'left'
+                "data-selected": styles.textAlign === 'center'
             })}
         />
     )

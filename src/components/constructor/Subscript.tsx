@@ -2,16 +2,16 @@ import React, { useMemo, useState } from "react";
 import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { Align } from "../components.types";
-import alignHandlerFn from "../handler/alignHandlerFn";
-import { AiOutlineAlignRight } from "react-icons/ai";
+import { FaSubscript } from "react-icons/fa";
+import supSubHandlerFn from "../handler/supSubHandlerFn";
 
 const config = {
-    name: 'alignRight',
+    name: 'subscript',
     type: 'click',
-    buttonIcon: <AiOutlineAlignRight />,
-    handlerFn: alignHandlerFn
+    buttonIcon: <FaSubscript />,
+    handlerFn: supSubHandlerFn
 } as ModelConfig
-export default function AlignRight({ editorState }: Align) {
+export default function Subscript({ editorState }: Align) {
 
     return (
         <Model
@@ -20,7 +20,7 @@ export default function AlignRight({ editorState }: Align) {
             config={config}
             //@ts-ignore
             onCurrentStyle={(styles) => ({
-                "data-selected": styles.textAlign === 'right'
+                "data-selected": styles.verticalAlign === 'sub'
             })}
         />
     )

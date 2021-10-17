@@ -15,7 +15,9 @@ import {
   FontSize,
   AlignCenter,
   AlignLeft,
-  AlignRight
+  AlignRight,
+  Superscript,
+  Subscript
 } from './dist/components';
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
           <AlignLeft editorState={editorState} />
           <AlignRight editorState={editorState} />
           <AlignCenter editorState={editorState} />
+          <Superscript editorState={editorState} />
+          <Subscript editorState={editorState} />
         </div>
 
         {showNav && <div id="expanded">
