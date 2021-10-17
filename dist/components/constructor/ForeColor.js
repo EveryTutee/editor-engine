@@ -6,16 +6,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var Model_1 = __importDefault(require("../../base/model/Model"));
 var colorHandlerFn_1 = __importDefault(require("../handler/colorHandlerFn"));
+var bi_1 = require("react-icons/bi");
 var config = {
-    name: 'Font Color',
-    type: 'submenu',
-    buttonIcon: react_1.default.createElement("p", null, "default color"),
-    handlerFn: colorHandlerFn_1.default
+    name: "Font Color",
+    type: "submenu",
+    buttonIcon: (react_1.default.createElement("p", null,
+        react_1.default.createElement(bi_1.BiFontColor, null),
+        react_1.default.createElement("span", null, "Font Color"))),
+    handlerFn: colorHandlerFn_1.default,
 };
 function ForeColor(_a) {
     var editorState = _a.editorState, onClick = _a.onClick;
-    return (react_1.default.createElement(Model_1.default, { btnType: 'button', editorState: editorState, config: config, subMenuView: onClick, 
+    return (react_1.default.createElement(Model_1.default, { btnType: "button", editorState: editorState, config: config, subMenuView: onClick, 
         //@ts-ignore
-        onCurrentStyle: function (styles) { return (styles.color); } }));
+        onCurrentStyle: function (styles) { return styles.color; } }));
 }
 exports.default = ForeColor;
