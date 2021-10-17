@@ -35,7 +35,7 @@ function SaveCanvas(_a) {
         var __display__ = displayRef.current;
         __display__.innerHTML = value;
         (0, html2canvas_1.default)(displayRef.current).then(function (canvas) {
-            var dataUrl = canvas.toDataURL('image/png');
+            var dataUrl = canvas.toDataURL("image/png");
             onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, editor.getBoundingClientRect());
             editorState.setContent("<p><br/></p>");
             __display__.innerHTML = "";

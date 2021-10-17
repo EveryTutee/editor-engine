@@ -4,9 +4,9 @@ export interface EditorProps {
     editorState: EditorStateType;
     onChange?: (e: EditorStateType) => void;
     placeholder?: string;
-    readonly?: string;
+    readonly?: boolean;
     id: string;
-    type?: 'editor' | 'canvas';
+    type?: "editor" | "canvas";
 }
 export interface EditorStateType {
     __document__: Document;
@@ -25,7 +25,7 @@ export interface EditorStateType {
 export interface ModelConfig {
     name: string;
     buttonIcon: JSX.Element | SVGAElement;
-    type: 'click' | 'submenu';
+    type: "click" | "submenu";
     handlerFn: HandlerFn | ((props: HandlerFnProps) => null);
 }
 export declare type HandlerFn = React.FunctionComponent<HandlerFnProps>;
