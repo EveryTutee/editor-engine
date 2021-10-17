@@ -6,20 +6,21 @@ import Model from '../../base/model/Model';
 import fontstyleHandlerFn from '../handler/fontstyle';
 
 
+const config = {
+    type: 'submenu',
+    name: 'font', // to be the current fontstyle
+    buttonIcon: <BiFontFamily />,
+    handlerFn: fontstyleHandlerFn
+} as ModelConfig;
+
 export default function FontStyle({ editorState, onClick }: FontStyle) {
-    const config = useMemo<ModelConfig>(() => ({
-        type: 'submenu',
-        name: 'font', // to be the current fontstyle
-        buttonIcon: <BiFontFamily />,
-        handlerFn: fontstyleHandlerFn
-    }), [editorState])
     return (
         <Model
             config={config}
             editorState={editorState}
             subMenuView={onClick}
-
-            btnType='button'
+            btnType='text'
+            onCurrentStyle={(styles) => (styles.fontFamily)}
         />
     )
 }

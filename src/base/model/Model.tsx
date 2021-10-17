@@ -9,7 +9,7 @@ const styleEvents = [
 export default function Model({ editorState, config, subMenuView, onCurrentStyle, btnType, accept }: ModelProps) {
     const { name, buttonIcon, type, handlerFn } = config;
     const btnRef = useRef<(HTMLButtonElement & HTMLLabelElement) | null>(null);
-    const [currAttributes, setCurrAttributes] = useState<HTMLAttributes<HTMLLabelElement | HTMLButtonElement> | null>(null);
+    const [currAttributes, setCurrAttributes] = useState<any | null>(null);
 
     function onBack() {
         subMenuView?.(null)
@@ -67,7 +67,7 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
 
     const file = (
         <Fragment>
-            <label htmlFor={name} className="btn" ref={btnRef} {...currAttributes}>
+            <label htmlFor={name} className="modelLabel" ref={btnRef} {...currAttributes}>
                 <input type="file" style={{ display: 'none' }} id={name} onChange={handleClick} />
                 {buttonIcon}
             </label>
@@ -75,15 +75,25 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
     )
 
     const button = (
-        <button id={name} title={name} className={name} onClick={handleClick} ref={btnRef} {...currAttributes}>
+        <button id={name} title={name} className="modelBtn" onClick={handleClick} ref={btnRef} {...currAttributes}>
             {buttonIcon}
+        </button>
+    )
+
+    /**
+     * currAttributes = children => <p>{font_name}</p>
+     */
+    const text = (
+        <button id={name} title={name} className="modelBtn" onClick={handleClick} ref={btnRef} >
+            {!!currAttributes ? currAttributes : "Default Font"}
         </button>
     )
 
     return (
         <Fragment>
-            {btnType === 'file' ? file : button}
-
+            {btnType === 'file' && file}
+            {btnType === 'button' && button}
+            {btnType === 'text' && text}
         </Fragment>
     )
 }
@@ -92,7 +102,7 @@ interface ModelProps {
     editorState: EditorStateType;
     config: ModelConfig;
     subMenuView?: Dispatch<SetStateAction<JSX.Element | null>>;
-    onCurrentStyle?: (styles: CSSStyleDeclaration) => HTMLAttributes<HTMLButtonElement | HTMLLabelElement>
+    onCurrentStyle?: (styles: CSSStyleDeclaration) => any
     btnType: 'file' | 'button' | 'text';
     accept?: string;
 }

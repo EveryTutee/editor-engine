@@ -18,11 +18,9 @@ export default function Bold({ editorState }: Bold) {
             btnType='button'
             editorState={editorState}
             config={config}
+            //@ts-ignore
             onCurrentStyle={(styles) => ({
-                style: {
-                    backgroundColor: styles.fontWeight === '700' ? "green" : "red"
-                }
-
+                "data-selected": styles.fontWeight === '700'
             })}
         />
     )
