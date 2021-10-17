@@ -31,3 +31,6 @@ export interface Audio extends Constructor {
 export interface Iframe extends Constructor {
 
 }
+export interface FontSize extends Constructor {
+    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
+}

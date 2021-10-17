@@ -85,7 +85,7 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
      */
     const text = (
         <button id={name} title={name} className="modelBtn" onClick={handleClick} ref={btnRef} >
-            {!!currAttributes ? currAttributes : "Default Font"}
+            {!!currAttributes ? currAttributes : buttonIcon}
         </button>
     )
 

@@ -7,6 +7,7 @@ import Image from "./constructor/Image";
 import Audio from "./constructor/Audio";
 import Iframe from "./constructor/Iframe";
 import SaveCanvas from "./constructor/SaveCanvas";
+import FontSize from "./constructor/FontSize";
 
 export {
     Bold,
@@ -17,5 +18,6 @@ export {
     Image,
     Audio,
     Iframe,
-    SaveCanvas
+    SaveCanvas,
+    FontSize
 }

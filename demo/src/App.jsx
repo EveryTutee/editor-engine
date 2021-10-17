@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import './App.css';
 import { Editor, EditorState, CanvasHolder } from './dist/index';
 import './dist/editor.css'
-import { Bold, FontStyle, Italics, Textbox, Underline, Image, Audio, Iframe, SaveCanvas } from './dist/components';
+import { Bold, FontStyle, Italics, Textbox, Underline, Image, Audio, Iframe, SaveCanvas, FontSize } from './dist/components';
 
 function App() {
   const [editorState, setEditorState] = React.useState(() => new EditorState());
@@ -22,6 +22,7 @@ function App() {
           <FontStyle editorState={editorState} onClick={setShowNav} />
           <Audio editorState={editorState} />
           <Iframe editorState={editorState} />
+          <FontSize editorState={editorState} onClick={setShowNav}/>
         </div>
 
         {showNav && <div id="expanded">
