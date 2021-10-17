@@ -1,13 +1,16 @@
 
 .main_editor {
-    outline: 2px solid brown;
     padding: 1rem;
     min-height: 150px;
+    width: 100%;
 }
 
 .canvasResizer {
     width: 20px;
     height: 20px;
-    background-color: green;
+    background-color: blueviolet;
+    border-radius: 0 0 30px 30px;
     margin: -0.5rem 50%;
+    z-index: -1;
+    cursor: pointer;
 }
