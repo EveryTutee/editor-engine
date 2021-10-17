@@ -13,6 +13,7 @@ import AlignLeft from "./constructor/AlignLeft";
 import AlignCenter from "./constructor/AlignCenter";
 import Subscript from "./constructor/Subscript";
 import Superscript from "./constructor/Superscript";
+import Lineheight from "./constructor/Lineheight";
 
 export {
     Bold,
@@ -29,5 +30,6 @@ export {
     AlignRight,
     AlignCenter,
     Superscript,
-    Subscript
+    Subscript,
+    Lineheight
 }
