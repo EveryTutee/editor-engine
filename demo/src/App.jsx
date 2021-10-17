@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import './App.css';
-import { Editor, EditorState, CanvasHolder } from './dist/index';
+import { Editor, EditorState, CanvasHolder, Colorpicker } from './dist/index';
 import './dist/editor.css'
 import {
   Bold,
@@ -79,6 +79,8 @@ function App() {
       <CanvasHolder editorState={editorState} shelf={canva} />
 
       <div className="output" dangerouslySetInnerHTML={{ __html: editorState.content }} />
+
+      <Colorpicker />
 
     </div>
   );
