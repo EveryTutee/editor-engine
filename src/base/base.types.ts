@@ -18,7 +18,6 @@ export interface EditorStateType {
 
     setEditor: (elem: HTMLDivElement) => void;
     init: () => void;
-    createEmpty: () => EditorStateType;
     setUndoStack: (content: string) => void;
     setRedoStack: (content: string) => void;
 
