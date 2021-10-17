@@ -1,11 +1,12 @@
 import React from "react";
 export interface EditorProps {
+    className: string;
     editorState: EditorStateType;
     onChange?: (e: EditorStateType) => void;
     placeholder?: string;
     readonly?: string;
     id: string;
-    type: 'editor' | 'canvas';
+    type?: 'editor' | 'canvas';
 }
 export interface EditorStateType {
     __document__: Document;

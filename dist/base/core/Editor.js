@@ -40,7 +40,7 @@ var Draggable_1 = require("../model/Draggable");
 var utils_1 = require("./utils");
 // Returns the Editor or MainTextArea :)
 function Editor(_a) {
-    var editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, onChange = _a.onChange, _b = _a.type, type = _b === void 0 ? 'editor' : _b;
+    var className = _a.className, editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, onChange = _a.onChange, _b = _a.type, type = _b === void 0 ? 'editor' : _b;
     var editorRef = (0, react_1.useRef)(null);
     function resizeEditor(e) {
         if (!editorState.editor)
@@ -87,7 +87,7 @@ function Editor(_a) {
         //eslint-disable-next-line
     }, []);
     return (react_1.default.createElement(react_1.Fragment, null,
-        react_1.default.createElement("div", { key: id, ref: editorRef, className: "main_editor " + id, contentEditable: !readonly, id: id, placeholder: placeholder, suppressContentEditableWarning: true, style: {
+        react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !readonly, id: id, placeholder: placeholder, suppressContentEditableWarning: true, style: {
                 position: type === 'canvas' ? 'relative' : 'static'
             }, onClick: canvasClick },
             react_1.default.createElement("p", null,

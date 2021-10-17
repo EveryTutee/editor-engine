@@ -6,7 +6,7 @@ import { defaultName, draggableOnClick } from '../model/Draggable';
 import { removeContext } from './utils';
 
 // Returns the Editor or MainTextArea :)
-export default function Editor({ editorState, placeholder, readonly, id, onChange, type = 'editor' }: EditorProps) {
+export default function Editor({ className, editorState, placeholder, readonly, id, onChange, type = 'editor' }: EditorProps) {
     const editorRef = useRef<HTMLDivElement | null>(null);
 
     function resizeEditor(e: globalThis.MouseEvent | TouchEvent) {
@@ -66,7 +66,7 @@ export default function Editor({ editorState, placeholder, readonly, id, onChang
             <div
                 key={id}
                 ref={editorRef}
-                className={"main_editor " + id}
+                className={className + " main_editor " + id}
                 contentEditable={!readonly}
                 id={id}
                 placeholder={placeholder}
