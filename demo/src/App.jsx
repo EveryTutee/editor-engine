@@ -18,7 +18,8 @@ import {
   AlignRight,
   Superscript,
   Subscript,
-  Lineheight
+  Lineheight,
+  WordSpacing
 } from './dist/components';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Superscript editorState={editorState} />
           <Subscript editorState={editorState} />
           <Lineheight editorState={editorState} onClick={setShowNav} />
+          <WordSpacing editorState={editorState} onClick={setShowNav} />
         </div>
 
         {showNav && <div id="expanded">
