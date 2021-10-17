@@ -56,26 +56,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
-
 // imports
-@import './base/core/editor.module.scss';
-@import './components/handler/handler.module.scss';
-@import './UI/contextmenu.module.scss';
-@import './UI/canvas-holder.module.scss';
-// @import './base/model/model.module.scss';
+@import "./base/core/editor.module.scss";
+@import "./components/handler/handler.module.scss";
+@import "./UI/contextmenu.module.scss";
+@import "./UI/canvas-holder.module.scss";
+@import "./base/model/model.module.scss";
 
-
-
-
-
-
-// global 
+// global
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 li {
-    margin-left: 2rem;
+  margin-left: 2rem;
 }
