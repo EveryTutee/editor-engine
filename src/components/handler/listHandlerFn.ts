@@ -1,6 +1,6 @@
-import { EditorStateType } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
-export function listHandlerFn(e: any, name: string, editorState: EditorStateType) {
+export function listHandlerFn({ name, editorState }: HandlerFnProps) {
     let cmd = 'insertUnorderedList';
     switch (name) {
         case 'Bullets': cmd = 'insertUnorderedList'; break;

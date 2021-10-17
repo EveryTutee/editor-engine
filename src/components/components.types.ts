@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction } from "react";
-import { EditorStateType } from "../base/base.types";
+import { Dispatch, FunctionComponent, SetStateAction } from "react";
+import { EditorStateType, HandlerFnProps } from "../base/base.types";
 
 
+type OnClick = Dispatch<SetStateAction<{ Menu: FunctionComponent<HandlerFnProps>; props: any; } | null>>;
 interface Constructor {
     editorState: EditorStateType
 }
@@ -17,7 +18,7 @@ export interface Underline extends Constructor {
 }
 
 export interface FontStyle extends Constructor {
-    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
+    onClick: OnClick;
 }
 
 export interface Textbox extends Constructor {
@@ -33,16 +34,16 @@ export interface Iframe extends Constructor {
 
 }
 export interface FontSize extends Constructor {
-    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
+    onClick: OnClick;
 }
 export interface Align extends Constructor {
 
 }
 export interface WordSpacing extends Constructor {
-    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
+    onClick: OnClick;
 }
 export interface LineHeight extends Constructor {
-    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
+    onClick: OnClick;
 }
 export interface Bullets extends Constructor {
 

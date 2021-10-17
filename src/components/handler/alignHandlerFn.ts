@@ -1,6 +1,6 @@
-import { EditorStateType, HandlerFn } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
-export default function alignHandlerFn(e: any, name: string, editorState: EditorStateType) {
+export default function alignHandlerFn({ name, editorState }: HandlerFnProps) {
     console.log(name)
     let cmd = 'justifyLeft';
     switch (name) {

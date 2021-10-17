@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SketchPicker } from 'react-color';
 
-export default function Colorpicker() {
+export default function Colorpicker({ value, onChange }: ColorpickerProps) {
 
     return (
         <div>
-            <SketchPicker />
+            <SketchPicker
+                disableAlpha={true}
+                color={value}
+                presetColors={[]}
+
+                onChange={(color, ev) => {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    onChange(color.hex);
+                }}
+
+            />
+
         </div>
     )
+}
+
+interface ColorpickerProps {
+    value: string;
+    onChange: (value: string) => void;
 }

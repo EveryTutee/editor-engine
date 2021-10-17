@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Dispatch, Fragment, HTMLAttributes, MouseEvent, SetStateAction, useEffect, useRef, useState } from 'react';
-import { EditorStateType, ModelConfig } from '../base.types'
+import { EditorStateType, HandlerFn, HandlerFnProps, ModelConfig } from '../base.types'
 
 const styleEvents = [
     'keyup',
@@ -21,14 +21,17 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
         e.stopPropagation();
 
         // handlerFn is expected to return nothing
-        if (type === 'click') handlerFn(e, name, editorState, onBack);
+        if (type === 'click') handlerFn({ e, name, editorState, onBack });
         // toggle to show expanded bar
         else if (type === 'submenu') {
             if (!subMenuView) throw Error("Sub menu is not provided");
-            const subMenu = handlerFn(e, name, editorState, onBack);
+            const subMenu = {
+                Menu: handlerFn,
+                props: { e, name, editorState, onBack }
+            };
             if (subMenu)
                 subMenuView((prev) => {
-                    if (prev?.props.id === subMenu.props.id) return null;
+                    if (prev?.props.name === subMenu.props.name) return null;
                     return subMenu;
                 });
         }
@@ -101,7 +104,7 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
 interface ModelProps {
     editorState: EditorStateType;
     config: ModelConfig;
-    subMenuView?: Dispatch<SetStateAction<JSX.Element | null>>;
+    subMenuView?: Dispatch<SetStateAction<{ Menu: React.FunctionComponent<HandlerFnProps>, props: any } | null>>;
     onCurrentStyle?: (styles: CSSStyleDeclaration) => any
     btnType: 'file' | 'button' | 'text';
     accept?: string;

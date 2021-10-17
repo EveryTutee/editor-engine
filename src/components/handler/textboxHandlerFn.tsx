@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { EditorStateType } from '../../base/base.types'
+import { EditorStateType, HandlerFnProps } from '../../base/base.types'
 import { insertDraggable, Textbox } from '../../base/model/Draggable';
 import { uuid } from '../../utils/uuid';
 
@@ -21,7 +21,7 @@ const childStyle = {
 } as CSSProperties;
 
 
-export default function textboxHandlerFn(e: any, name: string, editorState: EditorStateType) {
+export default function textboxHandlerFn({ editorState, name, }: HandlerFnProps) {
     const childId = uuid();
     const parentId = uuid();
     const __text__ = (

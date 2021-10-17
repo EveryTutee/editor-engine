@@ -1,8 +1,8 @@
 import React from 'react';
-import { EditorStateType } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 import { execBlockStyle } from '../../utils/domManipulation';
 
-export default function (e: any, name: string, editorState: EditorStateType, onBack?: (container: Element | null) => void) {
+export default function ({ name, editorState, onBack }: HandlerFnProps) {
 
     function onClick(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLElement;

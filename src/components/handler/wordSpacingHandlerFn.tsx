@@ -1,10 +1,10 @@
 import React from 'react';
-import { EditorStateType } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 import { execBlockStyle } from '../../utils/domManipulation';
 
 const baseWordSpacing = 0.25
 
-export default function (e: any, name: string, editorState: EditorStateType, onBack?: (container: Element | null) => void) {
+export default function ({ editorState, name, onBack }: HandlerFnProps) {
 
     function onClick(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLElement;

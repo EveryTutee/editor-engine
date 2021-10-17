@@ -1,5 +1,5 @@
 import React, { CSSProperties, Fragment } from 'react';
-import { EditorStateType } from '../../base/base.types'
+import { EditorStateType, HandlerFnProps } from '../../base/base.types'
 import { insertDraggable, Textbox } from '../../base/model/Draggable';
 import { uuid } from '../../utils/uuid';
 
@@ -22,7 +22,7 @@ const childStyle = {
 } as CSSProperties;
 
 
-export default function iframeHandlerFn(e: any, name: string, editorState: EditorStateType) {
+export default function iframeHandlerFn({ editorState, name }: HandlerFnProps) {
     const src = prompt("Paste Embedded link");
     if (!src) return;
     const childId = uuid();

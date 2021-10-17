@@ -17,6 +17,9 @@ import Lineheight from "./constructor/Lineheight";
 import WordSpacing from "./constructor/WordSpacing";
 import Bullets from "./constructor/Bullets";
 import Numbers from "./constructor/Numbers";
+import ForeColor from "./constructor/ForeColor";
+import BackColor from "./constructor/BackColor";
+import EditorBackground from "./constructor/EditorBackground";
 
 export {
     Bold,
@@ -37,5 +40,8 @@ export {
     Lineheight,
     WordSpacing,
     Bullets,
-    Numbers
+    Numbers,
+    ForeColor,
+    BackColor,
+    EditorBackground
 }

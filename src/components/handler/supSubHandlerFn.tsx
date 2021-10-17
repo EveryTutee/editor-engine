@@ -1,6 +1,6 @@
-import { EditorStateType } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
-export default function (e: any, name: string, editorState: EditorStateType) {
+export default function ({ editorState, name }: HandlerFnProps) {
     editorState.__document__.execCommand(name, false, "true");
 
     return null;

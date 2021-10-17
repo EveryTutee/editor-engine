@@ -21,7 +21,10 @@ import {
   Lineheight,
   WordSpacing,
   Bullets,
-  Numbers
+  Numbers,
+  ForeColor,
+  BackColor,
+  EditorBackground
 } from './dist/components';
 
 function App() {
@@ -31,7 +34,9 @@ function App() {
   const [canva, setCanva] = React.useState([]);
 
   // showNav : ...types | null 
-  const [showNav, setShowNav] = React.useState(null);
+  const [ShowNav, setShowNav] = React.useState(null);
+  console.log(ShowNav)
+
   return (
     <div className="app">
       <nav className="nav" >
@@ -52,10 +57,13 @@ function App() {
           <WordSpacing editorState={editorState} onClick={setShowNav} />
           <Bullets editorState={editorState} />
           <Numbers editorState={editorState} />
+          <ForeColor editorState={editorState} onClick={setShowNav} />
+          <BackColor editorState={editorState} onClick={setShowNav} />
+          <EditorBackground editorState={editorState} onClick={setShowNav} />
         </div>
 
-        {showNav && <div id="expanded">
-          {showNav}
+        {ShowNav && <div id="expanded">
+          <ShowNav.Menu {...ShowNav.props} />
         </div>}
 
       </nav>
@@ -80,7 +88,6 @@ function App() {
 
       <div className="output" dangerouslySetInnerHTML={{ __html: editorState.content }} />
 
-      <Colorpicker />
 
     </div>
   );

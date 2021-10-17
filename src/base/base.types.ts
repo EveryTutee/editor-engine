@@ -1,3 +1,4 @@
+import React from "react";
 
 export interface EditorProps {
     editorState: EditorStateType;
@@ -32,8 +33,15 @@ export interface ModelConfig {
     name: string;
     buttonIcon: JSX.Element | SVGAElement;
     type: 'click' | 'submenu';
-    handlerFn: HandlerFn;
+    handlerFn: HandlerFn | ((props: HandlerFnProps) => null);
 
 }
 
-export type HandlerFn = (e: React.MouseEvent<HTMLInputElement>, name: string, editorState: EditorStateType, onBack: (container: Element | null) => void) => JSX.Element | null;
+export type HandlerFn = React.FunctionComponent<HandlerFnProps>;
+
+export interface HandlerFnProps {
+    e: React.MouseEvent<HTMLInputElement>;
+    name: string;
+    editorState: EditorStateType;
+    onBack: (container: Element | null) => void
+}

@@ -1,6 +1,6 @@
-import { EditorStateType } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
-export function italicsHandlerFn(e: any, name: string, editorState: EditorStateType) {
+export function italicsHandlerFn({ editorState }: HandlerFnProps) {
     editorState.__document__.execCommand('italic', false, 'true');
     return null
 }

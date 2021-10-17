@@ -1,7 +1,7 @@
 import React from 'react';
-import { EditorStateType } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
-export default function (e: any, name: string, editorState: EditorStateType, onBack?: (container: Element | null) => void) {
+export default function ({ editorState, onBack, name }: HandlerFnProps) {
 
     function onClick(e: React.MouseEvent<HTMLButtonElement>) {
         const target = e.target as HTMLElement;
@@ -10,9 +10,10 @@ export default function (e: any, name: string, editorState: EditorStateType, onB
 
         editorState.__document__.execCommand('fontSize', false, "7");
 
-        (document.querySelectorAll(`span[style="font-size: xxx-large;"]`) as NodeListOf<HTMLSpanElement>)
+        (document.querySelectorAll(`span`) as NodeListOf<HTMLSpanElement>)
             .forEach((span: HTMLSpanElement) => {
-                span.style.fontSize = value;
+                if (span.style.fontSize === 'xxx-large')
+                    span.style.fontSize = value;
             })
 
     }

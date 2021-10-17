@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { EditorStateType } from "../../base/base.types";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 import { insertDraggable, Textbox } from "../../base/model/Draggable";
 import { fileToDataUrl } from "../../utils/fileToDataUrl";
 import { uuid } from "../../utils/uuid";
@@ -20,7 +20,7 @@ const childStyle = {
     width: "100%",
 } as CSSProperties;
 
-export default function imageHandlerFn(e: React.MouseEvent<HTMLInputElement>, name: string, editorState: EditorStateType) {
+export default function imageHandlerFn({ e, editorState, name }: HandlerFnProps) {
     const target = e.target as HTMLInputElement;
     if (!target.files) return null;
 
