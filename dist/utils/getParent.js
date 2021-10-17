@@ -1,6 +1,8 @@
-export default function getParent(element, queryParent) {
-    let __element__ = element;
-    const parent = document.querySelector(queryParent);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function getParent(element, queryParent) {
+    var __element__ = element;
+    var parent = document.querySelector(queryParent);
     if (!parent) {
         console.error("could not find query element");
         return element;
@@ -16,3 +18,4 @@ export default function getParent(element, queryParent) {
     console.log("This is parent", __element__);
     return __element__;
 }
+exports.default = getParent;

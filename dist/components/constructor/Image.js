@@ -1,13 +1,20 @@
-import React from 'react';
-import { BsFileImage } from 'react-icons/bs';
-import Model from '../../base/model/Model';
-import imageHandlerFn from '../handler/imageHandlerFn';
-const config = {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
+var bs_1 = require("react-icons/bs");
+var Model_1 = __importDefault(require("../../base/model/Model"));
+var imageHandlerFn_1 = __importDefault(require("../handler/imageHandlerFn"));
+var config = {
     name: 'Imagebox',
     type: 'click',
-    buttonIcon: React.createElement(BsFileImage, null),
-    handlerFn: imageHandlerFn
+    buttonIcon: react_1.default.createElement(bs_1.BsFileImage, null),
+    handlerFn: imageHandlerFn_1.default
 };
-export default function Image({ editorState }) {
-    return (React.createElement(Model, { editorState: editorState, config: config, btnType: 'file', accept: "image/*" }));
+function Image(_a) {
+    var editorState = _a.editorState;
+    return (react_1.default.createElement(Model_1.default, { editorState: editorState, config: config, btnType: 'file', accept: "image/*" }));
 }
+exports.default = Image;

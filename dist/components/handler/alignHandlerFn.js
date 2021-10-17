@@ -1,6 +1,9 @@
-export default function alignHandlerFn({ name, editorState }) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+function alignHandlerFn(_a) {
+    var name = _a.name, editorState = _a.editorState;
     console.log(name);
-    let cmd = 'justifyLeft';
+    var cmd = 'justifyLeft';
     switch (name) {
         case 'alignLeft':
             cmd = 'justifyLeft';
@@ -19,3 +22,4 @@ export default function alignHandlerFn({ name, editorState }) {
     editorState.__document__.execCommand(cmd, false, 'true');
     return null;
 }
+exports.default = alignHandlerFn;

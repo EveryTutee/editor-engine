@@ -1,22 +1,25 @@
-import { clientCoord } from "./clientCoordinates";
-export function onResizeMouseDownHandler(editorState, concern, e, dir, ignoreContainer) {
-    let mousePosition = clientCoord(e);
-    const button = e.target;
-    const editor = editorState.editor;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.onResizeMouseDownHandler = void 0;
+var clientCoordinates_1 = require("./clientCoordinates");
+function onResizeMouseDownHandler(editorState, concern, e, dir, ignoreContainer) {
+    var mousePosition = (0, clientCoordinates_1.clientCoord)(e);
+    var button = e.target;
+    var editor = editorState.editor;
     if (!editor || !button || !concern)
         return;
-    const { right, bottom, width } = editor.getBoundingClientRect();
-    const concernRect = concern.getBoundingClientRect();
-    let isDown = true;
-    const onmouseup = () => isDown = false;
-    const onmousemove = (e) => {
+    var _a = editor.getBoundingClientRect(), right = _a.right, bottom = _a.bottom, width = _a.width;
+    var concernRect = concern.getBoundingClientRect();
+    var isDown = true;
+    var onmouseup = function () { return isDown = false; };
+    var onmousemove = function (e) {
         if (!isDown)
             return;
-        mousePosition = clientCoord(e);
-        let _width = Math.max(mousePosition.x - concernRect.x, 0);
-        let finalWidth = ((_width / width) * 100) + "%";
-        let _height = Math.max(mousePosition.y - concernRect.y, 0);
-        let finalHeight = _height + "px";
+        mousePosition = (0, clientCoordinates_1.clientCoord)(e);
+        var _width = Math.max(mousePosition.x - concernRect.x, 0);
+        var finalWidth = ((_width / width) * 100) + "%";
+        var _height = Math.max(mousePosition.y - concernRect.y, 0);
+        var finalHeight = _height + "px";
         if (dir === 'both' || dir === 'x') {
             if (ignoreContainer || mousePosition.x <= right)
                 concern.style.setProperty('width', finalWidth);
@@ -37,3 +40,4 @@ export function onResizeMouseDownHandler(editorState, concern, e, dir, ignoreCon
         editorState.__document__.removeEventListener('touchend', onmouseup, false);
     }
 }
+exports.onResizeMouseDownHandler = onResizeMouseDownHandler;

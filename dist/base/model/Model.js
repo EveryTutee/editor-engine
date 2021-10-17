@@ -1,73 +1,110 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-const styleEvents = [
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(require("react"));
+var styleEvents = [
     'keyup',
     'mouseup'
 ];
-export default function Model({ editorState, config, subMenuView, onCurrentStyle, btnType, accept }) {
-    const { name, buttonIcon, type, handlerFn } = config;
-    const btnRef = useRef(null);
-    const [currAttributes, setCurrAttributes] = useState(null);
+function Model(_a) {
+    var editorState = _a.editorState, config = _a.config, subMenuView = _a.subMenuView, onCurrentStyle = _a.onCurrentStyle, btnType = _a.btnType, accept = _a.accept;
+    var name = config.name, buttonIcon = config.buttonIcon, type = config.type, handlerFn = config.handlerFn;
+    var btnRef = (0, react_1.useRef)(null);
+    var _b = (0, react_1.useState)(null), currAttributes = _b[0], setCurrAttributes = _b[1];
     function onBack() {
-        subMenuView?.(null);
+        subMenuView === null || subMenuView === void 0 ? void 0 : subMenuView(null);
     }
     function handleClick(e) {
         e.preventDefault();
         e.stopPropagation();
         // handlerFn is expected to return nothing
         if (type === 'click')
-            handlerFn({ e, name, editorState, onBack });
+            handlerFn({ e: e, name: name, editorState: editorState, onBack: onBack });
         // toggle to show expanded bar
         else if (type === 'submenu') {
             if (!subMenuView)
                 throw Error("Sub menu is not provided");
-            const subMenu = {
+            var subMenu_1 = {
                 Menu: handlerFn,
-                props: { e, name, editorState, onBack }
+                props: { e: e, name: name, editorState: editorState, onBack: onBack }
             };
-            if (subMenu)
-                subMenuView((prev) => {
-                    if (prev?.props.name === subMenu.props.name)
+            if (subMenu_1)
+                subMenuView(function (prev) {
+                    if ((prev === null || prev === void 0 ? void 0 : prev.props.name) === subMenu_1.props.name)
                         return null;
-                    return subMenu;
+                    return subMenu_1;
                 });
         }
     }
-    useEffect(() => {
+    (0, react_1.useEffect)(function () {
         if (!editorState.editor)
             return;
         function listener(e) {
+            var _a;
             // styling highlights is still underway
-            const selection = editorState.__document__.getSelection();
+            var selection = editorState.__document__.getSelection();
             if (!selection)
                 return;
-            const node = selection.focusNode?.parentElement;
+            var node = (_a = selection.focusNode) === null || _a === void 0 ? void 0 : _a.parentElement;
             if (!node)
                 return;
-            const styles = window.getComputedStyle(node);
+            var styles = window.getComputedStyle(node);
             if (onCurrentStyle) {
-                setCurrAttributes(() => onCurrentStyle(styles));
+                setCurrAttributes(function () { return onCurrentStyle(styles); });
             }
         }
-        styleEvents.forEach(trigger => {
-            editorState.editor?.addEventListener(trigger, listener, false);
+        styleEvents.forEach(function (trigger) {
+            var _a;
+            (_a = editorState.editor) === null || _a === void 0 ? void 0 : _a.addEventListener(trigger, listener, false);
         });
-        return () => {
-            styleEvents.forEach(trigger => {
-                editorState.editor?.removeEventListener(trigger, listener, false);
+        return function () {
+            styleEvents.forEach(function (trigger) {
+                var _a;
+                (_a = editorState.editor) === null || _a === void 0 ? void 0 : _a.removeEventListener(trigger, listener, false);
             });
         };
     }, [editorState.editor, editorState.__document__, onCurrentStyle]);
-    const file = (React.createElement(Fragment, null,
-        React.createElement("label", { htmlFor: name, className: "modelLabel", ref: btnRef, ...currAttributes },
-            React.createElement("input", { type: "file", style: { display: 'none' }, id: name, onChange: handleClick }),
+    var file = (react_1.default.createElement(react_1.Fragment, null,
+        react_1.default.createElement("label", __assign({ htmlFor: name, className: "modelLabel", ref: btnRef }, currAttributes),
+            react_1.default.createElement("input", { type: "file", style: { display: 'none' }, id: name, onChange: handleClick }),
             buttonIcon)));
-    const button = (React.createElement("button", { id: name, title: name, className: "modelBtn", onClick: handleClick, ref: btnRef, ...currAttributes }, buttonIcon));
+    var button = (react_1.default.createElement("button", __assign({ id: name, title: name, className: "modelBtn", onClick: handleClick, ref: btnRef }, currAttributes), buttonIcon));
     /**
      * currAttributes = children => <p>{font_name}</p>
      */
-    const text = (React.createElement("button", { id: name, title: name, className: "modelBtn", onClick: handleClick, ref: btnRef }, !!currAttributes ? currAttributes : buttonIcon));
-    return (React.createElement(Fragment, null,
+    var text = (react_1.default.createElement("button", { id: name, title: name, className: "modelBtn", onClick: handleClick, ref: btnRef }, !!currAttributes ? currAttributes : buttonIcon));
+    return (react_1.default.createElement(react_1.Fragment, null,
         btnType === 'file' && file,
         btnType === 'button' && button,
         btnType === 'text' && text));
 }
+exports.default = Model;

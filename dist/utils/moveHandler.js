@@ -1,21 +1,24 @@
-import { clientCoord } from "./clientCoordinates";
-export function moveHandler(editorState, concern, event, dir) {
-    let mousePosition = clientCoord(event);
-    let button = event.target;
-    let editor = editorState.editor;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.moveHandler = void 0;
+var clientCoordinates_1 = require("./clientCoordinates");
+function moveHandler(editorState, concern, event, dir) {
+    var mousePosition = (0, clientCoordinates_1.clientCoord)(event);
+    var button = event.target;
+    var editor = editorState.editor;
     if (!editor || !button || !concern)
         return;
-    let editorRect = editor.getBoundingClientRect();
-    let isDown = true;
-    const onmouseup = () => isDown = false;
-    const onmousemove = (e) => {
+    var editorRect = editor.getBoundingClientRect();
+    var isDown = true;
+    var onmouseup = function () { return isDown = false; };
+    var onmousemove = function (e) {
         if (!isDown)
             return;
-        mousePosition = clientCoord(e);
-        const { width, height } = editorRect;
-        const concernRect = concern.getBoundingClientRect();
-        let x = mousePosition.x - editorRect.x;
-        let y = mousePosition.y - editorRect.y;
+        mousePosition = (0, clientCoordinates_1.clientCoord)(e);
+        var width = editorRect.width, height = editorRect.height;
+        var concernRect = concern.getBoundingClientRect();
+        var x = mousePosition.x - editorRect.x;
+        var y = mousePosition.y - editorRect.y;
         if (dir === 'both' || dir === 'x') {
             if (x < width - concernRect.width && x > 0)
                 concern.style.setProperty('left', ((x / editorRect.width) * 100) + "%");
@@ -36,3 +39,4 @@ export function moveHandler(editorState, concern, event, dir) {
         editorState.__document__.removeEventListener('touchmove', onmousemove, false);
     }
 }
+exports.moveHandler = moveHandler;

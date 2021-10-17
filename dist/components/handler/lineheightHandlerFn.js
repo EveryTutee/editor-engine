@@ -1,20 +1,28 @@
-import React from 'react';
-import { execBlockStyle } from '../../utils/domManipulation';
-export default function lineheightHandlerFn({ name, editorState, onBack }) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.LINE_HEIGHT = void 0;
+var react_1 = __importDefault(require("react"));
+var domManipulation_1 = require("../../utils/domManipulation");
+function lineheightHandlerFn(_a) {
+    var name = _a.name, editorState = _a.editorState, onBack = _a.onBack;
     function onClick(e) {
-        const target = e.target;
+        var target = e.target;
         if (!target)
             return;
-        const value = target.id;
-        execBlockStyle(name, value, editorState.__document__);
+        var value = target.id;
+        (0, domManipulation_1.execBlockStyle)(name, value, editorState.__document__);
     }
-    return (React.createElement("div", { id: "subMenu" + name },
-        React.createElement("div", null,
-            React.createElement("button", { onClick: () => onBack?.(document.getElementById("subMenu" + name)) }, "Back"),
-            React.createElement("span", null, name)),
-        React.createElement("div", null, LINE_HEIGHT.map((value, key) => (React.createElement("button", { id: value, key: value + key, onClick: onClick }, value))))));
+    return (react_1.default.createElement("div", { id: "subMenu" + name },
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("button", { onClick: function () { return onBack === null || onBack === void 0 ? void 0 : onBack(document.getElementById("subMenu" + name)); } }, "Back"),
+            react_1.default.createElement("span", null, name)),
+        react_1.default.createElement("div", null, exports.LINE_HEIGHT.map(function (value, key) { return (react_1.default.createElement("button", { id: value, key: value + key, onClick: onClick }, value)); }))));
 }
-export const LINE_HEIGHT = [
+exports.default = lineheightHandlerFn;
+exports.LINE_HEIGHT = [
     '1',
     '1.15',
     '1.5',

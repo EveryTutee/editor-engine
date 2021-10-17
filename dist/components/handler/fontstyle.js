@@ -1,20 +1,28 @@
-import React from 'react';
-export default function fontstyleHandlerFn({ editorState, onBack, name }) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.fontStyleArray = void 0;
+var react_1 = __importDefault(require("react"));
+function fontstyleHandlerFn(_a) {
+    var editorState = _a.editorState, onBack = _a.onBack, name = _a.name;
     function onClick(e) {
-        const element = e.target;
+        var element = e.target;
         if (!element)
             return;
-        const value = element.id;
+        var value = element.id;
         console.log(value);
         editorState.__document__.execCommand('fontName', false, value);
     }
-    return (React.createElement("div", { id: "subMenu" + name },
-        React.createElement("div", null,
-            React.createElement("button", { onClick: () => onBack(document.getElementById("subMenu" + name)) }, "Back"),
-            React.createElement("span", null, name)),
-        React.createElement("div", null, fontStyleArray.map((value, key) => (React.createElement("button", { id: value, key: value + key, onClick: onClick }, value))))));
+    return (react_1.default.createElement("div", { id: "subMenu" + name },
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
+            react_1.default.createElement("span", null, name)),
+        react_1.default.createElement("div", null, exports.fontStyleArray.map(function (value, key) { return (react_1.default.createElement("button", { id: value, key: value + key, onClick: onClick }, value)); }))));
 }
-export const fontStyleArray = [
+exports.default = fontstyleHandlerFn;
+exports.fontStyleArray = [
     'Arial',
     'Arial Black',
     'Courier New',

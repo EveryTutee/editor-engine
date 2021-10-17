@@ -1,17 +1,24 @@
-import React from "react";
-import Model from "../../base/model/Model";
-import alignHandlerFn from "../handler/alignHandlerFn";
-import { AiOutlineAlignLeft } from "react-icons/ai";
-const config = {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
+var Model_1 = __importDefault(require("../../base/model/Model"));
+var alignHandlerFn_1 = __importDefault(require("../handler/alignHandlerFn"));
+var ai_1 = require("react-icons/ai");
+var config = {
     name: 'alignLeft',
     type: 'click',
-    buttonIcon: React.createElement(AiOutlineAlignLeft, null),
-    handlerFn: alignHandlerFn
+    buttonIcon: react_1.default.createElement(ai_1.AiOutlineAlignLeft, null),
+    handlerFn: alignHandlerFn_1.default
 };
-export default function AlignLeft({ editorState }) {
-    return (React.createElement(Model, { btnType: 'button', editorState: editorState, config: config, 
+function AlignLeft(_a) {
+    var editorState = _a.editorState;
+    return (react_1.default.createElement(Model_1.default, { btnType: 'button', editorState: editorState, config: config, 
         //@ts-ignore
-        onCurrentStyle: (styles) => ({
+        onCurrentStyle: function (styles) { return ({
             "data-selected": styles.textAlign === 'left'
-        }) }));
+        }); } }));
 }
+exports.default = AlignLeft;

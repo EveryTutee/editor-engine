@@ -1,35 +1,47 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { renderToStaticMarkup } from 'react-dom/server';
-import ContextMenu from '../../UI/ContextMenu';
-export const defaultName = "draggable";
-export function Textbox({ childClassName, parentClassName, parentId, children, parentStyle, childId, childStyle, contentEditable }) {
-    return (React.createElement("div", { id: parentId, className: parentClassName + " " + defaultName, style: parentStyle, key: parentId + childId, contentEditable: contentEditable },
-        React.createElement("div", { id: childId, style: childStyle, className: childClassName }, children)));
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.draggableOnClick = exports.removeDraggable = exports.insertDraggable = exports.Textbox = exports.defaultName = void 0;
+var react_1 = __importDefault(require("react"));
+var react_dom_1 = require("react-dom");
+var server_1 = require("react-dom/server");
+var ContextMenu_1 = __importDefault(require("../../UI/ContextMenu"));
+exports.defaultName = "draggable";
+function Textbox(_a) {
+    var childClassName = _a.childClassName, parentClassName = _a.parentClassName, parentId = _a.parentId, children = _a.children, parentStyle = _a.parentStyle, childId = _a.childId, childStyle = _a.childStyle, contentEditable = _a.contentEditable;
+    return (react_1.default.createElement("div", { id: parentId, className: parentClassName + " " + exports.defaultName, style: parentStyle, key: parentId + childId, contentEditable: contentEditable },
+        react_1.default.createElement("div", { id: childId, style: childStyle, className: childClassName }, children)));
 }
-export function insertDraggable(editorState, markup, identifier, toShow) {
-    const { editor } = editorState;
+exports.Textbox = Textbox;
+function insertDraggable(editorState, markup, identifier, toShow) {
+    var editor = editorState.editor;
     if (!editor)
         return;
-    const div = renderToStaticMarkup(markup);
+    var div = (0, server_1.renderToStaticMarkup)(markup);
     editor.innerHTML += div;
-    const draggable = editor.querySelector(`#${identifier}`);
+    var draggable = editor.querySelector("#" + identifier);
     if (!draggable)
         return;
-    draggable.addEventListener('click', () => draggableOnClick(draggable, editorState, toShow), false);
+    draggable.addEventListener('click', function () { return draggableOnClick(draggable, editorState, toShow); }, false);
     draggable.focus();
 }
-export function removeDraggable(editorState, draggable, toShow) {
-    draggable.removeEventListener('click', () => draggableOnClick(draggable, editorState, toShow), false);
+exports.insertDraggable = insertDraggable;
+function removeDraggable(editorState, draggable, toShow) {
+    var _a;
+    draggable.removeEventListener('click', function () { return draggableOnClick(draggable, editorState, toShow); }, false);
     draggable.remove();
-    editorState.editor?.focus();
+    (_a = editorState.editor) === null || _a === void 0 ? void 0 : _a.focus();
 }
-export function draggableOnClick(parent, editorState, toShow) {
+exports.removeDraggable = removeDraggable;
+function draggableOnClick(parent, editorState, toShow) {
     if (parent.classList.contains('selectedBox'))
         return;
     parent.classList.add('selectedBox');
     parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>";
-    const contextMenuWrapper = parent.querySelector('.contextMenuWrapper');
-    render(React.createElement(ContextMenu, { parent: parent, editorState: editorState, toShow: toShow }), contextMenuWrapper);
+    var contextMenuWrapper = parent.querySelector('.contextMenuWrapper');
+    (0, react_dom_1.render)(react_1.default.createElement(ContextMenu_1.default, { parent: parent, editorState: editorState, toShow: toShow }), contextMenuWrapper);
     // contextMenuWrapper.remove()
 }
+exports.draggableOnClick = draggableOnClick;

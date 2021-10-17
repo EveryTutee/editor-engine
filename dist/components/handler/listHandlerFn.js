@@ -1,5 +1,9 @@
-export function listHandlerFn({ name, editorState }) {
-    let cmd = 'insertUnorderedList';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.listHandlerFn = void 0;
+function listHandlerFn(_a) {
+    var name = _a.name, editorState = _a.editorState;
+    var cmd = 'insertUnorderedList';
     switch (name) {
         case 'Bullets':
             cmd = 'insertUnorderedList';
@@ -14,3 +18,4 @@ export function listHandlerFn({ name, editorState }) {
     editorState.__document__.execCommand(cmd, false, 'true');
     return null;
 }
+exports.listHandlerFn = listHandlerFn;

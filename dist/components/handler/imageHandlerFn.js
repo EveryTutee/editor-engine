@@ -1,8 +1,13 @@
-import React from "react";
-import { insertDraggable, Textbox } from "../../base/model/Draggable";
-import { fileToDataUrl } from "../../utils/fileToDataUrl";
-import { uuid } from "../../utils/uuid";
-const parentStyle = {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
+var Draggable_1 = require("../../base/model/Draggable");
+var fileToDataUrl_1 = require("../../utils/fileToDataUrl");
+var uuid_1 = require("../../utils/uuid");
+var parentStyle = {
     position: 'absolute',
     width: '100px',
     height: 'auto',
@@ -11,29 +16,31 @@ const parentStyle = {
     zIndex: 1,
     cursor: 'pointer'
 };
-const childStyle = {
+var childStyle = {
     height: "100%",
     width: "100%",
 };
-export default function imageHandlerFn({ e, editorState, name }) {
-    const target = e.target;
+function imageHandlerFn(_a) {
+    var e = _a.e, editorState = _a.editorState, name = _a.name;
+    var target = e.target;
     if (!target.files)
         return null;
-    const file = target.files[0];
+    var file = target.files[0];
     if (!file)
         return;
-    fileToDataUrl(file).then(src => {
-        const childId = uuid();
-        const parentId = uuid();
-        const __text__ = (React.createElement(Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
-            React.createElement("img", { "data-name": file.name, src: src, style: {
+    (0, fileToDataUrl_1.fileToDataUrl)(file).then(function (src) {
+        var childId = (0, uuid_1.uuid)();
+        var parentId = (0, uuid_1.uuid)();
+        var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
+            react_1.default.createElement("img", { "data-name": file.name, src: src, style: {
                     width: "100%",
                     height: "100%",
                     pointerEvents: "none",
                     opacity: "inherit"
                 } })));
-        insertDraggable(editorState, __text__, name + parentId);
+        (0, Draggable_1.insertDraggable)(editorState, __text__, name + parentId);
         target.value = "";
     });
     return null;
 }
+exports.default = imageHandlerFn;

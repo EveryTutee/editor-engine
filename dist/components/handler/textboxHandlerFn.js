@@ -1,7 +1,12 @@
-import React from 'react';
-import { insertDraggable, Textbox } from '../../base/model/Draggable';
-import { uuid } from '../../utils/uuid';
-const parentStyle = {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
+var Draggable_1 = require("../../base/model/Draggable");
+var uuid_1 = require("../../utils/uuid");
+var parentStyle = {
     position: 'absolute',
     width: '40%',
     height: '40%',
@@ -10,16 +15,17 @@ const parentStyle = {
     zIndex: 1,
     cursor: 'pointer'
 };
-const childStyle = {
+var childStyle = {
     padding: "0.25rem 0.75rem",
     height: "100%",
     width: "100%",
 };
-export default function textboxHandlerFn({ editorState, name, }) {
-    const childId = uuid();
-    const parentId = uuid();
-    const __text__ = (React.createElement(Textbox, { parentClassName: "textBoxWrapper", childClassName: "textBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: true },
-        React.createElement("p", { style: {
+function textboxHandlerFn(_a) {
+    var editorState = _a.editorState, name = _a.name;
+    var childId = (0, uuid_1.uuid)();
+    var parentId = (0, uuid_1.uuid)();
+    var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "textBoxWrapper", childClassName: "textBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: true },
+        react_1.default.createElement("p", { style: {
                 backgroundColor: 'transparent',
                 width: "100%",
                 height: "1em",
@@ -28,7 +34,8 @@ export default function textboxHandlerFn({ editorState, name, }) {
                 pointerEvents: "none",
                 opacity: "inherit"
             } },
-            React.createElement("br", null))));
-    insertDraggable(editorState, __text__, name + parentId);
+            react_1.default.createElement("br", null))));
+    (0, Draggable_1.insertDraggable)(editorState, __text__, name + parentId);
     return null;
 }
+exports.default = textboxHandlerFn;

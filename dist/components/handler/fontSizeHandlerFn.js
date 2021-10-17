@@ -1,24 +1,32 @@
-import React from 'react';
-export default function fontSizeHandlerFn({ editorState, onBack, name }) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FONT_SIZE = void 0;
+var react_1 = __importDefault(require("react"));
+function fontSizeHandlerFn(_a) {
+    var editorState = _a.editorState, onBack = _a.onBack, name = _a.name;
     function onClick(e) {
-        const target = e.target;
+        var target = e.target;
         if (!target)
             return;
-        const value = target.id;
+        var value = target.id;
         editorState.__document__.execCommand('fontSize', false, "7");
-        document.querySelectorAll(`span`)
-            .forEach((span) => {
+        document.querySelectorAll("span")
+            .forEach(function (span) {
             if (span.style.fontSize === 'xxx-large')
                 span.style.fontSize = value;
         });
     }
-    return (React.createElement("div", { id: "subMenu" + name },
-        React.createElement("div", null,
-            React.createElement("button", { onClick: () => onBack?.(document.getElementById("subMenu" + name)) }, "Back"),
-            React.createElement("span", null, name)),
-        React.createElement("div", null, FONT_SIZE.map((value, key) => (React.createElement("button", { id: value, key: value + key, onClick: onClick }, value))))));
+    return (react_1.default.createElement("div", { id: "subMenu" + name },
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("button", { onClick: function () { return onBack === null || onBack === void 0 ? void 0 : onBack(document.getElementById("subMenu" + name)); } }, "Back"),
+            react_1.default.createElement("span", null, name)),
+        react_1.default.createElement("div", null, exports.FONT_SIZE.map(function (value, key) { return (react_1.default.createElement("button", { id: value, key: value + key, onClick: onClick }, value)); }))));
 }
-export const FONT_SIZE = [
+exports.default = fontSizeHandlerFn;
+exports.FONT_SIZE = [
     '6px',
     '4px',
     '8px',
