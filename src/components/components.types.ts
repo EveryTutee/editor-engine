@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { EditorStateType } from "../base/base.types";
 
+
 interface Constructor {
     editorState: EditorStateType
 }

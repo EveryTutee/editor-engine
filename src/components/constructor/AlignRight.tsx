@@ -3,15 +3,15 @@ import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { Align } from "../components.types";
 import alignHandlerFn from "../handler/alignHandlerFn";
-import { AiOutlineAlignLeft } from "react-icons/ai";
+import { AiOutlineAlignRight } from "react-icons/ai";
 
 const config = {
-    name: 'alignLeft',
+    name: 'alignRight',
     type: 'click',
-    buttonIcon: <AiOutlineAlignLeft />,
+    buttonIcon: <AiOutlineAlignRight />,
     handlerFn: alignHandlerFn
 } as ModelConfig
-export default function AlignLeft({ editorState }: Align) {
+export default function AlignRight({ editorState }: Align) {
 
     return (
         <Model

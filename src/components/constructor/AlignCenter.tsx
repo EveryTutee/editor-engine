@@ -3,12 +3,12 @@ import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { Align } from "../components.types";
 import alignHandlerFn from "../handler/alignHandlerFn";
-import { AiOutlineAlignLeft } from "react-icons/ai";
+import { AiOutlineAlignCenter } from "react-icons/ai";
 
 const config = {
-    name: 'alignLeft',
+    name: 'alignCenter',
     type: 'click',
-    buttonIcon: <AiOutlineAlignLeft />,
+    buttonIcon: <AiOutlineAlignCenter />,
     handlerFn: alignHandlerFn
 } as ModelConfig
 export default function AlignLeft({ editorState }: Align) {

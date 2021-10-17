@@ -8,6 +8,9 @@ import Audio from "./constructor/Audio";
 import Iframe from "./constructor/Iframe";
 import SaveCanvas from "./constructor/SaveCanvas";
 import FontSize from "./constructor/FontSize";
+import AlignRight from "./constructor/AlignRight";
+import AlignLeft from "./constructor/AlignLeft";
+import AlignCenter from "./constructor/AlignCenter";
 
 export {
     Bold,
@@ -19,5 +22,8 @@ export {
     Audio,
     Iframe,
     SaveCanvas,
-    FontSize
+    FontSize,
+    AlignLeft,
+    AlignRight,
+    AlignCenter
 }

@@ -32,5 +32,8 @@ export interface ModelConfig {
     name: string;
     buttonIcon: JSX.Element | SVGAElement;
     type: 'click' | 'submenu';
-    handlerFn: (e: React.MouseEvent<HTMLInputElement>, name: string, editorState: EditorStateType, onBack: (container: Element | null) => void) => JSX.Element | null;
+    handlerFn: HandlerFn;
+
 }
+
+export type HandlerFn = (e: React.MouseEvent<HTMLInputElement>, name: string, editorState: EditorStateType, onBack: (container: Element | null) => void) => JSX.Element | null;
