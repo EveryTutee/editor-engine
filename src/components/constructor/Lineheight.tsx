@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { ModelConfig } from '../../base/base.types'
 import Model from '../../base/model/Model'
-import { FontSize } from '../components.types';
+import { LineHeight } from '../components.types';
 import { MdFormatLineSpacing } from 'react-icons/md';
 import lineheightHandlerFn from '../handler/lineheightHandlerFn';
 const config = {
@@ -12,7 +12,7 @@ const config = {
 
 } as ModelConfig;
 
-export default function Lineheight({ editorState, onClick }: FontSize) {
+export default function Lineheight({ editorState, onClick }: LineHeight) {
     return (
         <Model
             config={config}

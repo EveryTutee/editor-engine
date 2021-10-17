@@ -15,6 +15,8 @@ import Subscript from "./constructor/Subscript";
 import Superscript from "./constructor/Superscript";
 import Lineheight from "./constructor/Lineheight";
 import WordSpacing from "./constructor/WordSpacing";
+import Bullets from "./constructor/Bullets";
+import Numbers from "./constructor/Numbers";
 
 export {
     Bold,
@@ -33,5 +35,7 @@ export {
     Superscript,
     Subscript,
     Lineheight,
-    WordSpacing
+    WordSpacing,
+    Bullets,
+    Numbers
 }

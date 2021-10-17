@@ -19,7 +19,9 @@ import {
   Superscript,
   Subscript,
   Lineheight,
-  WordSpacing
+  WordSpacing,
+  Bullets,
+  Numbers
 } from './dist/components';
 
 function App() {
@@ -48,6 +50,8 @@ function App() {
           <Subscript editorState={editorState} />
           <Lineheight editorState={editorState} onClick={setShowNav} />
           <WordSpacing editorState={editorState} onClick={setShowNav} />
+          <Bullets editorState={editorState} />
+          <Numbers editorState={editorState} />
         </div>
 
         {showNav && <div id="expanded">

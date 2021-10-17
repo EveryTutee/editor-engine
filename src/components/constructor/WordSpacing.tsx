@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { ModelConfig } from '../../base/base.types'
 import Model from '../../base/model/Model'
-import { FontSize } from '../components.types';
+import { WordSpacing } from '../components.types';
 import { CgSpaceBetween } from 'react-icons/cg';
 import wordSpacingHandlerFn from '../handler/wordSpacingHandlerFn';
 const config = {
@@ -12,7 +12,7 @@ const config = {
 
 } as ModelConfig;
 
-export default function WordSpacing({ editorState, onClick }: FontSize) {
+export default function WordSpacing({ editorState, onClick }: WordSpacing) {
     return (
         <Model
             config={config}

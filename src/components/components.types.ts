@@ -38,3 +38,12 @@ export interface FontSize extends Constructor {
 export interface Align extends Constructor {
 
 }
+export interface WordSpacing extends Constructor {
+    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
+}
+export interface LineHeight extends Constructor {
+    onClick: Dispatch<SetStateAction<JSX.Element | null>>;
+}
+export interface Bullets extends Constructor {
+
+}
