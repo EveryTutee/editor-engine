@@ -12,6 +12,11 @@
     pointer-events: none;
   }
 
+  p span {
+    margin-left: 0.25rem;
+    font-size: 1rem;
+  }
+
   cursor: pointer;
   position: relative;
   color: #dee1e6;

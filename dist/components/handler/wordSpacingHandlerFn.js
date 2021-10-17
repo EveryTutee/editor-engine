@@ -14,23 +14,14 @@ function wordSpacingHandlerFn(_a) {
         if (!target)
             return;
         var value = parseInt(target.id);
-        var sValue = (value * baseWordSpacing) + "rem";
+        var sValue = value * baseWordSpacing + "rem";
         (0, domManipulation_1.execBlockStyle)(name, sValue, editorState.__document__);
     }
-    return (react_1.default.createElement("div", { id: "subMenu" + name },
-        react_1.default.createElement("div", null,
+    return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
+        react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack === null || onBack === void 0 ? void 0 : onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
-        react_1.default.createElement("div", null, exports.WORD_SPACING.map(function (value, key) { return (react_1.default.createElement("button", { id: value, key: value + key, onClick: onClick }, value)); }))));
+        react_1.default.createElement("div", null, exports.WORD_SPACING.map(function (value, key) { return (react_1.default.createElement("button", { className: "modelBtn", id: value, key: value + key, onClick: onClick }, value)); }))));
 }
 exports.default = wordSpacingHandlerFn;
-exports.WORD_SPACING = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8'
-];
+exports.WORD_SPACING = ["1", "2", "3", "4", "5", "6", "7", "8"];

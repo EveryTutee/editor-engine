@@ -1,38 +1,45 @@
-import React from 'react';
+import React from "react";
 import { EditorStateType, HandlerFnProps } from "../../base/base.types";
-import { execBlockStyle } from '../../utils/domManipulation';
+import { execBlockStyle } from "../../utils/domManipulation";
 
-export default function lineheightHandlerFn({ name, editorState, onBack }: HandlerFnProps) {
+export default function lineheightHandlerFn({
+  name,
+  editorState,
+  onBack,
+}: HandlerFnProps) {
+  function onClick(e: React.MouseEvent<HTMLButtonElement>) {
+    const target = e.target as HTMLElement;
+    if (!target) return;
+    const value = target.id;
 
-    function onClick(e: React.MouseEvent<HTMLButtonElement>) {
-        const target = e.target as HTMLElement;
-        if (!target) return;
-        const value = target.id;
+    execBlockStyle(name, value, editorState.__document__);
+  }
 
-        execBlockStyle(name, value, editorState.__document__);
+  return (
+    <div id={"subMenu" + name} className="subMenuWrapper">
+      <div className="subMenuHeading">
+        <button
+          onClick={() => onBack?.(document.getElementById("subMenu" + name))}
+        >
+          Back
+        </button>
+        <span>{name}</span>
+      </div>
 
-    }
-
-    return (
-        <div id={"subMenu" + name}>
-            <div>
-                <button onClick={() => onBack?.(document.getElementById("subMenu" + name))}>Back</button>
-                <span>{name}</span>
-            </div>
-
-            <div>
-                {LINE_HEIGHT.map((value, key) => (
-                    <button id={value} key={value + key} onClick={onClick}>{value}</button>
-                ))}
-            </div>
-
-        </div>
-    )
+      <div>
+        {LINE_HEIGHT.map((value, key) => (
+          <button
+            className="modelBtn"
+            id={value}
+            key={value + key}
+            onClick={onClick}
+          >
+            {value}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }
 
-export const LINE_HEIGHT = [
-    '1',
-    '1.15',
-    '1.5',
-    '2'
-]
+export const LINE_HEIGHT = ["1", "1.15", "1.5", "2"];

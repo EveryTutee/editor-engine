@@ -10,10 +10,10 @@ function backgroundHandlerFn(_a) {
     function onChange(color) {
         if (!editorState.editor)
             return;
-        editorState.editor.style.setProperty('background', color);
+        editorState.editor.style.setProperty("background", color);
     }
-    return (react_1.default.createElement("div", { id: "subMenu" + name },
-        react_1.default.createElement("div", null,
+    return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
+        react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
         react_1.default.createElement(Colorpicker_1.default, { value: "#000", onChange: onChange })));

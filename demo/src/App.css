@@ -1,11 +1,14 @@
-
 .app {
-    width: 80%;
-    margin: auto;
+  width: 80%;
+  margin: auto;
 }
 
 .output {
-    margin-top: 2rem;
-    padding: 1rem;
-    border: 1px solid black;
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.nav {
+  background-color: #282a36;
 }

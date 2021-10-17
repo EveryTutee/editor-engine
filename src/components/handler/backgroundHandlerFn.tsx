@@ -1,23 +1,29 @@
-import React, { MouseEvent, useEffect, useMemo, useRef, useState } from 'react'
-import { EditorStateType, HandlerFnProps } from '../../base/base.types'
-import Colorpicker from '../../UI/Colorpicker';
+import React, { MouseEvent, useEffect, useMemo, useRef, useState } from "react";
+import { EditorStateType, HandlerFnProps } from "../../base/base.types";
+import Colorpicker from "../../UI/Colorpicker";
 
-export default function backgroundHandlerFn({ editorState, onBack, name }: HandlerFnProps) {
+export default function backgroundHandlerFn({
+  editorState,
+  onBack,
+  name,
+}: HandlerFnProps) {
+  function onChange(color: string) {
+    if (!editorState.editor) return;
+    editorState.editor.style.setProperty("background", color);
+  }
 
-    function onChange(color: string) {
-        if (!editorState.editor) return;
-        editorState.editor.style.setProperty('background', color);
-    }
+  return (
+    <div id={"subMenu" + name} className="subMenuWrapper">
+      <div className="subMenuHeading">
+        <button
+          onClick={() => onBack(document.getElementById("subMenu" + name))}
+        >
+          Back
+        </button>
+        <span>{name}</span>
+      </div>
 
-    return (
-        <div id={"subMenu" + name}>
-            <div>
-                <button onClick={() => onBack(document.getElementById("subMenu" + name))}>Back</button>
-                <span>{name}</span>
-            </div>
-
-            <Colorpicker value={"#000"} onChange={onChange} />
-
-        </div>
-    )
+      <Colorpicker value={"#000"} onChange={onChange} />
+    </div>
+  );
 }

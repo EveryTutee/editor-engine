@@ -27,12 +27,12 @@ var Model_1 = __importDefault(require("../../base/model/Model"));
 var fontSizeHandlerFn_1 = __importDefault(require("../handler/fontSizeHandlerFn"));
 var config = {
     buttonIcon: react_1.default.createElement(react_1.Fragment, null, "16px"),
-    name: "fontSize",
-    type: 'submenu',
+    name: "Font Size",
+    type: "submenu",
     handlerFn: fontSizeHandlerFn_1.default,
 };
 function FontSize(_a) {
     var editorState = _a.editorState, onClick = _a.onClick;
-    return (react_1.default.createElement(Model_1.default, { config: config, editorState: editorState, btnType: 'text', onCurrentStyle: function (styles) { return (styles.fontSize); }, subMenuView: onClick }));
+    return (react_1.default.createElement(Model_1.default, { config: config, editorState: editorState, btnType: "text", onCurrentStyle: function (styles) { return styles.fontSize; }, subMenuView: onClick }));
 }
 exports.default = FontSize;

@@ -1,3 +1,24 @@
 .textBox {
-    background-color: rgb(195, 231, 219);
+  background-color: rgb(195, 231, 219);
+}
+
+.subMenuWrapper {
+  .subMenuHeading {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin: 8px 0;
+    button {
+      border: none;
+      font-size: inherit;
+      font-weight: inherit;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background-color: darken(#dee1e6, 30%);
+      color: #282a36;
+    }
+    span {
+      color: #dee1e6;
+      margin-left: 1rem;
+    }
+  }
 }

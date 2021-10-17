@@ -15,16 +15,11 @@ function lineheightHandlerFn(_a) {
         var value = target.id;
         (0, domManipulation_1.execBlockStyle)(name, value, editorState.__document__);
     }
-    return (react_1.default.createElement("div", { id: "subMenu" + name },
-        react_1.default.createElement("div", null,
+    return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
+        react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack === null || onBack === void 0 ? void 0 : onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
-        react_1.default.createElement("div", null, exports.LINE_HEIGHT.map(function (value, key) { return (react_1.default.createElement("button", { id: value, key: value + key, onClick: onClick }, value)); }))));
+        react_1.default.createElement("div", null, exports.LINE_HEIGHT.map(function (value, key) { return (react_1.default.createElement("button", { className: "modelBtn", id: value, key: value + key, onClick: onClick }, value)); }))));
 }
 exports.default = lineheightHandlerFn;
-exports.LINE_HEIGHT = [
-    '1',
-    '1.15',
-    '1.5',
-    '2'
-];
+exports.LINE_HEIGHT = ["1", "1.15", "1.5", "2"];
