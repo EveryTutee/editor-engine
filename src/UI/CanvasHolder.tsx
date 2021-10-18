@@ -9,9 +9,13 @@ export default function CanvasHolder({ editorState, shelf }: CanvasHolderProps) 
     }
     return (
         <div className="canvasHolder">
-            {shelf.map((value, index) => (
-                <img src={value} alt={index + ""} onClick={selectedCanvas} id={"Image" + uuid()} width="100%" />
-            ))}
+            {shelf.map((value, index) => {
+                let id = uuid();
+
+                return (
+                    <img src={value} alt={index + ""} onClick={selectedCanvas} key={"Image" + id} id={"Image" + id} width="100%" />
+                )
+            })}
         </div>
     )
 }

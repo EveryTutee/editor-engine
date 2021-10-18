@@ -7,7 +7,8 @@ const displayStyle = (width: number, height: number) => ({
   top: 0,
   left: 0,
   width,
-  height
+  height,
+  pointerEvents: 'none'
 
 } as CSSProperties);
 
@@ -21,7 +22,7 @@ export default function SaveCanvas({
     if (!editorState.editor) return;
     const { width, height } = editorState.editor.getBoundingClientRect();
 
-    return displayStyle(width, height);
+    return displayStyle(width, height + 10);
   }, [editorState])
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {

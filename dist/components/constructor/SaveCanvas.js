@@ -29,7 +29,8 @@ var displayStyle = function (width, height) { return ({
     top: 0,
     left: 0,
     width: width,
-    height: height
+    height: height,
+    pointerEvents: 'none'
 }); };
 function SaveCanvas(_a) {
     var editorState = _a.editorState, onClick = _a.onClick, display = _a.display;
@@ -38,7 +39,7 @@ function SaveCanvas(_a) {
         if (!editorState.editor)
             return;
         var _a = editorState.editor.getBoundingClientRect(), width = _a.width, height = _a.height;
-        return displayStyle(width, height);
+        return displayStyle(width, height + 10);
     }, [editorState]);
     function handleClick(e) {
         if (!editorState.editor || !displayRef.current)
