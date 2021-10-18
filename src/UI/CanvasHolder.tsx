@@ -4,18 +4,15 @@ import { uuid } from '../utils/uuid';
 
 export default function CanvasHolder({ editorState, shelf }: CanvasHolderProps) {
     function selectedCanvas(e: React.MouseEvent<HTMLImageElement>) {
+        if (!editorState.editor) return;
         const target = e.target as HTMLImageElement;
-        editorState.editor?.appendChild(target);
+        editorState.editor.appendChild(target);
     }
     return (
         <div className="canvasHolder">
-            {shelf.map((value, index) => {
-                let id = uuid();
-
-                return (
-                    <img src={value} alt={index + ""} onClick={selectedCanvas} key={"Image" + id} id={"Image" + id} width="100%" />
-                )
-            })}
+            {shelf.map((value, index) => (
+                <img src={value} alt={index + ""} onClick={selectedCanvas} key={"Image" + uuid()} width="100%" />
+            ))}
         </div>
     )
 }
