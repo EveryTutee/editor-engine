@@ -10,7 +10,9 @@ var textboxHandlerFn_1 = __importDefault(require("../handler/textboxHandlerFn"))
 var config = {
     name: 'Textbox',
     type: 'click',
-    buttonIcon: react_1.default.createElement(bs_1.BsTextareaResize, null),
+    buttonIcon: react_1.default.createElement("div", { className: "modelIcon" },
+        react_1.default.createElement(bs_1.BsTextareaResize, null),
+        react_1.default.createElement("p", null, "Text Box")),
     handlerFn: textboxHandlerFn_1.default
 };
 function Textbox(_a) {

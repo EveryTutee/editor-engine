@@ -6,7 +6,7 @@ import { Audio } from '../components.types'
 import audioHandlerFn from '../handler/audioHandlerFn';
 
 const config = {
-    buttonIcon: <BsMusicNoteList />,
+    buttonIcon: <div className="modelIcon"><BsMusicNoteList /><p>Audio</p></div>,
     handlerFn: audioHandlerFn,
     name: "Audio",
     type: 'click'

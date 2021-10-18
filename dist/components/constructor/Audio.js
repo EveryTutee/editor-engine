@@ -8,7 +8,9 @@ var bs_1 = require("react-icons/bs");
 var Model_1 = __importDefault(require("../../base/model/Model"));
 var audioHandlerFn_1 = __importDefault(require("../handler/audioHandlerFn"));
 var config = {
-    buttonIcon: react_1.default.createElement(bs_1.BsMusicNoteList, null),
+    buttonIcon: react_1.default.createElement("div", { className: "modelIcon" },
+        react_1.default.createElement(bs_1.BsMusicNoteList, null),
+        react_1.default.createElement("p", null, "Audio")),
     handlerFn: audioHandlerFn_1.default,
     name: "Audio",
     type: 'click'

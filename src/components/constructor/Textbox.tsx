@@ -9,7 +9,7 @@ import textboxHandlerFn from '../handler/textboxHandlerFn';
 const config = {
     name: 'Textbox',
     type: 'click',
-    buttonIcon: <BsTextareaResize />,
+    buttonIcon: <div className="modelIcon"><BsTextareaResize /><p>Text Box</p></div>,
     handlerFn: textboxHandlerFn
 
 } as ModelConfig;

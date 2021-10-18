@@ -6,7 +6,7 @@ import { Iframe } from '../components.types'
 import iframeHandlerFn from '../handler/iframeHandlerFn';
 
 const config = {
-    buttonIcon: <ImEmbed />,
+    buttonIcon: <div className="modelIcon"><ImEmbed /><p>Iframe</p></div>,
     handlerFn: iframeHandlerFn,
     name: "Iframe",
     type: 'click'

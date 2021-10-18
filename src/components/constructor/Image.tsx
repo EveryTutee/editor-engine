@@ -9,7 +9,7 @@ import imageHandlerFn from '../handler/imageHandlerFn'
 const config = {
     name: 'Imagebox',
     type: 'click',
-    buttonIcon: <BsFileImage />,
+    buttonIcon: <div className="modelIcon"><BsFileImage /><p>Image</p></div>,
     handlerFn: imageHandlerFn
 
 } as ModelConfig;

@@ -8,7 +8,9 @@ var im_1 = require("react-icons/im");
 var Model_1 = __importDefault(require("../../base/model/Model"));
 var iframeHandlerFn_1 = __importDefault(require("../handler/iframeHandlerFn"));
 var config = {
-    buttonIcon: react_1.default.createElement(im_1.ImEmbed, null),
+    buttonIcon: react_1.default.createElement("div", { className: "modelIcon" },
+        react_1.default.createElement(im_1.ImEmbed, null),
+        react_1.default.createElement("p", null, "Iframe")),
     handlerFn: iframeHandlerFn_1.default,
     name: "Iframe",
     type: 'click'

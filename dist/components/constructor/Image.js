@@ -10,7 +10,9 @@ var imageHandlerFn_1 = __importDefault(require("../handler/imageHandlerFn"));
 var config = {
     name: 'Imagebox',
     type: 'click',
-    buttonIcon: react_1.default.createElement(bs_1.BsFileImage, null),
+    buttonIcon: react_1.default.createElement("div", { className: "modelIcon" },
+        react_1.default.createElement(bs_1.BsFileImage, null),
+        react_1.default.createElement("p", null, "Image")),
     handlerFn: imageHandlerFn_1.default
 };
 function Image(_a) {
