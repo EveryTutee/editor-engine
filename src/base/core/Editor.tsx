@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useEffect,
   useRef,
+  useState,
 } from "react";
 import getParent from "../../utils/getParent";
 import { onResizeMouseDownHandler } from "../../utils/resizeHandler";
@@ -19,9 +20,12 @@ export default function Editor({
   readonly,
   id,
   onChange,
+  maxcount,
   type = "editor",
 }: EditorProps) {
   const editorRef = useRef<HTMLDivElement | null>(null);
+  const [count, setCount] = useState(0);
+  const [showPlaceholder, setShowPlaceholder] = useState(false);
 
   function resizeEditor(e: globalThis.MouseEvent | TouchEvent) {
     if (!editorState.editor) return;
@@ -45,6 +49,22 @@ export default function Editor({
   }
 
   useEffect(() => {
+    if (editorRef.current) {
+      if (editorRef.current.innerText.length === 0)
+        editorRef.current.innerHTML += `<p><br /></p>`
+    }
+  }, [editorRef.current?.innerText])
+
+  useEffect(() => {
+    if (editorRef.current?.innerText &&
+      (editorRef.current.innerText === '\n' || editorRef.current.innerText.length === 0)) {
+      setShowPlaceholder(true);
+    } else {
+      setShowPlaceholder(false);
+    }
+  }, [editorRef.current?.innerText])
+
+  useEffect(() => {
     if (!editorRef.current) return;
 
     editorState.setEditor(editorRef.current);
@@ -61,6 +81,8 @@ export default function Editor({
 
       newState?.setUndoStack?.(newState.content);
       onChange?.(newState);
+
+      setCount(() => editorRef.current?.innerText.length || 0);
     });
     return () => {
       obs?.disconnect();
@@ -83,6 +105,12 @@ export default function Editor({
           position: type === "canvas" ? "relative" : "static",
         }}
         onClick={canvasClick}
+        onKeyDown={(e) => {
+          if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
+            e.preventDefault();
+        }}
+        data-char={`${count} / ${maxcount}`}
+        data-showplaceholder={showPlaceholder}
       >
         <p>
           <br />

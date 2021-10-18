@@ -68,13 +68,13 @@ function App() {
 
       </nav>
 
-      <Editor editorState={editorState} onChange={setEditorState} id="mainEditor" />
+      <Editor editorState={editorState} onChange={setEditorState} id="mainEditor" maxcount={1000} placeholder="let there be light" />
 
       <nav className="nav">
         <Textbox editorState={canvas} />
         <Image editorState={canvas} />
       </nav>
-      <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" />
+      <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" maxcount={1000} />
 
       <SaveCanvas
         editorState={canvas}

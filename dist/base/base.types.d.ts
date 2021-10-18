@@ -7,6 +7,7 @@ export interface EditorProps {
     readonly?: boolean;
     id: string;
     type?: "editor" | "canvas";
+    maxcount: number;
 }
 export interface EditorStateType {
     __document__: Document;
