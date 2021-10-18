@@ -15,8 +15,12 @@ function CanvasHolder(_a) {
         var image = editorState.__document__.createElement('img');
         image.src = src;
         image.setAttribute('width', "100%");
+        image.setAttribute('data-name', target.id);
         editorState.editor.appendChild(image);
     }
-    return (react_1.default.createElement("div", { className: "canvasHolder" }, shelf.map(function (value, index) { return (react_1.default.createElement("img", { src: value, alt: index + "", onClick: selectedCanvas, key: "Image" + (0, uuid_1.uuid)(), width: "100%" })); })));
+    return (react_1.default.createElement("div", { className: "canvasHolder" }, shelf.map(function (value, index) {
+        var id = "Image" + (0, uuid_1.uuid)();
+        return react_1.default.createElement("img", { src: value, alt: index + "", onClick: selectedCanvas, key: id, id: id, width: "100%" });
+    })));
 }
 exports.default = CanvasHolder;

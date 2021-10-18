@@ -10,13 +10,15 @@ export default function CanvasHolder({ editorState, shelf }: CanvasHolderProps) 
         const image = editorState.__document__.createElement('img');
         image.src = src;
         image.setAttribute('width', "100%");
+        image.setAttribute('data-name', target.id);
         editorState.editor.appendChild(image);
     }
     return (
         <div className="canvasHolder">
-            {shelf.map((value, index) => (
-                <img src={value} alt={index + ""} onClick={selectedCanvas} key={"Image" + uuid()} width="100%" />
-            ))}
+            {shelf.map((value, index) => {
+                let id = "Image" + uuid()
+                return <img src={value} alt={index + ""} onClick={selectedCanvas} key={id} id={id} width="100%" />
+            })}
         </div>
     )
 }
