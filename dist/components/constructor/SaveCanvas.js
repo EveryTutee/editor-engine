@@ -56,7 +56,7 @@ function SaveCanvas(_a) {
         });
     }
     return (react_1.default.createElement(react_1.Fragment, null,
-        react_1.default.createElement("button", { onClick: handleClick }, display),
+        react_1.default.createElement("button", { className: "saveBtn", onClick: handleClick }, display),
         react_1.default.createElement("div", { ref: displayRef, style: style })));
 }
 exports.default = SaveCanvas;

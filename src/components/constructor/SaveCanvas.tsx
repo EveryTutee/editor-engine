@@ -43,7 +43,7 @@ export default function SaveCanvas({
 
   return (
     <Fragment>
-      <button onClick={handleClick}>{display}</button>
+      <button className="saveBtn" onClick={handleClick}>{display}</button>
       <div ref={displayRef} style={style} />
     </Fragment>
   );
