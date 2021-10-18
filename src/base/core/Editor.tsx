@@ -20,11 +20,9 @@ export default function Editor({
   readonly,
   id,
   onChange,
-  maxcount,
   type = "editor",
 }: EditorProps) {
   const editorRef = useRef<HTMLDivElement | null>(null);
-  const [count, setCount] = useState(0);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
 
   function resizeEditor(e: globalThis.MouseEvent | TouchEvent) {
@@ -82,7 +80,6 @@ export default function Editor({
       newState?.setUndoStack?.(newState.content);
       onChange?.(newState);
 
-      setCount(() => editorRef.current?.innerText.length || 0);
     });
     return () => {
       obs?.disconnect();
@@ -102,14 +99,13 @@ export default function Editor({
         placeholder={placeholder}
         suppressContentEditableWarning={true}
         style={{
-          position: type === "canvas" ? "relative" : "static",
+          position: "relative",
         }}
         onClick={canvasClick}
         onKeyDown={(e) => {
           if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
             e.preventDefault();
         }}
-        data-char={`${count} / ${maxcount}`}
         data-showplaceholder={showPlaceholder}
       >
         <p>
