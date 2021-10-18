@@ -24,9 +24,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var html2canvas_1 = __importDefault(require("html2canvas"));
+var displayStyle = function (width, height) { return ({
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: width,
+    height: height
+}); };
 function SaveCanvas(_a) {
     var editorState = _a.editorState, onClick = _a.onClick, display = _a.display;
     var displayRef = (0, react_1.useRef)(null);
+    var style = (0, react_1.useMemo)(function () {
+        if (!editorState.editor)
+            return;
+        var _a = editorState.editor.getBoundingClientRect(), width = _a.width, height = _a.height;
+        return displayStyle(width, height);
+    }, [editorState]);
     function handleClick(e) {
         if (!editorState.editor || !displayRef.current)
             return;
@@ -43,6 +56,6 @@ function SaveCanvas(_a) {
     }
     return (react_1.default.createElement(react_1.Fragment, null,
         react_1.default.createElement("button", { onClick: handleClick }, display),
-        react_1.default.createElement("div", { ref: displayRef })));
+        react_1.default.createElement("div", { ref: displayRef, style: style })));
 }
 exports.default = SaveCanvas;

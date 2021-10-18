@@ -1,6 +1,15 @@
-import React, { CSSProperties, Fragment, useRef } from "react";
+import React, { CSSProperties, Fragment, useMemo, useRef } from "react";
 import { EditorStateType } from "../../base/base.types";
 import html2canvas from "html2canvas";
+
+const displayStyle = (width: number, height: number) => ({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width,
+  height
+
+} as CSSProperties);
 
 export default function SaveCanvas({
   editorState,
@@ -8,6 +17,12 @@ export default function SaveCanvas({
   display,
 }: SaveCanvasProps) {
   const displayRef = useRef<HTMLDivElement | null>(null);
+  const style = useMemo(() => {
+    if (!editorState.editor) return;
+    const { width, height } = editorState.editor.getBoundingClientRect();
+
+    return displayStyle(width, height);
+  }, [editorState])
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     if (!editorState.editor || !displayRef.current) return;
@@ -28,7 +43,7 @@ export default function SaveCanvas({
   return (
     <Fragment>
       <button onClick={handleClick}>{display}</button>
-      <div ref={displayRef} />
+      <div ref={displayRef} style={style} />
     </Fragment>
   );
 }
