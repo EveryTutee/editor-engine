@@ -89,11 +89,11 @@ export default function Editor({
   }, []);
 
   return (
-    <Fragment>
+    <div className={className}>
       <div
         key={id}
         ref={editorRef}
-        className={className + " main_editor " + id}
+        className={"main_editor " + id}
         contentEditable={!!!readonly}
         id={id}
         placeholder={placeholder}
@@ -118,7 +118,7 @@ export default function Editor({
           onTouchStart={resizeEditor}
         />
       )}
-    </Fragment>
+    </div>
   );
 }
 
