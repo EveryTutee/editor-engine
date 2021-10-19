@@ -96,6 +96,9 @@ export default function Editor({
         className={"main_editor " + id}
         contentEditable={!!!readonly}
         id={id}
+        style={{
+          border: readonly ? "none" : "1px solid rgba(193, 199, 208, 0.7)"
+        }}
         placeholder={placeholder}
         suppressContentEditableWarning={true}
         onClick={canvasClick}

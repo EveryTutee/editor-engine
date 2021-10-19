@@ -105,7 +105,9 @@ function Editor(_a) {
         //eslint-disable-next-line
     }, []);
     return (react_1.default.createElement("div", { className: className },
-        react_1.default.createElement("div", { key: id, ref: editorRef, className: "main_editor " + id, contentEditable: !!!readonly, id: id, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
+        react_1.default.createElement("div", { key: id, ref: editorRef, className: "main_editor " + id, contentEditable: !!!readonly, id: id, style: {
+                border: readonly ? "none" : "1px solid rgba(193, 199, 208, 0.7)"
+            }, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
                 if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
                     e.preventDefault();
             }, "data-showplaceholder": showPlaceholder },
