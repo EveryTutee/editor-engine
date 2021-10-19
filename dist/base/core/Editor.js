@@ -41,10 +41,9 @@ var utils_1 = require("./utils");
 // Returns the Editor or MainTextArea :)
 function Editor(_a) {
     var _b, _c;
-    var className = _a.className, editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, onChange = _a.onChange, maxcount = _a.maxcount, _d = _a.type, type = _d === void 0 ? "editor" : _d;
+    var className = _a.className, editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, onChange = _a.onChange, _d = _a.type, type = _d === void 0 ? "editor" : _d;
     var editorRef = (0, react_1.useRef)(null);
-    var _e = (0, react_1.useState)(0), count = _e[0], setCount = _e[1];
-    var _f = (0, react_1.useState)(false), showPlaceholder = _f[0], setShowPlaceholder = _f[1];
+    var _e = (0, react_1.useState)(false), showPlaceholder = _e[0], setShowPlaceholder = _e[1];
     function resizeEditor(e) {
         if (!editorState.editor)
             return;
@@ -98,7 +97,6 @@ function Editor(_a) {
             var newState = __assign(__assign({}, editorState), { content: innerHTML });
             (_a = newState === null || newState === void 0 ? void 0 : newState.setUndoStack) === null || _a === void 0 ? void 0 : _a.call(newState, newState.content);
             onChange === null || onChange === void 0 ? void 0 : onChange(newState);
-            setCount(function () { var _a; return ((_a = editorRef.current) === null || _a === void 0 ? void 0 : _a.innerText.length) || 0; });
         });
         return function () {
             obs === null || obs === void 0 ? void 0 : obs.disconnect();
@@ -107,12 +105,10 @@ function Editor(_a) {
         //eslint-disable-next-line
     }, []);
     return (react_1.default.createElement(react_1.Fragment, null,
-        react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, placeholder: placeholder, suppressContentEditableWarning: true, style: {
-                position: type === "canvas" ? "relative" : "static",
-            }, onClick: canvasClick, onKeyDown: function (e) {
+        react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
                 if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
                     e.preventDefault();
-            }, "data-char": count + " / " + maxcount, "data-showplaceholder": showPlaceholder },
+            }, "data-showplaceholder": showPlaceholder },
             react_1.default.createElement("p", null,
                 react_1.default.createElement("br", null))),
         type === "canvas" && (react_1.default.createElement("button", { className: "canvasResizer", 

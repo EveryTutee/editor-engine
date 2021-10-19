@@ -98,9 +98,6 @@ export default function Editor({
         id={id}
         placeholder={placeholder}
         suppressContentEditableWarning={true}
-        style={{
-          position: "relative",
-        }}
         onClick={canvasClick}
         onKeyDown={(e) => {
           if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
