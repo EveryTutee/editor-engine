@@ -93,7 +93,7 @@ export default function Editor({
       <div
         key={id}
         ref={editorRef}
-        className={className + "main_editor " + id}
+        className={className + " main_editor " + id}
         contentEditable={!!!readonly}
         id={id}
         style={{
