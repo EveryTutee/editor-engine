@@ -27,7 +27,7 @@ export default function fontstyleHandlerFn({
         <span>{name}</span>
       </div>
 
-      <div>
+      <div className="subMenuExpanded">
         {fontStyleArray.map((value, key) => (
           <button
             className="modelBtn"

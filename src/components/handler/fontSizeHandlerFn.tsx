@@ -31,7 +31,7 @@ export default function fontSizeHandlerFn({
         <span>{name}</span>
       </div>
 
-      <div>
+      <div className="subMenuExpanded">
         {FONT_SIZE.map((value, key) => (
           <button
             className="modelBtn"

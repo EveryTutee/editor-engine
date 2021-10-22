@@ -19,7 +19,7 @@ function fontstyleHandlerFn(_a) {
         react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
-        react_1.default.createElement("div", null, exports.fontStyleArray.map(function (value, key) { return (react_1.default.createElement("button", { className: "modelBtn", id: value, key: value + key, onClick: onClick }, value)); }))));
+        react_1.default.createElement("div", { className: "subMenuExpanded" }, exports.fontStyleArray.map(function (value, key) { return (react_1.default.createElement("button", { className: "modelBtn", id: value, key: value + key, onClick: onClick }, value)); }))));
 }
 exports.default = fontstyleHandlerFn;
 exports.fontStyleArray = [

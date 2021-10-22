@@ -22,7 +22,7 @@ function fontSizeHandlerFn(_a) {
         react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack === null || onBack === void 0 ? void 0 : onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
-        react_1.default.createElement("div", null, exports.FONT_SIZE.map(function (value, key) { return (react_1.default.createElement("button", { className: "modelBtn", id: value, key: value + key, onClick: onClick }, value)); }))));
+        react_1.default.createElement("div", { className: "subMenuExpanded" }, exports.FONT_SIZE.map(function (value, key) { return (react_1.default.createElement("button", { className: "modelBtn", id: value, key: value + key, onClick: onClick }, value)); }))));
 }
 exports.default = fontSizeHandlerFn;
 exports.FONT_SIZE = [

@@ -22,3 +22,15 @@
     }
   }
 }
+
+@media screen and (max-width: 800px){
+  .subMenuWrapper {
+    width: 100%;
+  }
+  .subMenuExpanded {
+    display: flex;
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+  
+}
