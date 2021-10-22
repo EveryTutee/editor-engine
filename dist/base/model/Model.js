@@ -101,7 +101,9 @@ function Model(_a) {
     /**
      * currAttributes = children => <p>{font_name}</p>
      */
-    var text = (react_1.default.createElement("button", { id: name, title: name, className: "modelBtn", onClick: handleClick, ref: btnRef }, !!currAttributes ? currAttributes : buttonIcon));
+    var text = (react_1.default.createElement("button", { id: name, title: name, className: "modelBtn", onClick: handleClick, ref: btnRef },
+        react_1.default.createElement("p", null,
+            react_1.default.createElement("span", null, !!currAttributes ? currAttributes : buttonIcon))));
     return (react_1.default.createElement(react_1.Fragment, null,
         btnType === 'file' && file,
         btnType === 'button' && button,

@@ -88,7 +88,10 @@ export default function Model({ editorState, config, subMenuView, onCurrentStyle
      */
     const text = (
         <button id={name} title={name} className="modelBtn" onClick={handleClick} ref={btnRef} >
-            {!!currAttributes ? currAttributes : buttonIcon}
+            <p><span>
+
+                {!!currAttributes ? currAttributes : buttonIcon}
+            </span></p>
         </button>
     )
 
