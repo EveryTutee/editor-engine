@@ -49,5 +49,12 @@
       white-space: nowrap;
     }
   }
+
+  .modelIcon {
+    flex-direction: row;
+    p {
+      margin-left: 0.25rem;
+    }
+  }
   
 }
