@@ -37,7 +37,7 @@ function ContextMenuItems({ editorState, parent, toShow }: ContextMenuItemsProps
 
     }
     return (
-        <div id="contextMenu" className="contextMenu">
+        <div id="contextMenu" className="contextMenu" contentEditable={false}>
             <div className="ctxBtnWrapper">
                 {/* @ts-expect-error */}
                 {show.includes('move') && <button className="ctxBtn move" onMouseDown={__moveHandler__} onTouchStart={__moveHandler__}>

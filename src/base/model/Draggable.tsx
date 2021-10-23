@@ -15,12 +15,13 @@ export function Textbox({ childClassName, parentClassName, parentId, children, p
             className={parentClassName + " " + defaultName}
             style={parentStyle}
             key={parentId + childId}
-            contentEditable={contentEditable}
+            contentEditable={false}
         >
             <div
                 id={childId}
                 style={childStyle}
                 className={childClassName}
+                contentEditable={contentEditable}
             >
                 {children}
             </div>
