@@ -52,5 +52,5 @@ export default function SaveCanvas({
 interface SaveCanvasProps {
   editorState: EditorStateType | null;
   onClick?: (value: string, editorDim: DOMRect) => void;
-  display: string;
+  display: JSX.Element;
 }

@@ -4,6 +4,6 @@ export default function SaveCanvas({ editorState, onClick, display, }: SaveCanva
 interface SaveCanvasProps {
     editorState: EditorStateType | null;
     onClick?: (value: string, editorDim: DOMRect) => void;
-    display: string;
+    display: JSX.Element;
 }
 export {};
