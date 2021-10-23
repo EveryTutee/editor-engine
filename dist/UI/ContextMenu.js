@@ -34,7 +34,7 @@ function ContextMenuItems(_a) {
         e.stopPropagation();
         (0, deleteHandler_1.deleteHandler)(editorState, parent);
     }
-    return (react_1.default.createElement("div", { id: "contextMenu", className: "contextMenu" },
+    return (react_1.default.createElement("div", { id: "contextMenu", className: "contextMenu", contentEditable: false },
         react_1.default.createElement("div", { className: "ctxBtnWrapper" },
             show.includes('move') && react_1.default.createElement("button", { className: "ctxBtn move", onMouseDown: __moveHandler__, onTouchStart: __moveHandler__ },
                 react_1.default.createElement(fi_1.FiMove, null)),
