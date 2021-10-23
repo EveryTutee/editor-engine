@@ -19,14 +19,14 @@ export default function SaveCanvas({
 }: SaveCanvasProps) {
   const displayRef = useRef<HTMLDivElement | null>(null);
   const style = useMemo(() => {
-    if (!editorState.editor) return;
+    if (!editorState || !editorState.editor) return;
     const { width, height } = editorState.editor.getBoundingClientRect();
 
     return displayStyle(width, height + 10);
   }, [editorState])
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
-    if (!editorState.editor || !displayRef.current) return;
+    if (!editorState || !editorState.editor || !displayRef.current) return;
 
     const value = editorState.content;
     let editor = editorState.editor;
@@ -50,7 +50,7 @@ export default function SaveCanvas({
 }
 
 interface SaveCanvasProps {
-  editorState: EditorStateType;
+  editorState: EditorStateType | null;
   onClick?: (value: string, editorDim: DOMRect) => void;
   display: string;
 }

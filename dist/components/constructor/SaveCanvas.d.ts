@@ -2,7 +2,7 @@
 import { EditorStateType } from "../../base/base.types";
 export default function SaveCanvas({ editorState, onClick, display, }: SaveCanvasProps): JSX.Element;
 interface SaveCanvasProps {
-    editorState: EditorStateType;
+    editorState: EditorStateType | null;
     onClick?: (value: string, editorDim: DOMRect) => void;
     display: string;
 }

@@ -36,13 +36,13 @@ function SaveCanvas(_a) {
     var editorState = _a.editorState, onClick = _a.onClick, display = _a.display;
     var displayRef = (0, react_1.useRef)(null);
     var style = (0, react_1.useMemo)(function () {
-        if (!editorState.editor)
+        if (!editorState || !editorState.editor)
             return;
         var _a = editorState.editor.getBoundingClientRect(), width = _a.width, height = _a.height;
         return displayStyle(width, height + 10);
     }, [editorState]);
     function handleClick(e) {
-        if (!editorState.editor || !displayRef.current)
+        if (!editorState || !editorState.editor || !displayRef.current)
             return;
         var value = editorState.content;
         var editor = editorState.editor;
