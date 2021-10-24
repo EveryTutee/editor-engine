@@ -26,12 +26,10 @@ var react_1 = __importStar(require("react"));
 var html2canvas_1 = __importDefault(require("html2canvas"));
 var displayStyle = function (width, height) { return ({
     position: 'fixed',
-    // top: 0,
-    // left: 0,
-    // right: 
-    // width,
-    // height,
-    inset: 0,
+    top: 0,
+    left: 0,
+    width: width,
+    height: height,
     pointerEvents: 'none',
     border: 'none'
 }); };

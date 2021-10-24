@@ -4,12 +4,10 @@ import html2canvas from "html2canvas";
 
 const displayStyle = (width: number, height: number) => ({
   position: 'fixed',
-  // top: 0,
-  // left: 0,
-  // right: 
-  // width,
-  // height,
-  inset: 0,
+  top: 0,
+  left: 0,
+  width,
+  height,
   pointerEvents: 'none',
   border: 'none'
 
