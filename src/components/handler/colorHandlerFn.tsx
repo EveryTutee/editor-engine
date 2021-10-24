@@ -9,6 +9,7 @@ export default function colorHandlerFn({
 }: HandlerFnProps) {
   function onChange(color: string) {
     // const cmd = name === 'Font Color' ? 'foreColor' : 'hiliteColor';
+    console.log(color)
     editorState.__document__.execCommand("foreColor", false, color);
   }
 

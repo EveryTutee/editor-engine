@@ -9,6 +9,7 @@ function colorHandlerFn(_a) {
     var editorState = _a.editorState, onBack = _a.onBack, name = _a.name;
     function onChange(color) {
         // const cmd = name === 'Font Color' ? 'foreColor' : 'hiliteColor';
+        console.log(color);
         editorState.__document__.execCommand("foreColor", false, color);
     }
     return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
