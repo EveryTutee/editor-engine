@@ -4,11 +4,14 @@ import html2canvas from "html2canvas";
 
 const displayStyle = (width: number, height: number) => ({
   position: 'fixed',
-  top: 0,
-  left: 0,
-  width,
-  height,
-  pointerEvents: 'none'
+  // top: 0,
+  // left: 0,
+  // right: 
+  // width,
+  // height,
+  inset: 0,
+  pointerEvents: 'none',
+  border: 'none'
 
 } as CSSProperties);
 
@@ -29,9 +32,11 @@ export default function SaveCanvas({
     if (!editorState || !editorState.editor || !displayRef.current) return;
 
     const value = editorState.content;
+    console.log(value);
     let editor = editorState.editor;
     const __display__ = displayRef.current;
     __display__.innerHTML = value;
+    (__display__.firstElementChild as HTMLElement)?.style.setProperty('border', 'none');
 
     html2canvas(displayRef.current).then((canvas) => {
       const dataUrl = canvas.toDataURL("image/png");

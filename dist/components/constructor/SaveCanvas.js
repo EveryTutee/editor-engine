@@ -26,11 +26,14 @@ var react_1 = __importStar(require("react"));
 var html2canvas_1 = __importDefault(require("html2canvas"));
 var displayStyle = function (width, height) { return ({
     position: 'fixed',
-    top: 0,
-    left: 0,
-    width: width,
-    height: height,
-    pointerEvents: 'none'
+    // top: 0,
+    // left: 0,
+    // right: 
+    // width,
+    // height,
+    inset: 0,
+    pointerEvents: 'none',
+    border: 'none'
 }); };
 function SaveCanvas(_a) {
     var editorState = _a.editorState, onClick = _a.onClick, display = _a.display;
@@ -42,12 +45,15 @@ function SaveCanvas(_a) {
         return displayStyle(width, height + 10);
     }, [editorState]);
     function handleClick(e) {
+        var _a;
         if (!editorState || !editorState.editor || !displayRef.current)
             return;
         var value = editorState.content;
+        console.log(value);
         var editor = editorState.editor;
         var __display__ = displayRef.current;
         __display__.innerHTML = value;
+        (_a = __display__.firstElementChild) === null || _a === void 0 ? void 0 : _a.style.setProperty('border', 'none');
         (0, html2canvas_1.default)(displayRef.current).then(function (canvas) {
             var dataUrl = canvas.toDataURL("image/png");
             onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, editor.getBoundingClientRect());
