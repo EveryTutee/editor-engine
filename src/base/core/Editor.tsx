@@ -21,6 +21,7 @@ export default function Editor({
   id,
   onChange,
   type = "editor",
+  style
 }: EditorProps) {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
@@ -97,9 +98,7 @@ export default function Editor({
         className={className + " main_editor " + id}
         contentEditable={!!!readonly}
         id={id}
-        style={{
-          border: readonly ? "none" : "1px solid rgba(193, 199, 208, 0.7)"
-        }}
+        style={style}
         placeholder={placeholder}
         suppressContentEditableWarning={true}
         onClick={canvasClick}

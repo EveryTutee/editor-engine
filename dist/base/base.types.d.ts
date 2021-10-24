@@ -1,4 +1,4 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 export interface EditorProps {
     className: string;
     editorState: EditorStateType;
@@ -8,6 +8,7 @@ export interface EditorProps {
     id: string;
     type?: "editor" | "canvas";
     maxcount: number;
+    style: CSSProperties;
 }
 export interface EditorStateType {
     __document__: Document;

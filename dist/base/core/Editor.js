@@ -41,7 +41,7 @@ var utils_1 = require("./utils");
 // Returns the Editor or MainTextArea :)
 function Editor(_a) {
     var _b, _c;
-    var className = _a.className, editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, onChange = _a.onChange, _d = _a.type, type = _d === void 0 ? "editor" : _d;
+    var className = _a.className, editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, onChange = _a.onChange, _d = _a.type, type = _d === void 0 ? "editor" : _d, style = _a.style;
     var editorRef = (0, react_1.useRef)(null);
     var _e = (0, react_1.useState)(false), showPlaceholder = _e[0], setShowPlaceholder = _e[1];
     function resizeEditor(e) {
@@ -106,9 +106,7 @@ function Editor(_a) {
         //eslint-disable-next-line
     }, []);
     return (react_1.default.createElement(react_1.Fragment, null,
-        react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, style: {
-                border: readonly ? "none" : "1px solid rgba(193, 199, 208, 0.7)"
-            }, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
+        react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, style: style, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
                 if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
                     e.preventDefault();
             }, "data-showplaceholder": showPlaceholder },
