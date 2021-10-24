@@ -34,6 +34,9 @@ export default function fontstyleHandlerFn({
             id={value}
             key={value + key}
             onClick={onClick}
+            style={{
+              fontFamily: value
+            }}
           >
             {value}
           </button>
