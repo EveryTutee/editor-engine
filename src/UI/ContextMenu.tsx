@@ -11,7 +11,8 @@ import { removeContext } from '../base/core/utils';
 export const DEFAULT_CONTEXT_ITEMS = [
     'move',
     'delete',
-    'resize'
+    'resize',
+    'finish'
 ]
 
 
@@ -45,12 +46,11 @@ function ContextMenuItems({ editorState, parent, toShow }: ContextMenuItemsProps
                 </button>}
 
                 {show.includes('delete') && <button className="ctxBtn delete" onClick={__deleteHandler__}><AiFillDelete /></button>}
-
+            {show.includes('finish') && <button className="ctxBtn finish">Done</button> }
             </div>
 
             {/* @ts-expect-error */}
             {show.includes('resize') && <button className="ctxBtn resize" onMouseDown={__resizeHandler__} onTouchStart={__resizeHandler__}></button>}
-
 
         </div>
     )

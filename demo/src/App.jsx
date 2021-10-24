@@ -77,6 +77,8 @@ function App() {
       <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" maxcount={1000} />
 
       <SaveCanvas
+      onStart={() => {}}
+      onEnd={() => {}}
         editorState={canvas}
         display="Save Changes"
         onClick={(value, dim) => {

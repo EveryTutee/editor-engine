@@ -37,6 +37,10 @@ export default function Editor({
     if (!editorState.editor) return;
 
     const target = e.target as HTMLElement;
+    if (target.classList.contains('finish')) {
+      removeContext(editorState.__document__);
+      return;
+    }
     const parent = getParent(target, `.${defaultName}`);
     if (!parent) return;
 

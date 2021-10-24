@@ -1,6 +1,8 @@
 import React, { CSSProperties, Fragment, useMemo, useRef } from "react";
 import { EditorStateType } from "../../base/base.types";
 import html2canvas from "html2canvas";
+import { cleanUpDraggables, removeContext } from "../../base/core/utils";
+import { defaultName, removeDraggable } from "../../base/model/Draggable";
 
 const displayStyle = (width: number, height: number) => ({
   position: 'fixed',
@@ -30,6 +32,8 @@ export default function SaveCanvas({
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     if (!editorState || !editorState.editor || !displayRef.current) return;
+
+    removeContext(editorState.__document__);
 
     const value = editorState.content;
     console.log(value);

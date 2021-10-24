@@ -53,6 +53,7 @@ export default function imageHandlerFn({ e, editorState, name }: HandlerFnProps)
             </Textbox>);
 
         insertDraggable(editorState, __text__, name + parentId);
+        target.files = null;
 
         target.value = "";
 
