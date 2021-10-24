@@ -9,7 +9,7 @@ export default function Colorpicker({ value, onChange }: ColorpickerProps) {
                 disableAlpha={true}
                 color={value}
                 presetColors={[]}
-
+                className="colorPicker"
                 onChange={(color, ev) => {
                     ev.preventDefault();
                     ev.stopPropagation();
