@@ -6,7 +6,7 @@ export default function Colorpicker({ value, onChange }: ColorpickerProps) {
     return (
         <div>
             <SketchPicker
-                disableAlpha={true}
+                // disableAlpha={true}
                 color={value}
                 presetColors={[]}
                 className="colorPicker"

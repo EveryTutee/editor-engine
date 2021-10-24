@@ -8,7 +8,11 @@ var react_color_1 = require("react-color");
 function Colorpicker(_a) {
     var value = _a.value, onChange = _a.onChange;
     return (react_1.default.createElement("div", null,
-        react_1.default.createElement(react_color_1.SketchPicker, { disableAlpha: true, color: value, presetColors: [], className: "colorPicker", onChange: function (color, ev) {
+        react_1.default.createElement(react_color_1.SketchPicker
+        // disableAlpha={true}
+        , { 
+            // disableAlpha={true}
+            color: value, presetColors: [], className: "colorPicker", onChange: function (color, ev) {
                 ev.preventDefault();
                 ev.stopPropagation();
                 onChange(color.hex);
