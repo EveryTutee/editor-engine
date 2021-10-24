@@ -34,6 +34,9 @@ export default function SaveCanvas({
     if (!editorState || !editorState.editor || !displayRef.current) return;
 
     removeContext(editorState.__document__);
+    // editorState.__document__.querySelectorAll("."+defaultName).forEach(elem => {
+    //   elem.classList.remove(defaultName);
+    // })
 
     const value = editorState.content;
     console.log(value);

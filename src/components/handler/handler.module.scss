@@ -1,6 +1,9 @@
 .selectedBox {
   background-color: rgba(207, 250, 235, 0.466);
 }
+    .draggable {
+        outline: 2px solid black;
+    }
 
 .subMenuWrapper {
   .subMenuHeading {

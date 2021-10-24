@@ -48,6 +48,9 @@ function SaveCanvas(_a) {
         if (!editorState || !editorState.editor || !displayRef.current)
             return;
         (0, utils_1.removeContext)(editorState.__document__);
+        // editorState.__document__.querySelectorAll("."+defaultName).forEach(elem => {
+        //   elem.classList.remove(defaultName);
+        // })
         var value = editorState.content;
         console.log(value);
         var editor = editorState.editor;
