@@ -14,7 +14,8 @@ var deleteHandler_1 = require("../utils/deleteHandler");
 exports.DEFAULT_CONTEXT_ITEMS = [
     'move',
     'delete',
-    'resize'
+    'resize',
+    'finish'
 ];
 function ContextMenuItems(_a) {
     var editorState = _a.editorState, parent = _a.parent, toShow = _a.toShow;
@@ -39,7 +40,8 @@ function ContextMenuItems(_a) {
             show.includes('move') && react_1.default.createElement("button", { className: "ctxBtn move", onMouseDown: __moveHandler__, onTouchStart: __moveHandler__ },
                 react_1.default.createElement(fi_1.FiMove, null)),
             show.includes('delete') && react_1.default.createElement("button", { className: "ctxBtn delete", onClick: __deleteHandler__ },
-                react_1.default.createElement(ai_1.AiFillDelete, null))),
+                react_1.default.createElement(ai_1.AiFillDelete, null)),
+            show.includes('finish') && react_1.default.createElement("button", { className: "ctxBtn finish" }, "Done")),
         show.includes('resize') && react_1.default.createElement("button", { className: "ctxBtn resize", onMouseDown: __resizeHandler__, onTouchStart: __resizeHandler__ })));
 }
 function ContextMenu(_a) {

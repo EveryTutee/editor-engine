@@ -24,6 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var html2canvas_1 = __importDefault(require("html2canvas"));
+var utils_1 = require("../../base/core/utils");
 var displayStyle = function (width, height) { return ({
     position: 'fixed',
     top: 0,
@@ -46,6 +47,7 @@ function SaveCanvas(_a) {
         var _a;
         if (!editorState || !editorState.editor || !displayRef.current)
             return;
+        (0, utils_1.removeContext)(editorState.__document__);
         var value = editorState.content;
         console.log(value);
         var editor = editorState.editor;

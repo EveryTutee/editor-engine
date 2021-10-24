@@ -39,6 +39,7 @@ function imageHandlerFn(_a) {
                     opacity: "inherit"
                 } })));
         (0, Draggable_1.insertDraggable)(editorState, __text__, name + parentId);
+        target.files = null;
         target.value = "";
     });
     return null;

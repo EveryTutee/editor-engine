@@ -56,6 +56,10 @@ function Editor(_a) {
         if (!editorState.editor)
             return;
         var target = e.target;
+        if (target.classList.contains('finish')) {
+            (0, utils_1.removeContext)(editorState.__document__);
+            return;
+        }
         var parent = (0, getParent_1.default)(target, "." + Draggable_1.defaultName);
         if (!parent)
             return;
