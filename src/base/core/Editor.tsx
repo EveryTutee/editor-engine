@@ -21,7 +21,7 @@ export default function Editor({
   id,
   onChange,
   type = "editor",
-  style
+  style,
 }: EditorProps) {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const [showPlaceholder, setShowPlaceholder] = useState(false);
@@ -51,19 +51,22 @@ export default function Editor({
     if (editorRef.current) {
       if (editorRef.current.innerText.length === 0) {
         console.log(type, editorRef.current.innerText);
-        editorRef.current.innerHTML += `<p><br /></p>`
+        editorRef.current.innerHTML += `<p><br /></p>`;
       }
     }
-  }, [editorRef.current?.innerText])
+  }, [editorRef.current?.innerText]);
 
   useEffect(() => {
-    if (editorRef.current?.innerText &&
-      (editorRef.current.innerText === '\n' || editorRef.current.innerText.length === 0)) {
+    if (
+      editorRef.current?.innerText &&
+      (editorRef.current.innerText === "\n" ||
+        editorRef.current.innerText.length === 0)
+    ) {
       setShowPlaceholder(true);
     } else {
       setShowPlaceholder(false);
     }
-  }, [editorRef.current?.innerText])
+  }, [editorRef.current?.innerText]);
 
   useEffect(() => {
     if (!editorRef.current) return;
@@ -81,7 +84,6 @@ export default function Editor({
 
       newState?.setUndoStack?.(newState.content);
       onChange?.(newState);
-
     });
     return () => {
       obs?.disconnect();
@@ -103,7 +105,11 @@ export default function Editor({
         suppressContentEditableWarning={true}
         onClick={canvasClick}
         onKeyDown={(e) => {
-          if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
+          if (
+            e.keyCode === 8 &&
+            editorState.editor &&
+            editorState.editor.innerHTML === "<p><br></p>"
+          )
             e.preventDefault();
         }}
         data-showplaceholder={showPlaceholder}

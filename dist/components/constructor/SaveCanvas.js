@@ -34,7 +34,7 @@ var displayStyle = function (width, height) { return ({
     border: 'none'
 }); };
 function SaveCanvas(_a) {
-    var editorState = _a.editorState, onClick = _a.onClick, display = _a.display;
+    var editorState = _a.editorState, onClick = _a.onClick, display = _a.display, onStart = _a.onStart, onEnd = _a.onEnd;
     var displayRef = (0, react_1.useRef)(null);
     var style = (0, react_1.useMemo)(function () {
         if (!editorState || !editorState.editor)
@@ -49,6 +49,7 @@ function SaveCanvas(_a) {
         var value = editorState.content;
         console.log(value);
         var editor = editorState.editor;
+        onStart();
         var __display__ = displayRef.current;
         __display__.innerHTML = value;
         (_a = __display__.firstElementChild) === null || _a === void 0 ? void 0 : _a.style.setProperty('border', 'none');
@@ -57,6 +58,7 @@ function SaveCanvas(_a) {
             onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, editor.getBoundingClientRect());
             editorState.setContent("<p><br/></p>");
             __display__.innerHTML = "";
+            onEnd();
         });
     }
     return (react_1.default.createElement(react_1.Fragment, null,

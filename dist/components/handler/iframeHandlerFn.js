@@ -24,9 +24,7 @@ var Draggable_1 = require("../../base/model/Draggable");
 var uuid_1 = require("../../utils/uuid");
 var parentStyle = {
     position: 'relative',
-    width: '40%',
-    height: '40%',
-    minHeight: 'fit-content',
+    width: '100%',
     zIndex: 1,
     cursor: 'pointer',
 };
@@ -34,7 +32,6 @@ var childStyle = {
     height: "100%",
     width: "100%",
     pointerEvents: 'all',
-    border: "1rem solid cyan",
     borderRadius: "0 15px 0 15px"
 };
 function iframeHandlerFn(_a) {

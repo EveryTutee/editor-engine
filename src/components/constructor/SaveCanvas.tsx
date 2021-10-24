@@ -17,6 +17,8 @@ export default function SaveCanvas({
   editorState,
   onClick,
   display,
+  onStart,
+  onEnd
 }: SaveCanvasProps) {
   const displayRef = useRef<HTMLDivElement | null>(null);
   const style = useMemo(() => {
@@ -32,6 +34,7 @@ export default function SaveCanvas({
     const value = editorState.content;
     console.log(value);
     let editor = editorState.editor;
+    onStart();
     const __display__ = displayRef.current;
     __display__.innerHTML = value;
     (__display__.firstElementChild as HTMLElement)?.style.setProperty('border', 'none');
@@ -41,6 +44,7 @@ export default function SaveCanvas({
       onClick?.(dataUrl, editor.getBoundingClientRect());
       editorState.setContent("<p><br/></p>");
       __display__.innerHTML = "";
+      onEnd();
     });
   }
 
@@ -56,4 +60,6 @@ interface SaveCanvasProps {
   editorState: EditorStateType | null;
   onClick?: (value: string, editorDim: DOMRect) => void;
   display: JSX.Element;
+  onStart: () => void;
+  onEnd: () => void;
 }

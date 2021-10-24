@@ -5,9 +5,7 @@ import { uuid } from '../../utils/uuid';
 
 const parentStyle = {
     position: 'relative',
-    width: '40%',
-    height: '40%',
-    minHeight: 'fit-content',
+    width: '100%',
     zIndex: 1,
     cursor: 'pointer',
 
@@ -17,7 +15,6 @@ const childStyle = {
     height: "100%",
     width: "100%",
     pointerEvents: 'all',
-    border: "1rem solid cyan",
     borderRadius: "0 15px 0 15px"
 } as CSSProperties;
 

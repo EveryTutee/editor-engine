@@ -77,7 +77,8 @@ function Editor(_a) {
     (0, react_1.useEffect)(function () {
         var _a;
         if (((_a = editorRef.current) === null || _a === void 0 ? void 0 : _a.innerText) &&
-            (editorRef.current.innerText === '\n' || editorRef.current.innerText.length === 0)) {
+            (editorRef.current.innerText === "\n" ||
+                editorRef.current.innerText.length === 0)) {
             setShowPlaceholder(true);
         }
         else {
@@ -107,7 +108,9 @@ function Editor(_a) {
     }, []);
     return (react_1.default.createElement(react_1.Fragment, null,
         react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, style: style, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
-                if (e.keyCode === 8 && editorState.editor && editorState.editor.innerHTML === '<p><br></p>')
+                if (e.keyCode === 8 &&
+                    editorState.editor &&
+                    editorState.editor.innerHTML === "<p><br></p>")
                     e.preventDefault();
             }, "data-showplaceholder": showPlaceholder },
             react_1.default.createElement("p", null,
