@@ -68,8 +68,10 @@ function Editor(_a) {
     }
     (0, react_1.useEffect)(function () {
         if (editorRef.current) {
-            if (editorRef.current.innerText.length === 0)
+            if (editorRef.current.innerText.length === 0) {
+                console.log(type, editorRef.current.innerText);
                 editorRef.current.innerHTML += "<p><br /></p>";
+            }
         }
     }, [(_b = editorRef.current) === null || _b === void 0 ? void 0 : _b.innerText]);
     (0, react_1.useEffect)(function () {
@@ -92,7 +94,6 @@ function Editor(_a) {
                 return;
             var clone = editorRef.current.cloneNode(true);
             (0, utils_1.removeContext)(clone);
-            console.log(clone);
             var innerHTML = clone.outerHTML;
             var newState = __assign(__assign({}, editorState), { content: innerHTML });
             (_a = newState === null || newState === void 0 ? void 0 : newState.setUndoStack) === null || _a === void 0 ? void 0 : _a.call(newState, newState.content);

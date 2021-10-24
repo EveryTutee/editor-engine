@@ -48,8 +48,10 @@ export default function Editor({
 
   useEffect(() => {
     if (editorRef.current) {
-      if (editorRef.current.innerText.length === 0)
+      if (editorRef.current.innerText.length === 0) {
+        console.log(type, editorRef.current.innerText);
         editorRef.current.innerHTML += `<p><br /></p>`
+      }
     }
   }, [editorRef.current?.innerText])
 
@@ -70,7 +72,6 @@ export default function Editor({
       if (!editorRef.current) return;
       const clone = editorRef.current.cloneNode(true) as HTMLElement;
       removeContext(clone);
-      console.log(clone);
       const innerHTML = clone.outerHTML;
       const newState = {
         ...editorState,
