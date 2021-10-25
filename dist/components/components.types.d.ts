@@ -4,7 +4,7 @@ export interface ShowNavType {
     Menu: FunctionComponent<HandlerFnProps>;
     props: any;
 }
-declare type OnClick = Dispatch<SetStateAction<ShowNavType | null>>;
+export declare type OnClick = Dispatch<SetStateAction<boolean>>;
 interface Constructor {
     editorState: EditorStateType;
 }

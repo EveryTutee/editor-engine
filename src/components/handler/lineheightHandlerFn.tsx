@@ -1,4 +1,5 @@
 import React from "react";
+import { render } from "react-dom";
 import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 import { execBlockStyle } from "../../utils/domManipulation";
 
@@ -15,7 +16,7 @@ export default function lineheightHandlerFn({
     execBlockStyle(name, value, editorState.__document__);
   }
 
-  return (
+  render(
     <div id={"subMenu" + name} className="subMenuWrapper">
       <div className="subMenuHeading">
         <button
@@ -38,7 +39,8 @@ export default function lineheightHandlerFn({
           </button>
         ))}
       </div>
-    </div>
+    </div>,
+    document.getElementById("expanded")
   );
 }
 

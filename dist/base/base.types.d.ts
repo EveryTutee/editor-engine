@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, ReactPortal } from "react";
 export interface EditorProps {
     className: string;
     editorState: EditorStateType;
@@ -28,7 +28,7 @@ export interface ModelConfig {
     name: string;
     buttonIcon: JSX.Element | SVGAElement;
     type: "click" | "submenu";
-    handlerFn: HandlerFn | ((props: HandlerFnProps) => null);
+    handlerFn: (props: HandlerFnProps) => ReactPortal | null;
 }
 export declare type HandlerFn = React.FunctionComponent<HandlerFnProps>;
 export interface HandlerFnProps {

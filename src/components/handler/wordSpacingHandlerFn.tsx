@@ -1,4 +1,5 @@
 import React from "react";
+import { render } from "react-dom";
 import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 import { execBlockStyle } from "../../utils/domManipulation";
 
@@ -18,7 +19,7 @@ export default function wordSpacingHandlerFn({
     execBlockStyle(name, sValue, editorState.__document__);
   }
 
-  return (
+  render(
     <div id={"subMenu" + name} className="subMenuWrapper">
       <div className="subMenuHeading">
         <button
@@ -41,7 +42,8 @@ export default function wordSpacingHandlerFn({
           </button>
         ))}
       </div>
-    </div>
+    </div>,
+    document.getElementById("expanded")
   );
 }
 

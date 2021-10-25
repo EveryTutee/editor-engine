@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fontStyleArray = void 0;
 var react_1 = __importDefault(require("react"));
+var react_dom_1 = require("react-dom");
 function fontstyleHandlerFn(_a) {
     var editorState = _a.editorState, onBack = _a.onBack, name = _a.name;
     function onClick(e) {
@@ -15,13 +16,13 @@ function fontstyleHandlerFn(_a) {
         console.log(value);
         editorState.__document__.execCommand("fontName", false, value);
     }
-    return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
+    (0, react_dom_1.render)(react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
         react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
         react_1.default.createElement("div", { className: "subMenuExpanded" }, exports.fontStyleArray.map(function (value, key) { return (react_1.default.createElement("button", { className: "modelBtn", id: value, key: value + key, onClick: onClick, style: {
-                fontFamily: value
-            } }, value)); }))));
+                fontFamily: value,
+            } }, value)); }))), document.getElementById("expanded"));
 }
 exports.default = fontstyleHandlerFn;
 exports.fontStyleArray = [

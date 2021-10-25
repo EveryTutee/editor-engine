@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { HandlerFnProps } from "../../base/base.types";
-export default function wordSpacingHandlerFn({ editorState, name, onBack, }: HandlerFnProps): JSX.Element;
+export default function wordSpacingHandlerFn({ editorState, name, onBack, }: HandlerFnProps): void;
 export declare const WORD_SPACING: string[];

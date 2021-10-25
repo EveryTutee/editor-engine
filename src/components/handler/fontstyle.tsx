@@ -1,4 +1,5 @@
 import React, { MouseEvent, useRef } from "react";
+import { render } from "react-dom";
 import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
 export default function fontstyleHandlerFn({
@@ -16,7 +17,7 @@ export default function fontstyleHandlerFn({
     editorState.__document__.execCommand("fontName", false, value);
   }
 
-  return (
+  render(
     <div id={"subMenu" + name} className="subMenuWrapper">
       <div className="subMenuHeading">
         <button
@@ -35,14 +36,15 @@ export default function fontstyleHandlerFn({
             key={value + key}
             onClick={onClick}
             style={{
-              fontFamily: value
+              fontFamily: value,
             }}
           >
             {value}
           </button>
         ))}
       </div>
-    </div>
+    </div>,
+    document.getElementById("expanded")
   );
 }
 

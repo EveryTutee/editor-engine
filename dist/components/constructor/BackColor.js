@@ -6,14 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var ai_1 = require("react-icons/ai");
 var Model_1 = __importDefault(require("../../base/model/Model"));
-var colorHandlerFn_1 = __importDefault(require("../handler/colorHandlerFn"));
+var ColorHandlerFn_1 = __importDefault(require("../handler/ColorHandlerFn"));
 var config = {
     name: "Highlight",
     type: "submenu",
     buttonIcon: (react_1.default.createElement("p", null,
         react_1.default.createElement(ai_1.AiTwotoneHighlight, null),
         react_1.default.createElement("span", null, "Highlight"))),
-    handlerFn: colorHandlerFn_1.default,
+    handlerFn: ColorHandlerFn_1.default,
 };
 function BackColor(_a) {
     var editorState = _a.editorState, onClick = _a.onClick;

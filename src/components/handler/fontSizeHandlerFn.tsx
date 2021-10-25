@@ -1,4 +1,5 @@
 import React from "react";
+import { render } from "react-dom";
 import { EditorStateType, HandlerFnProps } from "../../base/base.types";
 
 export default function fontSizeHandlerFn({
@@ -20,7 +21,7 @@ export default function fontSizeHandlerFn({
     );
   }
 
-  return (
+  render(
     <div id={"subMenu" + name} className="subMenuWrapper">
       <div className="subMenuHeading">
         <button
@@ -43,7 +44,8 @@ export default function fontSizeHandlerFn({
           </button>
         ))}
       </div>
-    </div>
+    </div>,
+    document.getElementById("expanded")
   );
 }
 

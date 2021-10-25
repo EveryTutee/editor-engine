@@ -1,7 +1,7 @@
-import React from 'react';
-import './App.css';
-import { Editor, EditorState, CanvasHolder } from './dist/index';
-import './dist/editor.css'
+import React from "react";
+import "./App.css";
+import { Editor, EditorState, CanvasHolder } from "./dist/index";
+import "./dist/editor.css";
 import {
   Bold,
   FontStyle,
@@ -24,8 +24,8 @@ import {
   Numbers,
   ForeColor,
   BackColor,
-  EditorBackground
-} from './dist/components';
+  EditorBackground,
+} from "./dist/components";
 
 function App() {
   const [editorState, setEditorState] = React.useState(() => new EditorState());
@@ -33,13 +33,13 @@ function App() {
 
   const [canva, setCanva] = React.useState([]);
 
-  // showNav : ...types | null 
-  const [ShowNav, setShowNav] = React.useState(null);
-  console.log(ShowNav)
+  // showNav : ...types | null
+  const [ShowNav, setShowNav] = React.useState(false);
+  console.log(ShowNav);
 
   return (
     <div className="app">
-      <nav className="nav" >
+      <nav className="nav">
         <div>
           <Bold editorState={editorState} />
           <Italics editorState={editorState} />
@@ -62,35 +62,45 @@ function App() {
           <EditorBackground editorState={editorState} onClick={setShowNav} />
         </div>
 
-        {ShowNav && <div id="expanded">
-          <ShowNav.Menu {...ShowNav.props} />
-        </div>}
-
+        <div id="expanded"></div>
       </nav>
 
-      <Editor editorState={editorState} onChange={setEditorState} id="mainEditor" maxcount={1000} placeholder="let there be light" />
+      <Editor
+        editorState={editorState}
+        onChange={setEditorState}
+        id="mainEditor"
+        maxcount={1000}
+        placeholder="let there be light"
+      />
 
       <nav className="nav">
         <Textbox editorState={canvas} />
         <Image editorState={canvas} />
       </nav>
-      <Editor editorState={canvas} onChange={setCanvas} type='canvas' id="canvasEditor" maxcount={1000} />
+      <Editor
+        editorState={canvas}
+        onChange={setCanvas}
+        type="canvas"
+        id="canvasEditor"
+        maxcount={1000}
+      />
 
       <SaveCanvas
-      onStart={() => {}}
-      onEnd={() => {}}
+        onStart={() => {}}
+        onEnd={() => {}}
         editorState={canvas}
         display="Save Changes"
         onClick={(value, dim) => {
-          setCanva(x => ([value, ...x]))
+          setCanva((x) => [value, ...x]);
         }}
       />
 
       <CanvasHolder editorState={editorState} shelf={canva} />
 
-      <div className="output" dangerouslySetInnerHTML={{ __html: editorState.content }} />
-
-
+      <div
+        className="output"
+        dangerouslySetInnerHTML={{ __html: editorState.content }}
+      />
     </div>
   );
 }

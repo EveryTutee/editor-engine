@@ -3,7 +3,7 @@ import { AiTwotoneHighlight } from "react-icons/ai";
 import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { FontStyle } from "../components.types";
-import colorHandlerFn from "../handler/colorHandlerFn";
+import ColorHandlerFn from "../handler/ColorHandlerFn";
 
 const config = {
   name: "Highlight",
@@ -14,7 +14,7 @@ const config = {
       <span>Highlight</span>
     </p>
   ),
-  handlerFn: colorHandlerFn,
+  handlerFn: ColorHandlerFn,
 } as ModelConfig;
 export default function BackColor({ editorState, onClick }: FontStyle) {
   return (

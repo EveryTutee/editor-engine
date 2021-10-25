@@ -31,38 +31,42 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
-var styleEvents = [
-    'keyup',
-    'mouseup'
-];
+var react_dom_1 = require("react-dom");
+var styleEvents = ["keyup", "mouseup"];
 function Model(_a) {
     var editorState = _a.editorState, config = _a.config, subMenuView = _a.subMenuView, onCurrentStyle = _a.onCurrentStyle, btnType = _a.btnType, accept = _a.accept;
     var name = config.name, buttonIcon = config.buttonIcon, type = config.type, handlerFn = config.handlerFn;
     var btnRef = (0, react_1.useRef)(null);
     var _b = (0, react_1.useState)(null), currAttributes = _b[0], setCurrAttributes = _b[1];
-    function onBack() {
-        subMenuView === null || subMenuView === void 0 ? void 0 : subMenuView(null);
+    var _c = (0, react_1.useState)(null), Portal = _c[0], setPortal = _c[1];
+    function onBack(expanded) {
+        (0, react_dom_1.unmountComponentAtNode)(expanded);
+        subMenuView === null || subMenuView === void 0 ? void 0 : subMenuView(false);
     }
     function handleClick(e) {
         e.preventDefault();
         e.stopPropagation();
+        var expanded = editorState.__document__.getElementById("expanded");
         // handlerFn is expected to return nothing
-        if (type === 'click')
-            handlerFn({ e: e, name: name, editorState: editorState, onBack: onBack });
+        if (type === "click")
+            handlerFn({ e: e, name: name, editorState: editorState, onBack: function () { return onBack(expanded); } });
         // toggle to show expanded bar
-        else if (type === 'submenu') {
-            if (!subMenuView)
-                throw Error("Sub menu is not provided");
-            var subMenu_1 = {
-                Menu: handlerFn,
-                props: { e: e, name: name, editorState: editorState, onBack: onBack }
-            };
-            if (subMenu_1)
-                subMenuView(function (prev) {
-                    if ((prev === null || prev === void 0 ? void 0 : prev.props.name) === subMenu_1.props.name)
-                        return null;
-                    return subMenu_1;
+        else if (type === "submenu") {
+            if (!expanded)
+                throw Error("Create a div with id='expanded'");
+            if (expanded.hasChildNodes()) {
+                (0, react_dom_1.unmountComponentAtNode)(expanded);
+                subMenuView === null || subMenuView === void 0 ? void 0 : subMenuView(false);
+            }
+            else {
+                handlerFn({
+                    e: e,
+                    name: name,
+                    editorState: editorState,
+                    onBack: function () { return onBack(expanded); },
                 });
+                subMenuView === null || subMenuView === void 0 ? void 0 : subMenuView(true);
+            }
         }
     }
     (0, react_1.useEffect)(function () {
@@ -95,7 +99,7 @@ function Model(_a) {
     }, [editorState.editor, editorState.__document__, onCurrentStyle]);
     var file = (react_1.default.createElement(react_1.Fragment, null,
         react_1.default.createElement("label", __assign({ htmlFor: name, className: "modelLabel", ref: btnRef }, currAttributes),
-            react_1.default.createElement("input", { type: "file", style: { display: 'none' }, id: name, onChange: handleClick }),
+            react_1.default.createElement("input", { type: "file", style: { display: "none" }, id: name, onChange: handleClick }),
             buttonIcon)));
     var button = (react_1.default.createElement("button", __assign({ id: name, title: name, className: "modelBtn", onClick: handleClick, ref: btnRef }, currAttributes), buttonIcon));
     /**
@@ -105,8 +109,8 @@ function Model(_a) {
         react_1.default.createElement("p", null,
             react_1.default.createElement("span", null, !!currAttributes ? currAttributes : buttonIcon))));
     return (react_1.default.createElement(react_1.Fragment, null,
-        btnType === 'file' && file,
-        btnType === 'button' && button,
-        btnType === 'text' && text));
+        btnType === "file" && file,
+        btnType === "button" && button,
+        btnType === "text" && text));
 }
 exports.default = Model;

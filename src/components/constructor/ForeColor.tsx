@@ -4,7 +4,7 @@ import Model from "../../base/model/Model";
 import { Bold, FontStyle } from "../components.types";
 import { FaBold } from "react-icons/fa";
 import { boldHandlerFn } from "../handler/bold";
-import colorHandlerFn from "../handler/colorHandlerFn";
+import ColorHandlerFn from "../handler/ColorHandlerFn";
 import { BiFontColor } from "react-icons/bi";
 
 const config = {
@@ -16,7 +16,7 @@ const config = {
       <span>Font Color</span>
     </p>
   ),
-  handlerFn: colorHandlerFn,
+  handlerFn: ColorHandlerFn,
 } as ModelConfig;
 export default function ForeColor({ editorState, onClick }: FontStyle) {
   return (

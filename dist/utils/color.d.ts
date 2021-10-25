@@ -1,2 +1,2 @@
-import { RGBColor } from "react-color";
-export declare function rgb2string(rgb: RGBColor): string;
+import { RgbaColor } from "react-colorful";
+export declare function rgb2string(rgb: RgbaColor): string;

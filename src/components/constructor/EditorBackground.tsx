@@ -3,7 +3,7 @@ import { FaPaintRoller } from "react-icons/fa";
 import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { FontStyle } from "../components.types";
-import backgroundHandlerFn from "../handler/backgroundHandlerFn";
+import ColorHandlerFn from "../handler/ColorHandlerFn";
 
 const config = {
   name: "Editor Background",
@@ -14,7 +14,7 @@ const config = {
       <span>Editor Background</span>
     </p>
   ),
-  handlerFn: backgroundHandlerFn,
+  handlerFn: ColorHandlerFn,
 } as ModelConfig;
 export default function EditorBackground({ editorState, onClick }: FontStyle) {
   return (

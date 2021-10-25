@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var Model_1 = __importDefault(require("../../base/model/Model"));
-var colorHandlerFn_1 = __importDefault(require("../handler/colorHandlerFn"));
+var ColorHandlerFn_1 = __importDefault(require("../handler/ColorHandlerFn"));
 var bi_1 = require("react-icons/bi");
 var config = {
     name: "Font Color",
@@ -13,7 +13,7 @@ var config = {
     buttonIcon: (react_1.default.createElement("p", null,
         react_1.default.createElement(bi_1.BiFontColor, null),
         react_1.default.createElement("span", null, "Font Color"))),
-    handlerFn: colorHandlerFn_1.default,
+    handlerFn: ColorHandlerFn_1.default,
 };
 function ForeColor(_a) {
     var editorState = _a.editorState, onClick = _a.onClick;
