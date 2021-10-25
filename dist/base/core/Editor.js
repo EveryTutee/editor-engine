@@ -56,7 +56,7 @@ function Editor(_a) {
         if (!editorState.editor)
             return;
         var target = e.target;
-        if (target.classList.contains('finish')) {
+        if (target.classList.contains("finish")) {
             (0, utils_1.removeContext)(editorState.__document__);
             return;
         }
@@ -110,13 +110,27 @@ function Editor(_a) {
         };
         //eslint-disable-next-line
     }, []);
+    function handlePaste(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!editorState.editor)
+            return;
+        var pastedData = e.clipboardData
+            .getData("text/plain")
+            .trim()
+            .replaceAll(">", "&gt;")
+            .replaceAll("<", "&lt;");
+        var final = "<p>" + pastedData.replaceAll("\n", "</p><p>") + "</p>";
+        console.log(final);
+        editorState.__document__.execCommand("insertHTML", false, final);
+    }
     return (react_1.default.createElement(react_1.Fragment, null,
         react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, style: style, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
                 if (e.keyCode === 8 &&
                     editorState.editor &&
                     editorState.editor.innerHTML === "<p><br></p>")
                     e.preventDefault();
-            }, "data-showplaceholder": showPlaceholder },
+            }, "data-showplaceholder": showPlaceholder, onPasteCapture: handlePaste },
             react_1.default.createElement("p", null,
                 react_1.default.createElement("br", null))),
         type === "canvas" && (react_1.default.createElement("button", { className: "canvasResizer", 

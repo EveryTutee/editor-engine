@@ -37,7 +37,7 @@ export default function Editor({
     if (!editorState.editor) return;
 
     const target = e.target as HTMLElement;
-    if (target.classList.contains('finish')) {
+    if (target.classList.contains("finish")) {
       removeContext(editorState.__document__);
       return;
     }
@@ -96,6 +96,22 @@ export default function Editor({
     //eslint-disable-next-line
   }, []);
 
+  function handlePaste(e: React.ClipboardEvent<HTMLDivElement>) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!editorState.editor) return;
+
+    let pastedData = e.clipboardData
+      .getData("text/plain")
+      .trim()
+      .replaceAll(">", "&gt;")
+      .replaceAll("<", "&lt;");
+    let final = `<p>${pastedData.replaceAll("\n", "</p><p>")}</p>`;
+
+    console.log(final);
+    editorState.__document__.execCommand("insertHTML", false, final);
+  }
+
   return (
     <Fragment>
       <div
@@ -117,6 +133,7 @@ export default function Editor({
             e.preventDefault();
         }}
         data-showplaceholder={showPlaceholder}
+        onPasteCapture={handlePaste}
       >
         <p>
           <br />
