@@ -1,41 +1,42 @@
 .main_editor {
-    position: relative;
-    padding: 1rem;
-    min-height: 350px;
-    width: 100%;
-    background-color: white;
+  position: relative;
+  min-height: 350px;
+  width: 100%;
+  background-color: white;
 
-    &[data-showplaceholder="true"] {
-        &[placeholder]::before {
-            font-size: 24px;
-            position: absolute;
-            content: attr(placeholder);
-            color: #555;
-        }
+  p {
+    margin: 0 1rem;
+  }
+
+  &[data-showplaceholder="true"] {
+    &[placeholder]::before {
+      font-size: 24px;
+      position: absolute;
+      content: attr(placeholder);
+      color: #555;
     }
+  }
 
+  &[placeholder]:empty:focus::before {
+    content: "";
+  }
 
-    &[placeholder]:empty:focus::before {
-        content: "";
-    }
-
-    &::after {
-        content: attr(data-char);
-        position: absolute;
-        bottom: 0;
-        right: 10px;
-        font-size: 12px;
-    }
-
+  &::after {
+    content: attr(data-char);
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: 12px;
+  }
 }
 
 .canvasResizer {
-    width: 20px;
-    height: 20px;
-    background-color: blueviolet;
-    border-radius: 0 0 30px 30px;
-    margin: 0.75rem 50%;
-    transform: translateY(-1rem);
-    z-index: -1;
-    cursor: pointer;
+  width: 20px;
+  height: 20px;
+  background-color: blueviolet;
+  border-radius: 0 0 30px 30px;
+  margin: 0.75rem 50%;
+  transform: translateY(-1rem);
+  z-index: -1;
+  cursor: pointer;
 }
