@@ -1,13 +1,9 @@
-import React from "react";
-import { Fragment } from "react";
-import { findDOMNode, render, unmountComponentAtNode } from "react-dom";
-import ContextMenu from "../../UI/ContextMenu";
-import { EventDetails } from "../../utils/deleteHandler";
+import { unmountComponentAtNode } from "react-dom";
 import { EditorStateType } from "../base.types";
 
 export function removeContext(document: Document | HTMLElement) {
     const boxes = document.querySelectorAll('.selectedBox') as NodeListOf<HTMLElement>;
-    console.log("Venom", boxes)
+
     boxes.forEach(box => {
         box.classList.remove('selectedBox');
         const ctxMenuHolder = box.querySelector('.contextMenuWrapper') as Element;

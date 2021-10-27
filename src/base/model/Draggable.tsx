@@ -1,8 +1,7 @@
-import React, { CSSProperties, Fragment, ReactChild, useEffect, useRef } from 'react';
-import { createPortal, hydrate, render } from 'react-dom';
+import React, { CSSProperties, ReactChild } from 'react';
+import { render } from 'react-dom';
 import { renderToStaticMarkup, renderToString } from 'react-dom/server';
 import ContextMenu from '../../UI/ContextMenu';
-import getParent from '../../utils/getParent';
 import { EditorStateType } from '../base.types';
 
 export const defaultName = "draggable";
@@ -64,6 +63,10 @@ interface TextboxProps {
 export function draggableOnClick(parent: HTMLElement, editorState: EditorStateType, toShow?: string[]) {
     if (parent.classList.contains('selectedBox')) return;
     parent.classList.add('selectedBox');
+
+    console.log(parent.id)
+
+
     parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>";
 
     const contextMenuWrapper = parent.querySelector('.contextMenuWrapper') as HTMLDivElement;

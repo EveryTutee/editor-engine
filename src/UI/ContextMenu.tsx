@@ -27,7 +27,10 @@ function ContextMenuItems({ editorState, parent, toShow }: ContextMenuItemsProps
     function __resizeHandler__(e: globalThis.MouseEvent | TouchEvent) {
         e.preventDefault();
         e.stopPropagation();
-        onResizeMouseDownHandler(editorState, parent, e, parent.id.includes('Audio') ? 'x' : 'both');
+        let token = 'both';
+        if (parent.id.includes('Audio')) token = 'x';
+        if (parent.id.includes('Iframe')) token = 'y';
+        onResizeMouseDownHandler(editorState, parent, e, token as any);
     }
 
     function __deleteHandler__(e: MouseEvent<HTMLButtonElement>) {
@@ -46,7 +49,7 @@ function ContextMenuItems({ editorState, parent, toShow }: ContextMenuItemsProps
                 </button>}
 
                 {show.includes('delete') && <button className="ctxBtn delete" onClick={__deleteHandler__}><AiFillDelete /></button>}
-            {show.includes('finish') && <button className="ctxBtn finish">Done</button> }
+                {show.includes('finish') && <button className="ctxBtn finish">Done</button>}
             </div>
 
             {/* @ts-expect-error */}

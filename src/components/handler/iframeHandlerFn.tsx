@@ -14,7 +14,7 @@ const parentStyle = {
 const childStyle = {
     height: "100%",
     width: "100%",
-    pointerEvents: 'all',
+    pointerEvents: 'none',
     borderRadius: "0 15px 0 15px"
 } as CSSProperties;
 

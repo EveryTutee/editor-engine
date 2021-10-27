@@ -1,7 +1,6 @@
 import React, {
   Fragment,
   MouseEvent,
-  useCallback,
   useEffect,
   useRef,
   useState,
@@ -33,7 +32,7 @@ export default function Editor({
   }
 
   function canvasClick(e: MouseEvent<HTMLDivElement>) {
-    if (type !== "canvas") return;
+    // if (type !== "canvas") return;
     if (!editorState.editor) return;
 
     const target = e.target as HTMLElement;
