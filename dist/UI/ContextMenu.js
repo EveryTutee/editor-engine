@@ -28,7 +28,12 @@ function ContextMenuItems(_a) {
     function __resizeHandler__(e) {
         e.preventDefault();
         e.stopPropagation();
-        (0, resizeHandler_1.onResizeMouseDownHandler)(editorState, parent, e, parent.id.includes('Audio') ? 'x' : 'both');
+        var token = 'both';
+        if (parent.id.includes('Audio'))
+            token = 'x';
+        if (parent.id.includes('Iframe'))
+            token = 'y';
+        (0, resizeHandler_1.onResizeMouseDownHandler)(editorState, parent, e, token);
     }
     function __deleteHandler__(e) {
         e.preventDefault();

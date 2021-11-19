@@ -25,15 +25,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var html2canvas_1 = __importDefault(require("html2canvas"));
 var utils_1 = require("../../base/core/utils");
-var displayStyle = function (width, height) { return ({
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: width,
-    height: height,
-    pointerEvents: 'none',
-    border: 'none'
-}); };
+var displayStyle = function (width, height) {
+    return ({
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: width,
+        height: height,
+        pointerEvents: "none",
+        border: "none",
+    });
+};
 function SaveCanvas(_a) {
     var editorState = _a.editorState, onClick = _a.onClick, display = _a.display, onStart = _a.onStart, onEnd = _a.onEnd;
     var displayRef = (0, react_1.useRef)(null);
@@ -52,15 +54,16 @@ function SaveCanvas(_a) {
         //   elem.classList.remove(defaultName);
         // })
         var value = editorState.content;
+        var text = editorState.text;
         console.log(value);
         var editor = editorState.editor;
         onStart();
         var __display__ = displayRef.current;
         __display__.innerHTML = value;
-        (_a = __display__.firstElementChild) === null || _a === void 0 ? void 0 : _a.style.setProperty('border', 'none');
+        (_a = __display__.firstElementChild) === null || _a === void 0 ? void 0 : _a.style.setProperty("border", "none");
         (0, html2canvas_1.default)(displayRef.current).then(function (canvas) {
             var dataUrl = canvas.toDataURL("image/png");
-            onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, editor.getBoundingClientRect());
+            onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, text, editor.getBoundingClientRect());
             editorState.setContent("<p><br/></p>");
             __display__.innerHTML = "";
             onEnd();

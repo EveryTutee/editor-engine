@@ -6,6 +6,7 @@ export interface EditorProps {
     placeholder?: string;
     readonly?: boolean;
     id: string;
+    value?: string;
     type?: "editor" | "canvas";
     maxcount: number;
     style: CSSProperties;
@@ -14,6 +15,7 @@ export interface EditorStateType {
     __document__: Document;
     editor: HTMLDivElement | null;
     content: string;
+    text: string;
     undoStack: string[];
     redoStack: string[];
     setEditor: (elem: HTMLDivElement) => void;
@@ -22,6 +24,7 @@ export interface EditorStateType {
     setRedoStack: (content: string) => void;
     undo: () => string | undefined;
     redo: () => string | undefined;
+    setText: (value: string) => void;
     setContent: (content: string) => void;
 }
 export interface ModelConfig {

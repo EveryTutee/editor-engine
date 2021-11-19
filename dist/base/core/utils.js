@@ -4,7 +4,6 @@ exports.cleanUpDraggables = exports.removeContext = void 0;
 var react_dom_1 = require("react-dom");
 function removeContext(document) {
     var boxes = document.querySelectorAll('.selectedBox');
-    console.log("Venom", boxes);
     boxes.forEach(function (box) {
         box.classList.remove('selectedBox');
         var ctxMenuHolder = box.querySelector('.contextMenuWrapper');

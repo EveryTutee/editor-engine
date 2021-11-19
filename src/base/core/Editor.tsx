@@ -18,6 +18,7 @@ export default function Editor({
   placeholder,
   readonly,
   id,
+  value,
   onChange,
   type = "editor",
   style,
@@ -52,6 +53,10 @@ export default function Editor({
 
   useEffect(() => {
     if (editorRef.current) {
+      if (value) {
+        editorRef.current.innerText = value;
+        editorState.setContent(value);
+      }
       if (editorRef.current.innerText.length === 0) {
         console.log(type, editorRef.current.innerText);
         editorRef.current.innerHTML += `<p><br /></p>`;
@@ -80,9 +85,11 @@ export default function Editor({
       const clone = editorRef.current.cloneNode(true) as HTMLElement;
       removeContext(clone);
       const innerHTML = clone.outerHTML;
+      const innerText = clone.outerText;
       const newState = {
         ...editorState,
         content: innerHTML,
+        text: innerText,
       };
 
       newState?.setUndoStack?.(newState.content);

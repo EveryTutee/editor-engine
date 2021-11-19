@@ -39,6 +39,7 @@ function draggableOnClick(parent, editorState, toShow) {
     if (parent.classList.contains('selectedBox'))
         return;
     parent.classList.add('selectedBox');
+    console.log(parent.id);
     parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>";
     var contextMenuWrapper = parent.querySelector('.contextMenuWrapper');
     (0, react_dom_1.render)(react_1.default.createElement(ContextMenu_1.default, { parent: parent, editorState: editorState, toShow: toShow }), contextMenuWrapper);

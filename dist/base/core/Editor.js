@@ -41,7 +41,7 @@ var utils_1 = require("./utils");
 // Returns the Editor or MainTextArea :)
 function Editor(_a) {
     var _b, _c;
-    var className = _a.className, editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, onChange = _a.onChange, _d = _a.type, type = _d === void 0 ? "editor" : _d, style = _a.style;
+    var className = _a.className, editorState = _a.editorState, placeholder = _a.placeholder, readonly = _a.readonly, id = _a.id, value = _a.value, onChange = _a.onChange, _d = _a.type, type = _d === void 0 ? "editor" : _d, style = _a.style;
     var editorRef = (0, react_1.useRef)(null);
     var _e = (0, react_1.useState)(false), showPlaceholder = _e[0], setShowPlaceholder = _e[1];
     function resizeEditor(e) {
@@ -51,8 +51,7 @@ function Editor(_a) {
         (0, resizeHandler_1.onResizeMouseDownHandler)(editorState, editorState.editor, e, "y", true);
     }
     function canvasClick(e) {
-        if (type !== "canvas")
-            return;
+        // if (type !== "canvas") return;
         if (!editorState.editor)
             return;
         var target = e.target;
@@ -72,6 +71,10 @@ function Editor(_a) {
     }
     (0, react_1.useEffect)(function () {
         if (editorRef.current) {
+            if (value) {
+                editorRef.current.innerText = value;
+                editorState.setContent(value);
+            }
             if (editorRef.current.innerText.length === 0) {
                 console.log(type, editorRef.current.innerText);
                 editorRef.current.innerHTML += "<p><br /></p>";
@@ -100,7 +103,8 @@ function Editor(_a) {
             var clone = editorRef.current.cloneNode(true);
             (0, utils_1.removeContext)(clone);
             var innerHTML = clone.outerHTML;
-            var newState = __assign(__assign({}, editorState), { content: innerHTML });
+            var innerText = clone.outerText;
+            var newState = __assign(__assign({}, editorState), { content: innerHTML, text: innerText });
             (_a = newState === null || newState === void 0 ? void 0 : newState.setUndoStack) === null || _a === void 0 ? void 0 : _a.call(newState, newState.content);
             onChange === null || onChange === void 0 ? void 0 : onChange(newState);
         });
