@@ -139,6 +139,7 @@ export default function Editor({
             e.preventDefault();
         }}
         data-showplaceholder={showPlaceholder}
+        data-type={type}
         onPasteCapture={handlePaste}
       >
         <p>

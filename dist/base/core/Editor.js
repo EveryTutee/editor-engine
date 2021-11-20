@@ -134,7 +134,7 @@ function Editor(_a) {
                     editorState.editor &&
                     editorState.editor.innerHTML === "<p><br></p>")
                     e.preventDefault();
-            }, "data-showplaceholder": showPlaceholder, onPasteCapture: handlePaste },
+            }, "data-showplaceholder": showPlaceholder, "data-type": type, onPasteCapture: handlePaste },
             react_1.default.createElement("p", null,
                 react_1.default.createElement("br", null))),
         type === "canvas" && (react_1.default.createElement("button", { className: "canvasResizer", 
