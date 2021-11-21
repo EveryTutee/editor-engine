@@ -20,16 +20,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
-var react_colorful_1 = require("react-colorful");
-var color_1 = require("../utils/color");
 function SubMenu(_a) {
     var editorState = _a.editorState, onBack = _a.onBack, name = _a.name;
-    var _b = (0, react_1.useState)({
-        r: 0,
-        g: 0,
-        b: 0,
-        a: 1,
-    }), color = _b[0], setColor = _b[1];
+    var _b = (0, react_1.useState)("#000"), color = _b[0], setColor = _b[1];
     var changer = (0, react_1.useMemo)(function () { return ({
         "Editor Background": function (value) {
             if (!editorState.editor)
@@ -43,15 +36,21 @@ function SubMenu(_a) {
             editorState.__document__.execCommand("hiliteColor", false, value);
         },
     }); }, [editorState]);
-    (0, react_1.useEffect)(function () {
+    // useEffect(() => {
+    //   const str = rgb2string(color);
+    //   changer[name]?.(str);
+    // }, [color, name]);
+    function changeColor(e) {
         var _a;
-        var str = (0, color_1.rgb2string)(color);
-        (_a = changer[name]) === null || _a === void 0 ? void 0 : _a.call(changer, str);
-    }, [color, name]);
+        var value = e.target.value;
+        console.log(e);
+        setColor(value);
+        (_a = changer[name]) === null || _a === void 0 ? void 0 : _a.call(changer, value);
+    }
     return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
         react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
-        react_1.default.createElement(react_colorful_1.RgbaColorPicker, { color: color, onChange: setColor })));
+        react_1.default.createElement("input", { type: "color", onChange: changeColor, value: color })));
 }
 exports.default = SubMenu;

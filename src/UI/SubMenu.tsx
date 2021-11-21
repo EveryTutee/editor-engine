@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { RgbaColor, RgbaColorPicker } from "react-colorful";
 import { EditorStateType } from "../base/base.types";
 import { rgb2string } from "../utils/color";
@@ -10,12 +10,7 @@ interface SubMenuProps {
 }
 
 export default function SubMenu({ editorState, onBack, name }: SubMenuProps) {
-  const [color, setColor] = useState<RgbaColor>({
-    r: 0,
-    g: 0,
-    b: 0,
-    a: 1,
-  });
+  const [color, setColor] = useState("#000");
 
   const changer = useMemo(
     () => ({
@@ -33,10 +28,17 @@ export default function SubMenu({ editorState, onBack, name }: SubMenuProps) {
     [editorState]
   ) as any;
 
-  useEffect(() => {
-    const str = rgb2string(color);
-    changer[name]?.(str);
-  }, [color, name]);
+  // useEffect(() => {
+  //   const str = rgb2string(color);
+  //   changer[name]?.(str);
+  // }, [color, name]);
+
+  function changeColor(e: ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    console.log(e);
+    setColor(value);
+    changer[name]?.(value);
+  }
 
   return (
     <div id={"subMenu" + name} className="subMenuWrapper">
@@ -49,7 +51,7 @@ export default function SubMenu({ editorState, onBack, name }: SubMenuProps) {
         <span>{name}</span>
       </div>
 
-      <RgbaColorPicker color={color} onChange={setColor} />
+      <input type="color" onChange={changeColor} value={color} />
     </div>
   );
 }

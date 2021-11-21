@@ -2,8 +2,6 @@ import React, { useMemo, useState } from "react";
 import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { Bold, FontStyle } from "../components.types";
-import { FaBold } from "react-icons/fa";
-import { boldHandlerFn } from "../handler/bold";
 import ColorHandlerFn from "../handler/ColorHandlerFn";
 import { BiFontColor } from "react-icons/bi";
 
