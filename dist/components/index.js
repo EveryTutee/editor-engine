@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EditorBackground = exports.BackColor = exports.ForeColor = exports.Numbers = exports.Bullets = exports.WordSpacing = exports.Lineheight = exports.Subscript = exports.Superscript = exports.AlignCenter = exports.AlignRight = exports.AlignLeft = exports.FontSize = exports.SaveCanvas = exports.Iframe = exports.Audio = exports.Image = exports.Textbox = exports.FontStyle = exports.Underline = exports.Italics = exports.Bold = void 0;
+exports.Headings = exports.EditorBackground = exports.BackColor = exports.ForeColor = exports.Numbers = exports.Bullets = exports.WordSpacing = exports.Lineheight = exports.Subscript = exports.Superscript = exports.AlignCenter = exports.AlignRight = exports.AlignLeft = exports.FontSize = exports.SaveCanvas = exports.Iframe = exports.Audio = exports.Image = exports.Textbox = exports.FontStyle = exports.Underline = exports.Italics = exports.Bold = void 0;
 var Bold_1 = __importDefault(require("./constructor/Bold"));
 exports.Bold = Bold_1.default;
 var FontStyle_1 = __importDefault(require("./constructor/FontStyle"));
@@ -48,3 +48,5 @@ var BackColor_1 = __importDefault(require("./constructor/BackColor"));
 exports.BackColor = BackColor_1.default;
 var EditorBackground_1 = __importDefault(require("./constructor/EditorBackground"));
 exports.EditorBackground = EditorBackground_1.default;
+var Headings_1 = __importDefault(require("./constructor/Headings"));
+exports.Headings = Headings_1.default;

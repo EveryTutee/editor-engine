@@ -25,6 +25,7 @@ import {
   ForeColor,
   BackColor,
   EditorBackground,
+  Headings,
 } from "./dist/components";
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
           <ForeColor editorState={editorState} onClick={setShowNav} />
           <BackColor editorState={editorState} onClick={setShowNav} />
           <EditorBackground editorState={editorState} onClick={setShowNav} />
+          <Headings editorState={editorState} onClick={setShowNav} />
         </div>
 
         <div id="expanded"></div>
