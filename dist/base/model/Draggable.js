@@ -21,7 +21,7 @@ function insertDraggable(editorState, markup, identifier, toShow) {
         return;
     var div = (0, server_1.renderToStaticMarkup)(markup);
     editor.innerHTML += div;
-    var draggable = editor.querySelector("#" + identifier);
+    var draggable = editor.querySelector("#".concat(identifier));
     if (!draggable)
         return;
     draggable.addEventListener('click', function () { return draggableOnClick(draggable, editorState, toShow); }, false);

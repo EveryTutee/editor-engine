@@ -69,7 +69,7 @@ function execStyle(command, value, document) {
             }
             else {
                 var span = document.createElement('span');
-                span.setAttribute('style', command + ": " + value + ";");
+                span.setAttribute('style', "".concat(command, ": ").concat(value, ";"));
                 span.innerHTML = outerHTML || nodeValue;
                 child.replaceWith(span);
             }

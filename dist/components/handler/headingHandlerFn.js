@@ -20,10 +20,10 @@ function headingHandlerFn(_a) {
         react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
             react_1.default.createElement("span", null, name)),
-        react_1.default.createElement("div", { className: "subMenuExpanded" }, exports.HeadingArray.map(function (size, value) { return (react_1.default.createElement("button", { className: "modelBtn", id: "<h" + (value + 1) + ">", key: value + size, onClick: onClick, style: {
+        react_1.default.createElement("div", { className: "subMenuExpanded" }, exports.HeadingArray.map(function (size, value) { return (react_1.default.createElement("button", { className: "modelBtn", id: "<h".concat(value + 1, ">"), key: value + size, onClick: onClick, style: {
                 fontWeight: "bolder",
-                fontSize: size + "px",
-            } }, "Heading " + (value + 1))); }))), document.getElementById("expanded"));
+                fontSize: "".concat(size, "px"),
+            } }, "Heading ".concat(value + 1))); }))), document.getElementById("expanded"));
 }
 exports.default = headingHandlerFn;
 exports.HeadingArray = [32, 24, 18.72, 16, 13.28, 10.72];

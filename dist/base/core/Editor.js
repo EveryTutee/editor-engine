@@ -59,7 +59,7 @@ function Editor(_a) {
             (0, utils_1.removeContext)(editorState.__document__);
             return;
         }
-        var parent = (0, getParent_1.default)(target, "." + Draggable_1.defaultName);
+        var parent = (0, getParent_1.default)(target, ".".concat(Draggable_1.defaultName));
         if (!parent)
             return;
         if (parent.classList.contains(Draggable_1.defaultName)) {
@@ -101,12 +101,20 @@ function Editor(_a) {
             if (!editorRef.current)
                 return;
             var clone = editorRef.current.cloneNode(true);
+            clone.removeAttribute('contenteditable');
+            clone.removeAttribute('placeholder');
+            clone.removeAttribute('data-showplaceholder');
+            clone.removeAttribute('data-type');
+            clone.removeAttribute('id');
             (0, utils_1.removeContext)(clone);
             var innerHTML = clone.outerHTML;
             var innerText = clone.outerText;
             var newState = __assign(__assign({}, editorState), { content: innerHTML, text: innerText });
+            console.log(newState);
+            ;
             (_a = newState === null || newState === void 0 ? void 0 : newState.setUndoStack) === null || _a === void 0 ? void 0 : _a.call(newState, newState.content);
             onChange === null || onChange === void 0 ? void 0 : onChange(newState);
+            clone.remove();
         });
         return function () {
             obs === null || obs === void 0 ? void 0 : obs.disconnect();
@@ -124,7 +132,7 @@ function Editor(_a) {
             .trim()
             .replaceAll(">", "&gt;")
             .replaceAll("<", "&lt;");
-        var final = "<p>" + pastedData.replaceAll("\n", "</p><p>") + "</p>";
+        var final = "<p>".concat(pastedData.replaceAll("\n", "</p><p>"), "</p>");
         console.log(final);
         editorState.__document__.execCommand("insertHTML", false, final);
     }
