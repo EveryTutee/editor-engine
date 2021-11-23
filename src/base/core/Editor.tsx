@@ -82,12 +82,12 @@ export default function Editor({
     editorState.setEditor(editorRef.current);
     const obs = observeEditor(editorRef.current, () => {
       if (!editorRef.current) return;
-      const clone = editorRef.current.cloneNode(true) as HTMLElement;
-      clone.removeAttribute('contenteditable');
-      clone.removeAttribute('placeholder');
-      clone.removeAttribute('data-showplaceholder');
-      clone.removeAttribute('data-type');
-      clone.removeAttribute('id');
+      const clone = editorRef.current.cloneNode(true) as HTMLDivElement;
+      clone.removeAttribute("contenteditable");
+      clone.removeAttribute("placeholder");
+      clone.removeAttribute("data-showplaceholder");
+      clone.removeAttribute("data-type");
+      clone.removeAttribute("id");
       removeContext(clone);
       const innerHTML = clone.outerHTML;
       const innerText = clone.outerText;
@@ -95,10 +95,10 @@ export default function Editor({
         ...editorState,
         content: innerHTML,
         text: innerText,
+        cleanMarkUp: clone,
       };
 
       console.log(newState);
-;
       newState?.setUndoStack?.(newState.content);
       onChange?.(newState);
       clone.remove();

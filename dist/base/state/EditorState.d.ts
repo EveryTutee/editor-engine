@@ -3,6 +3,7 @@ declare class EditorState {
     editor: HTMLDivElement | null;
     content: string;
     text: string;
+    cleanMarkUp: HTMLDivElement | null;
     undoStack: string[];
     redoStack: string[];
     constructor();

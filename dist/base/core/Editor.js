@@ -101,17 +101,16 @@ function Editor(_a) {
             if (!editorRef.current)
                 return;
             var clone = editorRef.current.cloneNode(true);
-            clone.removeAttribute('contenteditable');
-            clone.removeAttribute('placeholder');
-            clone.removeAttribute('data-showplaceholder');
-            clone.removeAttribute('data-type');
-            clone.removeAttribute('id');
+            clone.removeAttribute("contenteditable");
+            clone.removeAttribute("placeholder");
+            clone.removeAttribute("data-showplaceholder");
+            clone.removeAttribute("data-type");
+            clone.removeAttribute("id");
             (0, utils_1.removeContext)(clone);
             var innerHTML = clone.outerHTML;
             var innerText = clone.outerText;
-            var newState = __assign(__assign({}, editorState), { content: innerHTML, text: innerText });
+            var newState = __assign(__assign({}, editorState), { content: innerHTML, text: innerText, cleanMarkUp: clone });
             console.log(newState);
-            ;
             (_a = newState === null || newState === void 0 ? void 0 : newState.setUndoStack) === null || _a === void 0 ? void 0 : _a.call(newState, newState.content);
             onChange === null || onChange === void 0 ? void 0 : onChange(newState);
             clone.remove();

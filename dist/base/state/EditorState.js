@@ -7,6 +7,7 @@ var EditorState = /** @class */ (function () {
         this.editor = null;
         this.content = "";
         this.text = "";
+        this.cleanMarkUp = null;
         this.undoStack = [];
         this.redoStack = [];
         this.setEditor = function (node) {

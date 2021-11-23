@@ -14,6 +14,7 @@ export interface EditorProps {
 export interface EditorStateType {
     __document__: Document;
     editor: HTMLDivElement | null;
+    cleanMarkUp: HTMLDivElement | null;
     content: string;
     text: string;
     undoStack: string[];
