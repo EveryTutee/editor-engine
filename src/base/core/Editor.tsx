@@ -83,6 +83,11 @@ export default function Editor({
     const obs = observeEditor(editorRef.current, () => {
       if (!editorRef.current) return;
       const clone = editorRef.current.cloneNode(true) as HTMLElement;
+      clone.removeAttribute('contenteditable');
+      clone.removeAttribute('placeholder');
+      clone.removeAttribute('data-showplaceholder');
+      clone.removeAttribute('data-type');
+      clone.removeAttribute('id');
       removeContext(clone);
       const innerHTML = clone.outerHTML;
       const innerText = clone.outerText;
@@ -92,8 +97,11 @@ export default function Editor({
         text: innerText,
       };
 
+      console.log(newState);
+;
       newState?.setUndoStack?.(newState.content);
       onChange?.(newState);
+      clone.remove();
     });
     return () => {
       obs?.disconnect();
