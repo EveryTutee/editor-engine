@@ -49,7 +49,10 @@ export default function SaveCanvas({
       "border",
       "none"
     );
-
+    (__display__.firstElementChild as HTMLElement)?.style.setProperty(
+      "background-color",
+      "transparent"
+    );
     html2canvas(displayRef.current).then((canvas) => {
       const dataUrl = canvas.toDataURL("image/png");
       onClick?.(dataUrl, text, editor.getBoundingClientRect());
