@@ -109,7 +109,7 @@ function Editor(_a) {
             (0, utils_1.removeContext)(clone);
             var innerHTML = clone.outerHTML;
             var innerText = clone.outerText;
-            var newState = __assign(__assign({}, editorState), { content: innerHTML, text: innerText, cleanMarkUp: clone });
+            var newState = __assign(__assign({}, editorState), { editor: editorRef.current, content: innerHTML, text: innerText, cleanMarkUp: clone });
             console.log(newState);
             (_a = newState === null || newState === void 0 ? void 0 : newState.setUndoStack) === null || _a === void 0 ? void 0 : _a.call(newState, newState.content);
             onChange === null || onChange === void 0 ? void 0 : onChange(newState);

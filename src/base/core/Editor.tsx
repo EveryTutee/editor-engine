@@ -9,7 +9,7 @@ import getParent from "../../utils/getParent";
 import { onResizeMouseDownHandler } from "../../utils/resizeHandler";
 import { EditorProps } from "../base.types";
 import { defaultName, draggableOnClick } from "../model/Draggable";
-import { removeContext } from "./utils";
+import { cleanUpDraggables, removeContext } from "./utils";
 
 // Returns the Editor or MainTextArea :)
 export default function Editor({
@@ -93,6 +93,7 @@ export default function Editor({
       const innerText = clone.outerText;
       const newState = {
         ...editorState,
+        editor : editorRef.current,
         content: innerHTML,
         text: innerText,
         cleanMarkUp: clone,
