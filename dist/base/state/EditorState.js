@@ -39,11 +39,19 @@ var EditorState = /** @class */ (function () {
             console.log(_this.editor);
             if (!_this.editor)
                 return;
-            _this.content = content;
-            _this.setText(_this.editor.outerHTML);
+            var div = document.createElement('div');
+            div.innerHTML = content.trim();
+            var first = div.firstElementChild;
+            if (!first)
+                return;
+            _this.cleanMarkUp = first;
+            _this.content = first.outerHTML;
+            _this.setText(first.outerText);
             _this.undoStack = [];
             _this.redoStack = [];
-            _this.editor.innerHTML = content;
+            _this.editor.innerHTML = first.innerHTML;
+            var style = first.getAttribute('style');
+            style && _this.editor.setAttribute('style', style);
         };
         this.setText = function (value) {
             _this.text = value;

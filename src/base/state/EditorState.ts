@@ -49,12 +49,21 @@ class EditorState {
   setContent = (content: string) => {
     console.log(this.editor);
     if (!this.editor) return;
-    this.content = content;
-    this.setText(this.editor.outerHTML);
+
+    const div = document.createElement('div') as HTMLDivElement;
+    div.innerHTML = content.trim();
+    const first = div.firstElementChild as HTMLDivElement;
+    if (!first) return;
+
+    this.cleanMarkUp = first;
+    this.content = first.outerHTML;
+    this.setText(first.outerText);
     this.undoStack = [];
     this.redoStack = [];
 
-    this.editor.innerHTML = content;
+    this.editor.innerHTML = first.innerHTML;
+    const style = first.getAttribute('style');
+    style && this.editor.setAttribute('style', style);
   };
 
   setText = (value: string) => {
