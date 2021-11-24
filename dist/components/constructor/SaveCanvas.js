@@ -62,7 +62,9 @@ function SaveCanvas(_a) {
         __display__.innerHTML = value;
         (_a = __display__.firstElementChild) === null || _a === void 0 ? void 0 : _a.style.setProperty("border", "none");
         (_b = __display__.firstElementChild) === null || _b === void 0 ? void 0 : _b.style.setProperty("background-color", "transparent");
-        (0, html2canvas_1.default)(displayRef.current).then(function (canvas) {
+        (0, html2canvas_1.default)(displayRef.current, {
+            backgroundColor: 'transparent'
+        }).then(function (canvas) {
             var dataUrl = canvas.toDataURL("image/png");
             onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, text, editor.getBoundingClientRect());
             editorState.setContent("<p><br/></p>");

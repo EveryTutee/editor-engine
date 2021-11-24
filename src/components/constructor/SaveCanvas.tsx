@@ -53,7 +53,9 @@ export default function SaveCanvas({
       "background-color",
       "transparent"
     );
-    html2canvas(displayRef.current).then((canvas) => {
+    html2canvas(displayRef.current, {
+      backgroundColor: 'transparent'
+    }).then((canvas) => {
       const dataUrl = canvas.toDataURL("image/png");
       onClick?.(dataUrl, text, editor.getBoundingClientRect());
       editorState.setContent("<p><br/></p>");
