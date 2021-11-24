@@ -180,6 +180,7 @@ const observeEditor = (
       childList: true,
       subtree: true,
       characterData: true,
+      attributes : true
     });
 
     return observer;

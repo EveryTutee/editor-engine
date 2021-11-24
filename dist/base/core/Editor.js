@@ -160,6 +160,7 @@ var observeEditor = function (node, callback) {
             childList: true,
             subtree: true,
             characterData: true,
+            attributes: true
         });
         return observer;
     }
