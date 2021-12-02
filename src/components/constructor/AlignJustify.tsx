@@ -3,15 +3,15 @@ import { ModelConfig } from "../../base/base.types";
 import Model from "../../base/model/Model";
 import { Align } from "../components.types";
 import alignHandlerFn from "../handler/alignHandlerFn";
-import { AiOutlineAlignCenter } from "react-icons/ai";
+import { RiAlignJustify } from "react-icons/ri";
 
 const config = {
-  name: "alignCenter",
+  name: "alignJustify",
   type: "click",
-  buttonIcon: <AiOutlineAlignCenter />,
+  buttonIcon: <RiAlignJustify />,
   handlerFn: alignHandlerFn,
 } as ModelConfig;
-export default function AlignLeft({ editorState }: Align) {
+export default function AlignJustify({ editorState }: Align) {
   return (
     <Model
       btnType="button"
@@ -19,7 +19,7 @@ export default function AlignLeft({ editorState }: Align) {
       config={config}
       //@ts-ignore
       onCurrentStyle={(styles) => ({
-        "data-selected": styles.textAlign === "center",
+        "data-selected": styles.textAlign === "justify",
       })}
     />
   );

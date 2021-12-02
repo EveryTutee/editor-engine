@@ -9,6 +9,11 @@
   border: 1px solid black;
 }
 
+.canvasWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .nav {
   background-color: #282a36;
 }

@@ -9,6 +9,7 @@ import Iframe from "./constructor/Iframe";
 import SaveCanvas from "./constructor/SaveCanvas";
 import FontSize from "./constructor/FontSize";
 import AlignRight from "./constructor/AlignRight";
+import AlignJustify from "./constructor/AlignJustify";
 import AlignLeft from "./constructor/AlignLeft";
 import AlignCenter from "./constructor/AlignCenter";
 import Subscript from "./constructor/Subscript";
@@ -36,6 +37,7 @@ export {
   AlignLeft,
   AlignRight,
   AlignCenter,
+  AlignJustify,
   Superscript,
   Subscript,
   Lineheight,

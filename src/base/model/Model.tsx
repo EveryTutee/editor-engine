@@ -32,7 +32,6 @@ export default function Model({
   const { name, buttonIcon, type, handlerFn } = config;
   const btnRef = useRef<(HTMLButtonElement & HTMLLabelElement) | null>(null);
   const [currAttributes, setCurrAttributes] = useState<any | null>(null);
-  const [Portal, setPortal] = useState<ReactPortal | null>(null);
 
   function onBack(expanded: HTMLElement) {
     unmountComponentAtNode(expanded);

@@ -26,6 +26,7 @@ import {
   BackColor,
   EditorBackground,
   Headings,
+  AlignJustify,
 } from "./dist/components";
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
           <BackColor editorState={editorState} onClick={setShowNav} />
           <EditorBackground editorState={editorState} onClick={setShowNav} />
           <Headings editorState={editorState} onClick={setShowNav} />
+          <AlignJustify editorState={editorState} />
         </div>
 
         <div id="expanded"></div>
@@ -79,13 +81,15 @@ function App() {
         <Textbox editorState={canvas} />
         <Image editorState={canvas} />
       </nav>
-      <Editor
-        editorState={canvas}
-        onChange={setCanvas}
-        type="canvas"
-        id="canvasEditor"
-        maxcount={1000}
-      />
+      <div className="canvasWrapper">
+        <Editor
+          editorState={canvas}
+          onChange={setCanvas}
+          type="canvas"
+          id="canvasEditor"
+          maxcount={1000}
+        />
+      </div>
 
       <SaveCanvas
         onStart={() => {}}

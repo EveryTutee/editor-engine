@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Headings = exports.EditorBackground = exports.BackColor = exports.ForeColor = exports.Numbers = exports.Bullets = exports.WordSpacing = exports.Lineheight = exports.Subscript = exports.Superscript = exports.AlignCenter = exports.AlignRight = exports.AlignLeft = exports.FontSize = exports.SaveCanvas = exports.Iframe = exports.Audio = exports.Image = exports.Textbox = exports.FontStyle = exports.Underline = exports.Italics = exports.Bold = void 0;
+exports.Headings = exports.EditorBackground = exports.BackColor = exports.ForeColor = exports.Numbers = exports.Bullets = exports.WordSpacing = exports.Lineheight = exports.Subscript = exports.Superscript = exports.AlignJustify = exports.AlignCenter = exports.AlignRight = exports.AlignLeft = exports.FontSize = exports.SaveCanvas = exports.Iframe = exports.Audio = exports.Image = exports.Textbox = exports.FontStyle = exports.Underline = exports.Italics = exports.Bold = void 0;
 var Bold_1 = __importDefault(require("./constructor/Bold"));
 exports.Bold = Bold_1.default;
 var FontStyle_1 = __importDefault(require("./constructor/FontStyle"));
@@ -26,6 +26,8 @@ var FontSize_1 = __importDefault(require("./constructor/FontSize"));
 exports.FontSize = FontSize_1.default;
 var AlignRight_1 = __importDefault(require("./constructor/AlignRight"));
 exports.AlignRight = AlignRight_1.default;
+var AlignJustify_1 = __importDefault(require("./constructor/AlignJustify"));
+exports.AlignJustify = AlignJustify_1.default;
 var AlignLeft_1 = __importDefault(require("./constructor/AlignLeft"));
 exports.AlignLeft = AlignLeft_1.default;
 var AlignCenter_1 = __importDefault(require("./constructor/AlignCenter"));

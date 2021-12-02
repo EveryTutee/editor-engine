@@ -7,7 +7,13 @@
     border: 1px solid rgba(193, 199, 208, 0.7);
   }
 
-  p {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin: 0 1rem;
   }
 
@@ -38,9 +44,9 @@
   height: 20px;
   background-color: blueviolet;
   border-radius: 0 0 30px 30px;
-  margin: 0.75rem 50%;
-  transform: translateY(-1rem);
-  z-index: -1;
+  margin: 0 auto;
+  // transform: translateY(-1rem);
+  // z-index: -1;
   cursor: pointer;
 }
 

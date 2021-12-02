@@ -38,7 +38,6 @@ function Model(_a) {
     var name = config.name, buttonIcon = config.buttonIcon, type = config.type, handlerFn = config.handlerFn;
     var btnRef = (0, react_1.useRef)(null);
     var _b = (0, react_1.useState)(null), currAttributes = _b[0], setCurrAttributes = _b[1];
-    var _c = (0, react_1.useState)(null), Portal = _c[0], setPortal = _c[1];
     function onBack(expanded) {
         (0, react_dom_1.unmountComponentAtNode)(expanded);
         subMenuView === null || subMenuView === void 0 ? void 0 : subMenuView(false);
