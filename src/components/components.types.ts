@@ -7,7 +7,7 @@ export interface ShowNavType {
 }
 export type OnClick = Dispatch<SetStateAction<boolean>>;
 
-interface Constructor {
+export interface Constructor {
   editorState: EditorStateType;
 }
 

@@ -56,9 +56,9 @@ function Outline(_a) {
 }
 exports.default = Outline;
 var marginArray = {
-    H2: "1rem",
-    H3: "2rem",
-    H4: "3rem",
-    H5: "4rem",
-    H6: "5rem",
+    H2: "0rem",
+    H3: "1rem",
+    H4: "2rem",
+    H5: "3rem",
+    H6: "4rem",
 };

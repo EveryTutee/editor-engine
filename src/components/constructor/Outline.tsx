@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { SubMenuConstructor } from "../components.types";
+import { Constructor } from "../components.types";
 
 const outlineArray = (editor: HTMLDivElement) =>
   Array.from(editor.querySelectorAll("*")).filter((value) =>
     /h\d/gim.test(value.nodeName.toLowerCase())
   );
 
-export default function Outline({ editorState }: SubMenuConstructor) {
+export default function Outline({ editorState }: Constructor) {
   const [outline, setOutline] = useState(
     () => editorState.editor && outlineArray(editorState.editor)
   );
@@ -52,9 +52,9 @@ export default function Outline({ editorState }: SubMenuConstructor) {
 }
 
 const marginArray = {
-  H2: "1rem",
-  H3: "2rem",
-  H4: "3rem",
-  H5: "4rem",
-  H6: "5rem",
+  H2: "0rem",
+  H3: "1rem",
+  H4: "2rem",
+  H5: "3rem",
+  H6: "4rem",
 };

@@ -5,7 +5,7 @@ export interface ShowNavType {
     props: any;
 }
 export declare type OnClick = Dispatch<SetStateAction<boolean>>;
-interface Constructor {
+export interface Constructor {
     editorState: EditorStateType;
 }
 export interface SubMenuConstructor extends Constructor {
@@ -41,4 +41,3 @@ export interface LineHeight extends Constructor {
 }
 export interface Bullets extends Constructor {
 }
-export {};
