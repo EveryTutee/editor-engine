@@ -22,6 +22,7 @@ import ForeColor from "./constructor/ForeColor";
 import BackColor from "./constructor/BackColor";
 import EditorBackground from "./constructor/EditorBackground";
 import Headings from "./constructor/Headings";
+import Outline from "./constructor/Outline";
 
 export {
   Bold,
@@ -48,4 +49,5 @@ export {
   BackColor,
   EditorBackground,
   Headings,
+  Outline,
 };

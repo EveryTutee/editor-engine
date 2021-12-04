@@ -3,6 +3,7 @@ import "./App.css";
 import { Editor, EditorState, CanvasHolder } from "./dist/index";
 import "./dist/editor.css";
 import {
+  Outline,
   Bold,
   FontStyle,
   Italics,
@@ -64,6 +65,7 @@ function App() {
           <EditorBackground editorState={editorState} onClick={setShowNav} />
           <Headings editorState={editorState} onClick={setShowNav} />
           <AlignJustify editorState={editorState} />
+          <Outline editorState={editorState} onClick={setShowNav} />
         </div>
 
         <div id="expanded"></div>

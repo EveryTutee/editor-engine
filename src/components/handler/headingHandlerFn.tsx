@@ -17,9 +17,11 @@ export default function headingHandlerFn({
     console.log(value);
 
     editorState.__document__.execCommand("formatBlock", false, tag);
-    editorState.editor
-      ?.querySelector(`${value}:not([id])`)
-      ?.setAttribute("id", uuid());
+
+    if (value !== "p")
+      editorState.editor
+        ?.querySelector(`${value}:not([id])`)
+        ?.setAttribute("id", "a" + uuid());
   }
 
   render(
@@ -33,17 +35,19 @@ export default function headingHandlerFn({
         <span>{name}</span>
       </div>
       <div className="subMenuExpanded">
-        {HeadingArray.map((size, value) => (
+        {headingName.map((size, value) => (
           <button
             className="modelBtn"
-            id={`h${value + 1}`}
-            key={value + size}
+            id={size.tag}
+            key={value + size.value}
             onClick={onClick}
             style={{
               fontWeight: "bolder",
-              fontSize: `${size}px`,
+              fontSize: `${size.value}px`,
             }}
-          >{`Heading ${value + 1}`}</button>
+          >
+            {size.name}
+          </button>
         ))}
       </div>
     </div>,
@@ -51,4 +55,20 @@ export default function headingHandlerFn({
   );
 }
 
-export const HeadingArray = [32, 24, 18.72, 16, 13.28, 10.72];
+const headingName = [
+  {
+    name: "Title",
+    value: 24,
+    tag: "h2",
+  },
+  {
+    name: "Subtitle",
+    value: 18.72,
+    tag: "h3",
+  },
+  {
+    name: "Paragraph",
+    value: 16,
+    tag: "p",
+  },
+];
