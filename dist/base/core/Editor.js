@@ -135,8 +135,15 @@ function Editor(_a) {
         console.log(final);
         editorState.__document__.execCommand("insertHTML", false, final);
     }
+    function handleFocus(e) {
+        var div = e.target;
+        div.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+        });
+    }
     return (react_1.default.createElement(react_1.Fragment, null,
-        react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, style: style, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onKeyDown: function (e) {
+        react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, style: style, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onFocus: handleFocus, onKeyDown: function (e) {
                 if (e.keyCode === 8 &&
                     editorState.editor &&
                     editorState.editor.innerHTML === "<p><br></p>")
@@ -160,7 +167,7 @@ var observeEditor = function (node, callback) {
             childList: true,
             subtree: true,
             characterData: true,
-            attributes: true
+            attributes: true,
         });
         return observer;
     }

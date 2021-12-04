@@ -93,7 +93,7 @@ export default function Editor({
       const innerText = clone.outerText;
       const newState = {
         ...editorState,
-        editor : editorRef.current,
+        editor: editorRef.current,
         content: innerHTML,
         text: innerText,
         cleanMarkUp: clone,
@@ -127,6 +127,14 @@ export default function Editor({
     editorState.__document__.execCommand("insertHTML", false, final);
   }
 
+  function handleFocus(e: React.FocusEvent<HTMLDivElement>) {
+    const div = e.target;
+    div.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }
+
   return (
     <Fragment>
       <div
@@ -139,6 +147,7 @@ export default function Editor({
         placeholder={placeholder}
         suppressContentEditableWarning={true}
         onClick={canvasClick}
+        onFocus={handleFocus}
         onKeyDown={(e) => {
           if (
             e.keyCode === 8 &&
@@ -180,7 +189,7 @@ const observeEditor = (
       childList: true,
       subtree: true,
       characterData: true,
-      attributes : true
+      attributes: true,
     });
 
     return observer;
