@@ -22,4 +22,5 @@ import ForeColor from "./constructor/ForeColor";
 import BackColor from "./constructor/BackColor";
 import EditorBackground from "./constructor/EditorBackground";
 import Headings from "./constructor/Headings";
-export { Bold, Italics, Underline, FontStyle, Textbox, Image, Audio, Iframe, SaveCanvas, FontSize, AlignLeft, AlignRight, AlignCenter, AlignJustify, Superscript, Subscript, Lineheight, WordSpacing, Bullets, Numbers, ForeColor, BackColor, EditorBackground, Headings, };
+import Outline from "./constructor/Outline";
+export { Bold, Italics, Underline, FontStyle, Textbox, Image, Audio, Iframe, SaveCanvas, FontSize, AlignLeft, AlignRight, AlignCenter, AlignJustify, Superscript, Subscript, Lineheight, WordSpacing, Bullets, Numbers, ForeColor, BackColor, EditorBackground, Headings, Outline, };
