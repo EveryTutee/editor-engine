@@ -1,3 +1,3 @@
 /// <reference types="react" />
 import { SubMenuConstructor } from "../components.types";
-export default function Outline({ editorState, onClick }: SubMenuConstructor): JSX.Element;
+export default function Outline({ editorState }: SubMenuConstructor): JSX.Element;
