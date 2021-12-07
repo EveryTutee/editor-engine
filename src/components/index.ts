@@ -23,6 +23,7 @@ import BackColor from "./constructor/BackColor";
 import EditorBackground from "./constructor/EditorBackground";
 import Headings from "./constructor/Headings";
 import Outline from "./constructor/Outline";
+import UnsplashPicture from "./constructor/UnsplashPicture";
 
 export {
   Bold,
@@ -48,6 +49,7 @@ export {
   ForeColor,
   BackColor,
   EditorBackground,
+  UnsplashPicture,
   Headings,
   Outline,
 };

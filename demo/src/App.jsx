@@ -26,6 +26,7 @@ import {
   ForeColor,
   BackColor,
   EditorBackground,
+  UnsplashPicture,
   Headings,
   AlignJustify,
 } from "./dist/components";
@@ -63,6 +64,7 @@ function App() {
           <ForeColor editorState={editorState} onClick={setShowNav} />
           <BackColor editorState={editorState} onClick={setShowNav} />
           <EditorBackground editorState={editorState} onClick={setShowNav} />
+          <UnsplashPicture editorState={editorState} onClick={setShowNav} />
           <Headings editorState={editorState} onClick={setShowNav} />
           <AlignJustify editorState={editorState} />
           <Outline editorState={editorState} onClick={setShowNav} />
