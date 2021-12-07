@@ -33,18 +33,18 @@ export default function SubMenu({ editorState, onBack, name }: SubMenuProps) {
   //   changer[name]?.(str);
   // }, [color, name]);
 
-  function changeColor(e: ChangeEvent<HTMLInputElement>) {
+  const changeColor = (value: string) => {
+    setColor(value);
+    changer[name]?.(value);
+  };
+  function changeColorInput(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    console.log(value);
-    setColor(value);
-    changer[name]?.(value);
+    changeColor(value);
   }
-  function changeColorBtn(value: string){
-    console.log(value, name);
-    setColor(value);
-    changer[name]?.(value);
+  function changeColorBtn(e: React.MouseEvent<HTMLButtonElement>) {
+    const value = (e.target as HTMLButtonElement).id;
+    changeColor(value);
   }
-
 
   return (
     <div id={"subMenu" + name} className="subMenuWrapper">
@@ -57,54 +57,84 @@ export default function SubMenu({ editorState, onBack, name }: SubMenuProps) {
         <span>{name}</span>
       </div>
       <div className="currentColor">
-        <input className = "colorPickerInput" type="color" onChange={changeColor} value={color} />
+        <input
+          className="colorPickerInput"
+          type="color"
+          onChange={changeColorInput}
+          value={color}
+        />
       </div>
-      <br/>
-      <span className = "colorHeading">Standard colors</span>
-      <div className ="defaultColors">
-      <button className = "colorBox" style={{backgroundColor :"#000000"}} onClick={() => changeColorBtn("#000000")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#545454"}} onClick={() => changeColorBtn("#545454")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#737373"}} onClick={() => changeColorBtn("#737373")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#a6a6a6"}} onClick={() => changeColorBtn("#a6a6a6")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#d9d9d9"}} onClick={() => changeColorBtn("#d9d9d9")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#ffffff"}} onClick={() => changeColorBtn("#ffffff")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#ff1616"}} onClick={() => changeColorBtn("#ff1616")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#ff5757"}} onClick={() => changeColorBtn("#ff5757")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#ff66c4"}} onClick={() => changeColorBtn("#ff66c4")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#cb6ce6"}} onClick={() => changeColorBtn("#cb6ce6")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#8c52ff"}} onClick={() => changeColorBtn("#8c52ff")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#5e17eb"}} onClick={() => changeColorBtn("#5e17eb")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#03989e"}} onClick={() => changeColorBtn("#03989e")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#00c2cb"}} onClick={() => changeColorBtn("#00c2cb")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#5ce1e6"}} onClick={() => changeColorBtn("#5ce1e6")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#38b6ff"}} onClick={() => changeColorBtn("#38b6ff")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#5271ff"}} onClick={() => changeColorBtn("#5271ff")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#004aad"}} onClick={() => changeColorBtn("#004aad")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#008037"}} onClick={() => changeColorBtn("#008037")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#7ed957"}} onClick={() => changeColorBtn("#7ed957")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#c9e265"}} onClick={() => changeColorBtn("#c9e265")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#ffde59"}} onClick={() => changeColorBtn("#ffde59")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#ffbd59"}} onClick={() => changeColorBtn("#ffbd59")}></button>
-      <button className = "colorBox" style={{backgroundColor :"#ff914d"}} onClick={() => changeColorBtn("#ff914d")}></button>
+      <br />
+      <span className="colorHeading">Standard colors</span>
+      <div className="defaultColors">
+        {colorBox.map((color, index) => (
+          <button
+            key={color + index}
+            className="colorBox"
+            style={{ background: color }}
+            id={color}
+            onClick={changeColorBtn}
+          ></button>
+        ))}
       </div>
-      { name == 'Editor Background' &&
-      <div className="">
-        <span className = "colorHeading">Gradients</span>
-        <div className ="defaultColors">
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(135deg, rgba(253,251,251,1) 0%, rgba(235,237,238,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(135deg, rgba(253,251,251,1) 0%, rgba(235,237,238,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(135deg, rgba(245,247,250,1) 0%, rgba(195,207,226,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(135deg, rgba(245,247,250,1) 0%, rgba(195,207,226,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `inear-gradient(135deg, rgba(207,217,223,1) 0%, rgba(226,235,240,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(135deg, rgba(207,217,223,1) 0%, rgba(226,235,240,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(135deg, rgba(255,236,210,1) 0%, rgba(252,182,159,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(135deg, rgba(255,236,210,1) 0%, rgba(252,182,159,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(165deg, rgba(255,154,158,1) 0%, rgba(250,208,196,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(165deg, rgba(255,154,158,1) 0%, rgba(250,208,196,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(135deg, rgba(161,196,253,1) 0%, rgba(194,233,251,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(135deg, rgba(161,196,253,1) 0%, rgba(194,233,251,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(135deg, rgba(163,189,237,1) 0%, rgba(160,186,235,1) 46%, rgba(105,145,199,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(135deg, rgba(163,189,237,1) 0%, rgba(160,186,235,1) 46%, rgba(105,145,199,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: "linear-gradient(135deg, rgba(137,247,254,1) 0%, rgba(102,166,255,1) 100%)", }} onClick={() => changeColorBtn("linear-gradient(135deg, rgba(137,247,254,1) 0%, rgba(102,166,255,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(165deg, rgba(19,84,122,1) 0%, rgba(94,170,175,1) 22%, rgba(209,226,227,1) 43%, rgba(231,251,252,1) 57%, rgba(128,208,199,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(165deg, rgba(19,84,122,1) 0%, rgba(94,170,175,1) 22%, rgba(209,226,227,1) 43%, rgba(231,251,252,1) 57%, rgba(128,208,199,1) 100%)")}></button>
-          <button className = "gradientBox" style={{backgroundImage: `linear-gradient(165deg, rgba(57,46,46,1) 2%, rgba(0,0,0,1) 100%)`, }} onClick={() => changeColorBtn("linear-gradient(165deg, rgba(57,46,46,1) 2%, rgba(0,0,0,1) 100%)")}></button>
+      {name == "Editor Background" && (
+        <div className="">
+          <span className="colorHeading">Gradients</span>
+          <div className="defaultColors">
+            {colorgradient.map((grad, index) => (
+              <button
+                className="gradientBox"
+                key={index + grad}
+                id={grad}
+                style={{
+                  background: grad,
+                }}
+                onClick={changeColorBtn}
+              ></button>
+            ))}
+          </div>
         </div>
-      </div>
-        
-    }
+      )}
     </div>
   );
 }
+
+const colorBox = [
+  "#000000",
+  "#545454",
+  "#737373",
+  "#a6a6a6",
+  "#d9d9d9",
+  "#ffffff",
+  "#ff1616",
+  "#ff5757",
+  "#ff66c4",
+  "#cb6ce6",
+  "#8c52ff",
+  "#5e17eb",
+  "#03989e",
+  "#00c2cb",
+  "#5ce1e6",
+  "#38b6ff",
+  "#5271ff",
+  "#004aad",
+  "#008037",
+  "#7ed957",
+  "#c9e265",
+  "#ffde59",
+  "#ffbd59",
+  "#ff914d",
+];
+
+const colorgradient = [
+  "linear-gradient(135deg, rgba(253,251,251,1) 0%, rgba(235,237,238,1) 100%)",
+  "linear-gradient(135deg, rgba(245,247,250,1) 0%, rgba(195,207,226,1) 100%)",
+  "inear-gradient(135deg, rgba(207,217,223,1) 0%, rgba(226,235,240,1) 100%)",
+  "linear-gradient(135deg, rgba(255,236,210,1) 0%, rgba(252,182,159,1) 100%)",
+  "linear-gradient(165deg, rgba(255,154,158,1) 0%, rgba(250,208,196,1) 100%)",
+  "linear-gradient(135deg, rgba(161,196,253,1) 0%, rgba(194,233,251,1) 100%)",
+  "linear-gradient(135deg, rgba(163,189,237,1) 0%, rgba(160,186,235,1) 46%, rgba(105,145,199,1) 100%)",
+  "linear-gradient(135deg, rgba(137,247,254,1) 0%, rgba(102,166,255,1) 100%)",
+  "linear-gradient(165deg, rgba(19,84,122,1) 0%, rgba(94,170,175,1) 22%, rgba(209,226,227,1) 43%, rgba(231,251,252,1) 57%, rgba(128,208,199,1) 100%)",
+  "linear-gradient(165deg, rgba(57,46,46,1) 2%, rgba(0,0,0,1) 100%)",
+];
