@@ -24,4 +24,5 @@ import EditorBackground from "./constructor/EditorBackground";
 import Headings from "./constructor/Headings";
 import Outline from "./constructor/Outline";
 import UnsplashPicture from "./constructor/UnsplashPicture";
-export { Bold, Italics, Underline, FontStyle, Textbox, Image, Audio, Iframe, SaveCanvas, FontSize, AlignLeft, AlignRight, AlignCenter, AlignJustify, Superscript, Subscript, Lineheight, WordSpacing, Bullets, Numbers, ForeColor, BackColor, EditorBackground, UnsplashPicture, Headings, Outline, };
+import Link from "./constructor/Link";
+export { Bold, Italics, Underline, FontStyle, Textbox, Image, Audio, Iframe, SaveCanvas, FontSize, AlignLeft, AlignRight, AlignCenter, AlignJustify, Superscript, Subscript, Lineheight, WordSpacing, Bullets, Numbers, ForeColor, BackColor, EditorBackground, UnsplashPicture, Headings, Outline, Link, };

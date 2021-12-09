@@ -24,6 +24,7 @@ import EditorBackground from "./constructor/EditorBackground";
 import Headings from "./constructor/Headings";
 import Outline from "./constructor/Outline";
 import UnsplashPicture from "./constructor/UnsplashPicture";
+import Link from "./constructor/Link";
 
 export {
   Bold,
@@ -52,4 +53,5 @@ export {
   UnsplashPicture,
   Headings,
   Outline,
+  Link,
 };

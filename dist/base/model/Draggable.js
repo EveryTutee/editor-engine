@@ -11,8 +11,8 @@ var ContextMenu_1 = __importDefault(require("../../UI/ContextMenu"));
 exports.defaultName = "draggable";
 function Textbox(_a) {
     var childClassName = _a.childClassName, parentClassName = _a.parentClassName, parentId = _a.parentId, children = _a.children, parentStyle = _a.parentStyle, childId = _a.childId, childStyle = _a.childStyle, contentEditable = _a.contentEditable;
-    return (react_1.default.createElement("div", { id: parentId, className: parentClassName + " " + exports.defaultName, style: parentStyle, key: parentId + childId, contentEditable: false },
-        react_1.default.createElement("div", { id: childId, style: childStyle, className: childClassName, contentEditable: contentEditable }, children)));
+    return (react_1.default.createElement("div", { id: "A" + parentId.replaceAll("-", ""), className: parentClassName + " " + exports.defaultName, style: parentStyle, key: parentId + childId, contentEditable: false },
+        react_1.default.createElement("div", { id: "A" + childId.replaceAll("-", ""), style: childStyle, className: childClassName, contentEditable: contentEditable }, children)));
 }
 exports.Textbox = Textbox;
 function insertDraggable(editorState, markup, identifier, toShow) {
@@ -21,7 +21,7 @@ function insertDraggable(editorState, markup, identifier, toShow) {
         return;
     var div = (0, server_1.renderToStaticMarkup)(markup);
     editor.innerHTML += div;
-    var draggable = editor.querySelector("#".concat(identifier));
+    var draggable = editor.querySelector("#".concat("A" + identifier.replaceAll("-", "")));
     if (!draggable)
         return;
     draggable.addEventListener('click', function () { return draggableOnClick(draggable, editorState, toShow); }, false);

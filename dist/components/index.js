@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Outline = exports.Headings = exports.UnsplashPicture = exports.EditorBackground = exports.BackColor = exports.ForeColor = exports.Numbers = exports.Bullets = exports.WordSpacing = exports.Lineheight = exports.Subscript = exports.Superscript = exports.AlignJustify = exports.AlignCenter = exports.AlignRight = exports.AlignLeft = exports.FontSize = exports.SaveCanvas = exports.Iframe = exports.Audio = exports.Image = exports.Textbox = exports.FontStyle = exports.Underline = exports.Italics = exports.Bold = void 0;
+exports.Link = exports.Outline = exports.Headings = exports.UnsplashPicture = exports.EditorBackground = exports.BackColor = exports.ForeColor = exports.Numbers = exports.Bullets = exports.WordSpacing = exports.Lineheight = exports.Subscript = exports.Superscript = exports.AlignJustify = exports.AlignCenter = exports.AlignRight = exports.AlignLeft = exports.FontSize = exports.SaveCanvas = exports.Iframe = exports.Audio = exports.Image = exports.Textbox = exports.FontStyle = exports.Underline = exports.Italics = exports.Bold = void 0;
 var Bold_1 = __importDefault(require("./constructor/Bold"));
 exports.Bold = Bold_1.default;
 var FontStyle_1 = __importDefault(require("./constructor/FontStyle"));
@@ -56,3 +56,5 @@ var Outline_1 = __importDefault(require("./constructor/Outline"));
 exports.Outline = Outline_1.default;
 var UnsplashPicture_1 = __importDefault(require("./constructor/UnsplashPicture"));
 exports.UnsplashPicture = UnsplashPicture_1.default;
+var Link_1 = __importDefault(require("./constructor/Link"));
+exports.Link = Link_1.default;

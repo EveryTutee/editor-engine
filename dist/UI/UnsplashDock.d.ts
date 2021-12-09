@@ -5,5 +5,5 @@ interface SubMenuProps {
     onBack: any;
     name: string;
 }
-export default function UnsplashDock({ editorState, onBack, name }: SubMenuProps): JSX.Element;
+export default function UnsplashDock({ editorState, onBack, name, }: SubMenuProps): JSX.Element;
 export {};

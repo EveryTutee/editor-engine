@@ -29,6 +29,7 @@ import {
   UnsplashPicture,
   Headings,
   AlignJustify,
+  Link,
 } from "./dist/components";
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
           <Headings editorState={editorState} onClick={setShowNav} />
           <AlignJustify editorState={editorState} />
           <Outline editorState={editorState} onClick={setShowNav} />
+          <Link editorState={editorState} />
         </div>
 
         <div id="expanded"></div>

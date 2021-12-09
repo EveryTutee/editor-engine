@@ -1,1 +1,1 @@
-export declare const fileToDataUrl: (file: File) => Promise<string>;
+export declare const fileToDataUrl: (file: any) => Promise<string>;
