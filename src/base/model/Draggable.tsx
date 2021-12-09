@@ -10,14 +10,14 @@ export function Textbox({ childClassName, parentClassName, parentId, children, p
 
     return (
         <div
-            id={parentId}
+            id={"A"+parentId.replaceAll("-","")}
             className={parentClassName + " " + defaultName}
             style={parentStyle}
             key={parentId + childId}
             contentEditable={false}
         >
             <div
-                id={childId}
+                id={"A"+childId.replaceAll("-","")}
                 style={childStyle}
                 className={childClassName}
                 contentEditable={contentEditable}
@@ -34,7 +34,7 @@ export function insertDraggable(editorState: EditorStateType, markup: JSX.Elemen
     const div = renderToStaticMarkup(markup);
 
     editor.innerHTML += div;
-    const draggable = editor.querySelector(`#${identifier}`) as HTMLElement;
+    const draggable = editor.querySelector(`#${"A"+identifier.replaceAll("-","")}`) as HTMLElement;
     if (!draggable) return;
 
     draggable.addEventListener('click', () => draggableOnClick(draggable, editorState, toShow), false);

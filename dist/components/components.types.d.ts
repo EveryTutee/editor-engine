@@ -20,6 +20,9 @@ export interface Underline extends Constructor {
 export interface FontStyle extends Constructor {
     onClick: OnClick;
 }
+export interface UnsplashPicture extends Constructor {
+    onClick: OnClick;
+}
 export interface Textbox extends Constructor {
 }
 export interface Image extends Constructor {
