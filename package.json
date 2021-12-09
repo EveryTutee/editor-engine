@@ -10,7 +10,7 @@
     "build_sass": "sass src/editor.scss:dist/editor.css --no-source-map --style=compressed",
     "build": "npm run build_tsc && npm run build_sass",
     "demo_tsc": "tsc --outDir 'demo/src/dist'",
-    "demo_sass": "sass src/editor.scss:demo/src/dist/editor.css --no-source-map --style=compressed",
+    "demo_scss": "sass src/editor.scss:demo/src/dist/editor.css --no-source-map --style=compressed",
     "demo": "npm run demo_tsc && npm run demo_scss"
   },
   "keywords": [],
@@ -30,7 +30,8 @@
     "react-color-palette": "^6.1.0",
     "react-colorful": "^5.5.0",
     "react-icons": "^4.3.1",
-    "sass": "^1.42.1"
+    "sass": "^1.42.1",
+    "unsplash-js": "^7.0.15"
   },
   "peerDependencies": {
     "react": "^17.0.2",
