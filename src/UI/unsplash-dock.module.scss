@@ -1,44 +1,29 @@
-
-.unsplashInput{
-    padding: 1rem;
-    input{
-        width: 100%;
-        border-radius: 7px;
-        height: 40px;
-    }
+.unsplashInput {
+  input {
+    width: 100%;
+    border-radius: 7px;
+    padding: 0.5rem 0.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }
-.unsplashGallery{
-    margin: auto;
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 6%;
-    img{
-        margin: 0.3rem 0;
-        // border: 1px solid black;
-        box-shadow: 0 0 3px black;
-        border-radius: 7px;
-        &:hover{
-            animation: slow 5s;
-            box-shadow: 0 0 13px black;
-            border: 2px solid red;
-        }
-
+.unsplashGallery {
+  margin: auto;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  img {
+    // margin: 0.3rem 0;
+    // border: 1px solid black;
+    box-shadow: 0 0 3px black;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: 200ms ease-in-out transform;
+    &:hover {
+      box-shadow: 0 0 13px black;
+      border: 2px solid red;
+      transform: scale(105%);
     }
-}
-
-@keyframes slow {
-    0%{
-        transform: scale(100%);
-    }
-    5%{
-        transform: scale(105%);
-    }
-    99%{
-        transform: scale(105%);
-    }
-    100%{
-        transform: scale(100%);
-    }
+  }
 }
