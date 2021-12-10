@@ -29,18 +29,18 @@
   gap: 8px;
 }
 
-.modelIcon {
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  margin: auto;
+// .modelIcon {
+//   display: flex;
+//   flex-direction: column;
+//   place-items: center;
+//   margin: auto;
 
-  p {
-    margin-top: 4px;
-  }
-}
+//   p {
+//     margin-top: 4px;
+//   }
+// }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .modelBtn,
   .modelLabel {
     height: 100%;
@@ -50,11 +50,10 @@
     }
   }
 
-  .modelIcon {
-    flex-direction: row;
-    p {
-      margin-left: 0.25rem;
-    }
-  }
-  
+  // .modelIcon {
+  //   flex-direction: row;
+  //   p {
+  //     margin-left: 0.25rem;
+  //   }
+  // }
 }

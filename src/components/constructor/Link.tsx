@@ -9,10 +9,10 @@ const config = {
   name: "Link",
   type: "click",
   buttonIcon: (
-    <div className="modelIcon">
+    <Fragment>
       <AiOutlineLink />
       <p>Add URL</p>
-    </div>
+    </Fragment>
   ),
   handlerFn: linkHandlerFn,
 } as ModelConfig;

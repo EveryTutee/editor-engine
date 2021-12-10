@@ -39,7 +39,7 @@ function Outline(_a) {
         var id = target.id;
         var range = (_a = getSelection()) === null || _a === void 0 ? void 0 : _a.getRangeAt(0);
         if (!range || range.collapsed) {
-            (_b = editorState.editor.querySelector("#".concat(id))) === null || _b === void 0 ? void 0 : _b.scrollIntoView({
+            (_b = editorState.editor.querySelector("#" + id)) === null || _b === void 0 ? void 0 : _b.scrollIntoView({
                 behavior: "smooth",
                 inline: "center",
             });
