@@ -8,7 +8,7 @@ function default_1(_a) {
     if (!sText || sText.isCollapsed)
         return null;
     var link = prompt("Enter a URL:", "http://");
-    var htmlString = "<a href=" + link + " target=\"_blank\">" + sText.toString() + "</a>";
+    var htmlString = "<a href=".concat(link, " target=\"_blank\">").concat(sText.toString(), "</a>");
     editorState.__document__.execCommand("insertHTML", false, htmlString);
     return null;
 }

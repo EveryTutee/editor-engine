@@ -14,11 +14,11 @@ function headingHandlerFn(_a) {
         if (!element)
             return;
         var value = element.id;
-        var tag = "<" + value + ">";
+        var tag = "<".concat(value, ">");
         console.log(value);
         editorState.__document__.execCommand("formatBlock", false, tag);
         if (value !== "p")
-            (_b = (_a = editorState.editor) === null || _a === void 0 ? void 0 : _a.querySelector(value + ":not([id])")) === null || _b === void 0 ? void 0 : _b.setAttribute("id", "a" + (0, uuid_1.uuid)());
+            (_b = (_a = editorState.editor) === null || _a === void 0 ? void 0 : _a.querySelector("".concat(value, ":not([id])"))) === null || _b === void 0 ? void 0 : _b.setAttribute("id", "a" + (0, uuid_1.uuid)());
     }
     (0, react_dom_1.render)(react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
         react_1.default.createElement("div", { className: "subMenuHeading" },
@@ -26,7 +26,7 @@ function headingHandlerFn(_a) {
             react_1.default.createElement("span", null, name)),
         react_1.default.createElement("div", { className: "subMenuExpanded" }, headingName.map(function (size, value) { return (react_1.default.createElement("button", { className: "modelBtn", id: size.tag, key: value + size.value, onClick: onClick, style: {
                 fontWeight: "bolder",
-                fontSize: size.value + "px",
+                fontSize: "".concat(size.value, "px"),
             } }, size.name)); }))), document.getElementById("expanded"));
 }
 exports.default = headingHandlerFn;

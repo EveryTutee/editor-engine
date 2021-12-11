@@ -122,7 +122,6 @@ export default function UnsplashDock({
             src={item.urls.regular}
             alt={item.alt_description}
             key={index}
-            width="47%"
             onClick={() =>
               handleUnsplashImage(item.urls.raw, item.id.toString())
             }
