@@ -43,6 +43,22 @@ export default function SaveCanvas({
     console.log(value);
     let editor = editorState.editor;
     onStart();
+
+    // get Caption data
+    const metadata: Metadata[] = [];
+    editor.querySelectorAll('img[data-type="unsplash"]').forEach((img) => {
+      const name = img.getAttribute("data-name");
+      const userlink = img.getAttribute("data-userlink");
+      const selflink = img.getAttribute("data-selflink");
+
+      const meta = {
+        name,
+        userlink,
+        selflink,
+      } as Metadata;
+      metadata.push(meta);
+    });
+
     const __display__ = displayRef.current;
     __display__.innerHTML = value;
     (__display__.firstElementChild as HTMLElement)?.style.setProperty(
@@ -54,10 +70,10 @@ export default function SaveCanvas({
       "transparent"
     );
     html2canvas(displayRef.current, {
-      backgroundColor: 'transparent'
+      backgroundColor: "transparent",
     }).then((canvas) => {
       const dataUrl = canvas.toDataURL("image/png");
-      onClick?.(dataUrl, text, editor.getBoundingClientRect());
+      onClick?.(dataUrl, text, metadata);
       editorState.setContent("<p><br/></p>");
       __display__.innerHTML = "";
       onEnd();
@@ -74,9 +90,15 @@ export default function SaveCanvas({
   );
 }
 
+interface Metadata {
+  name: string;
+  userlink: string;
+  selflink: string;
+}
+
 interface SaveCanvasProps {
   editorState: EditorStateType | null;
-  onClick?: (value: string, text: string, editorDim: DOMRect) => void;
+  onClick?: (value: string, text: string, metadata: Metadata[]) => void;
   display: JSX.Element;
   onStart: () => void;
   onEnd: () => void;

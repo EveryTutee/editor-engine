@@ -65,7 +65,6 @@ function App() {
           <ForeColor editorState={editorState} onClick={setShowNav} />
           <BackColor editorState={editorState} onClick={setShowNav} />
           <EditorBackground editorState={editorState} onClick={setShowNav} />
-          <UnsplashPicture editorState={editorState} onClick={setShowNav} />
           <Headings editorState={editorState} onClick={setShowNav} />
           <AlignJustify editorState={editorState} />
           <Outline editorState={editorState} onClick={setShowNav} />
@@ -84,8 +83,10 @@ function App() {
       />
 
       <nav className="nav">
+        <UnsplashPicture editorState={canvas} onClick={setShowNav} />
         <Textbox editorState={canvas} />
         <Image editorState={canvas} />
+        <div id="expanded"></div>
       </nav>
       <div className="canvasWrapper">
         <Editor
@@ -102,7 +103,7 @@ function App() {
         onEnd={() => {}}
         editorState={canvas}
         display="Save Changes"
-        onClick={(value, dim) => {
+        onClick={(value, text, metadata) => {
           setCanva((x) => [value, ...x]);
         }}
       />

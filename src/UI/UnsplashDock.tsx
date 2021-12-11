@@ -8,6 +8,7 @@ import React, {
 } from "react";
 import { EditorStateType } from "../base/base.types";
 import { insertDraggable, Textbox } from "../base/model/Draggable";
+import { UnsplashPicture } from "../components/components.types";
 import { fileToDataUrl } from "../utils/fileToDataUrl";
 import { uuid } from "../utils/uuid";
 
@@ -30,6 +31,23 @@ const childStyle = {
   height: "100%",
   width: "100%",
 } as CSSProperties;
+
+interface unSplashResponse {
+  alt_description: string;
+  user: {
+    name: string;
+    links: {
+      html: string;
+    };
+  };
+  links: {
+    self: string;
+  };
+  urls: {
+    raw: string;
+    small: string;
+  };
+}
 
 export default function UnsplashDock({
   editorState,
@@ -67,40 +85,47 @@ export default function UnsplashDock({
     };
   }, [searchKey]);
 
-  function handleUnsplashImage(url: string, name: string) {
-    fetch(url)
-      .then((r) => r.blob())
-      .then((blob) => {
-        fileToDataUrl(blob).then((src) => {
-          const childId = uuid();
-          const parentId = uuid();
-          const __text__ = (
-            <Textbox
-              parentClassName="imageBoxWrapper"
-              childClassName="imageBox"
-              parentId={name + parentId}
-              childId={name + childId}
-              parentStyle={parentStyle}
-              childStyle={childStyle}
-              editorState={editorState}
-              contentEditable={false}
-            >
-              <img
-                data-name={name}
-                src={src}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  pointerEvents: "none",
-                  opacity: "inherit",
-                }}
-              />
-            </Textbox>
-          );
+  async function handleUnsplashImage(item: unSplashResponse) {
+    const url = item.urls.raw;
+    const name = item.user.name;
+    const userlink = item.user.links.html;
+    const selfLink = item.links.self;
 
-          insertDraggable(editorState, __text__, name + parentId);
-        });
-      });
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const src = await fileToDataUrl(blob);
+      const childId = uuid();
+      const parentId = uuid();
+      const __text__ = (
+        <Textbox
+          parentClassName="imageBoxWrapper"
+          childClassName="imageBox"
+          parentId={name + parentId}
+          childId={name + childId}
+          parentStyle={parentStyle}
+          childStyle={childStyle}
+          editorState={editorState}
+          contentEditable={false}
+        >
+          <img
+            data-type="unsplash"
+            data-name={name}
+            data-userlink={userlink}
+            data-selfLink={selfLink}
+            src={src}
+            style={{
+              width: "100%",
+              height: "100%",
+              pointerEvents: "none",
+              opacity: "inherit",
+            }}
+          />
+        </Textbox>
+      );
+
+      insertDraggable(editorState, __text__, name + parentId);
+    } catch (error) {}
   }
 
   return (
@@ -117,14 +142,12 @@ export default function UnsplashDock({
         <input type="text" onChange={getImages} />
       </div>
       <div className="unsplashGallery">
-        {unslapshSearch?.items.map((item: any, index: any) => (
+        {unslapshSearch?.items.map((item: unSplashResponse, index: any) => (
           <img
-            src={item.urls.regular}
+            src={item.urls.small}
             alt={item.alt_description}
             key={index}
-            onClick={() =>
-              handleUnsplashImage(item.urls.raw, item.id.toString())
-            }
+            onClick={() => handleUnsplashImage(item)}
           />
         ))}
       </div>

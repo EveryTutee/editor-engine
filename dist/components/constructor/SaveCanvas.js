@@ -58,15 +58,28 @@ function SaveCanvas(_a) {
         console.log(value);
         var editor = editorState.editor;
         onStart();
+        // get Caption data
+        var metadata = [];
+        editor.querySelectorAll('img[data-type="unsplash"]').forEach(function (img) {
+            var name = img.getAttribute("data-name");
+            var userlink = img.getAttribute("data-userlink");
+            var selflink = img.getAttribute("data-selflink");
+            var meta = {
+                name: name,
+                userlink: userlink,
+                selflink: selflink,
+            };
+            metadata.push(meta);
+        });
         var __display__ = displayRef.current;
         __display__.innerHTML = value;
         (_a = __display__.firstElementChild) === null || _a === void 0 ? void 0 : _a.style.setProperty("border", "none");
         (_b = __display__.firstElementChild) === null || _b === void 0 ? void 0 : _b.style.setProperty("background-color", "transparent");
         (0, html2canvas_1.default)(displayRef.current, {
-            backgroundColor: 'transparent'
+            backgroundColor: "transparent",
         }).then(function (canvas) {
             var dataUrl = canvas.toDataURL("image/png");
-            onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, text, editor.getBoundingClientRect());
+            onClick === null || onClick === void 0 ? void 0 : onClick(dataUrl, text, metadata);
             editorState.setContent("<p><br/></p>");
             __display__.innerHTML = "";
             onEnd();
