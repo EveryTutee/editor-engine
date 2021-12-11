@@ -3,6 +3,7 @@ import { EditorStateType } from "../../base/base.types";
 import html2canvas from "html2canvas";
 import { cleanUpDraggables, removeContext } from "../../base/core/utils";
 import { defaultName, removeDraggable } from "../../base/model/Draggable";
+import { Metadata } from "../components.types";
 
 const displayStyle = (width: number, height: number) =>
   ({
@@ -88,12 +89,6 @@ export default function SaveCanvas({
       <div ref={displayRef} style={style} />
     </Fragment>
   );
-}
-
-interface Metadata {
-  name: string;
-  userlink: string;
-  selflink: string;
 }
 
 interface SaveCanvasProps {

@@ -10,6 +10,11 @@ export type OnClick = Dispatch<SetStateAction<boolean>>;
 export interface Constructor {
   editorState: EditorStateType;
 }
+export interface Metadata {
+  name: string;
+  userlink: string;
+  selflink: string;
+}
 
 export interface SubMenuConstructor extends Constructor {
   onClick: OnClick;
@@ -22,7 +27,7 @@ export interface Underline extends Constructor {}
 export interface FontStyle extends Constructor {
   onClick: OnClick;
 }
-export interface UnsplashPicture extends Constructor{
+export interface UnsplashPicture extends Constructor {
   onClick: OnClick;
 }
 

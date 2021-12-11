@@ -8,6 +8,11 @@ export declare type OnClick = Dispatch<SetStateAction<boolean>>;
 export interface Constructor {
     editorState: EditorStateType;
 }
+export interface Metadata {
+    name: string;
+    userlink: string;
+    selflink: string;
+}
 export interface SubMenuConstructor extends Constructor {
     onClick: OnClick;
 }
