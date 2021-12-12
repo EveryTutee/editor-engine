@@ -11,8 +11,8 @@ var ContextMenu_1 = __importDefault(require("../../UI/ContextMenu"));
 exports.defaultName = "draggable";
 function Textbox(_a) {
     var childClassName = _a.childClassName, parentClassName = _a.parentClassName, parentId = _a.parentId, children = _a.children, parentStyle = _a.parentStyle, childId = _a.childId, childStyle = _a.childStyle, contentEditable = _a.contentEditable;
-    return (react_1.default.createElement("div", { id: "A" + parentId.replaceAll("-", ""), className: parentClassName + " " + exports.defaultName, style: parentStyle, key: parentId + childId, contentEditable: false },
-        react_1.default.createElement("div", { id: "A" + childId.replaceAll("-", ""), style: childStyle, className: childClassName, contentEditable: contentEditable }, children)));
+    return (react_1.default.createElement("div", { id: parentId.replaceAll("-", ""), className: parentClassName + " " + exports.defaultName, style: parentStyle, key: parentId + childId, contentEditable: false },
+        react_1.default.createElement("div", { id: childId.replaceAll("-", ""), style: childStyle, className: childClassName, contentEditable: contentEditable }, children)));
 }
 exports.Textbox = Textbox;
 function insertDraggable(editorState, markup, identifier, toShow) {
@@ -24,24 +24,24 @@ function insertDraggable(editorState, markup, identifier, toShow) {
     var draggable = editor.querySelector("#" + ("A" + identifier.replaceAll("-", "")));
     if (!draggable)
         return;
-    draggable.addEventListener('click', function () { return draggableOnClick(draggable, editorState, toShow); }, false);
+    draggable.addEventListener("click", function () { return draggableOnClick(draggable, editorState, toShow); }, false);
     draggable.focus();
 }
 exports.insertDraggable = insertDraggable;
 function removeDraggable(editorState, draggable, toShow) {
     var _a;
-    draggable.removeEventListener('click', function () { return draggableOnClick(draggable, editorState, toShow); }, false);
+    draggable.removeEventListener("click", function () { return draggableOnClick(draggable, editorState, toShow); }, false);
     draggable.remove();
     (_a = editorState.editor) === null || _a === void 0 ? void 0 : _a.focus();
 }
 exports.removeDraggable = removeDraggable;
 function draggableOnClick(parent, editorState, toShow) {
-    if (parent.classList.contains('selectedBox'))
+    if (parent.classList.contains("selectedBox"))
         return;
-    parent.classList.add('selectedBox');
+    parent.classList.add("selectedBox");
     console.log(parent.id);
-    parent.innerHTML += "<div class=\"contextMenuWrapper\"></div>";
-    var contextMenuWrapper = parent.querySelector('.contextMenuWrapper');
+    parent.innerHTML += '<div class="contextMenuWrapper"></div>';
+    var contextMenuWrapper = parent.querySelector(".contextMenuWrapper");
     (0, react_dom_1.render)(react_1.default.createElement(ContextMenu_1.default, { parent: parent, editorState: editorState, toShow: toShow }), contextMenuWrapper);
     // contextMenuWrapper.remove()
 }
