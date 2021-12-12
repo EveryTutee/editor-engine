@@ -42,7 +42,7 @@ interface unSplashResponse {
     };
   };
   links: {
-    self: string;
+    html: string;
   };
   urls: {
     raw: string;
@@ -101,7 +101,7 @@ export default function UnsplashDock({
     const url = item.urls.regular;
     const __name = item.user.name;
     const userlink = item.user.links.html;
-    const selfLink = item.links.self;
+    const selfLink = item.links.html;
     const childId = uuid();
     const parentId = uuid();
     fetch(url)
