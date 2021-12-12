@@ -48,7 +48,7 @@ export function insertDraggable(
 
   editor.innerHTML += div;
   const draggable = editor.querySelector(
-    `#${"A" + identifier.replaceAll("-", "")}`
+    `#${identifier.replaceAll("-", "")}`
   ) as HTMLElement;
   if (!draggable) return;
 
