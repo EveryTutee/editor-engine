@@ -99,7 +99,7 @@ export default function UnsplashDock({
 
   function handleUnsplashImage(item: unSplashResponse) {
     const url = item.urls.regular;
-    const name = item.user.name;
+    const __name = item.user.name;
     const userlink = item.user.links.html;
     const selfLink = item.links.self;
     const childId = uuid();
@@ -121,7 +121,7 @@ export default function UnsplashDock({
           >
             <img
               data-type="unsplash"
-              data-name={name}
+              data-name={__name}
               data-userlink={userlink}
               data-selfLink={selfLink}
               src={src}

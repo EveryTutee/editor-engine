@@ -111,7 +111,7 @@ function UnsplashDock(_a) {
     }, [searchKey]);
     function handleUnsplashImage(item) {
         var url = item.urls.regular;
-        var name = item.user.name;
+        var __name = item.user.name;
         var userlink = item.user.links.html;
         var selfLink = item.links.self;
         var childId = (0, uuid_1.uuid)();
@@ -121,7 +121,7 @@ function UnsplashDock(_a) {
             .then(function (blob) { return (0, fileToDataUrl_1.fileToDataUrl)(blob); })
             .then(function (src) {
             var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
-                react_1.default.createElement("img", { "data-type": "unsplash", "data-name": name, "data-userlink": userlink, "data-selfLink": selfLink, src: src, style: {
+                react_1.default.createElement("img", { "data-type": "unsplash", "data-name": __name, "data-userlink": userlink, "data-selfLink": selfLink, src: src, style: {
                         width: "100%",
                         height: "100%",
                         pointerEvents: "none",
