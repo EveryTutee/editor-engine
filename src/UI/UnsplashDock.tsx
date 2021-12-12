@@ -147,7 +147,7 @@ export default function UnsplashDock({
             src={item.urls.small}
             alt={item.alt_description}
             key={index}
-            onClick={() => handleUnsplashImage(item)}
+            onClick={async () => await handleUnsplashImage(item)}
           />
         ))}
       </div>

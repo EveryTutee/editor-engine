@@ -154,6 +154,11 @@ function UnsplashDock(_a) {
             react_1.default.createElement("span", null, name)),
         react_1.default.createElement("div", { className: "unsplashInput" },
             react_1.default.createElement("input", { type: "text", onChange: getImages })),
-        react_1.default.createElement("div", { className: "unsplashGallery" }, unslapshSearch === null || unslapshSearch === void 0 ? void 0 : unslapshSearch.items.map(function (item, index) { return (react_1.default.createElement("img", { src: item.urls.small, alt: item.alt_description, key: index, onClick: function () { return handleUnsplashImage(item); } })); }))));
+        react_1.default.createElement("div", { className: "unsplashGallery" }, unslapshSearch === null || unslapshSearch === void 0 ? void 0 : unslapshSearch.items.map(function (item, index) { return (react_1.default.createElement("img", { src: item.urls.small, alt: item.alt_description, key: index, onClick: function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, handleUnsplashImage(item)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            }); }); } })); }))));
 }
 exports.default = UnsplashDock;
