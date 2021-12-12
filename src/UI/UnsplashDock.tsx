@@ -104,89 +104,6 @@ export default function UnsplashDock({
     const selfLink = item.links.self;
     const childId = uuid();
     const parentId = uuid();
-
-    setLoading(true);
-    fetch(url)
-      .then((res) => res.blob())
-      .then((blob) => fileToDataUrl(blob))
-      .then((src) => {
-        setImage({
-          name,
-          userlink,
-          selfLink,
-          childId,
-          parentId,
-          src,
-        });
-        setLoading(false);
-      });
-  }
-
-  useEffect(() => {
-    if (!image) return;
-    const __text__ = (
-      <Textbox
-        parentClassName="imageBoxWrapper"
-        childClassName="imageBox"
-        parentId={image.name + image.parentId}
-        childId={image.name + image.childId}
-        parentStyle={parentStyle}
-        childStyle={childStyle}
-        editorState={editorState}
-        contentEditable={false}
-      >
-        <Fragment>
-          {!loading && (
-            <img
-              data-type="unsplash"
-              data-name={image.name}
-              data-userlink={image.userlink}
-              data-selfLink={image.selfLink}
-              src={image.src}
-              style={{
-                width: "100%",
-                height: "100%",
-                pointerEvents: "none",
-                opacity: "inherit",
-              }}
-            />
-          )}
-          {loading && <p>Loading...</p>}
-        </Fragment>
-      </Textbox>
-    );
-    insertDraggable(editorState, __text__, name + image.parentId);
-    setImage(null);
-  }, [loading]);
-
-  return (
-    <div id={"subMenu" + name} className="subMenuWrapper">
-      <div className="subMenuHeading">
-        <button
-          onClick={() => onBack(document.getElementById("subMenu" + name))}
-        >
-          Back
-        </button>
-        <span>{loading ? "loading" : name}</span>
-      </div>
-      <div className="unsplashInput">
-        <input type="text" onChange={getImages} />
-      </div>
-      <div className="unsplashGallery">
-        {unslapshSearch?.items.map((item: unSplashResponse, index: any) => (
-          <img
-            src={item.urls.small}
-            alt={item.alt_description}
-            key={index}
-            onClick={() => handleUnsplashImage(item)}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-/**
- * 
     fetch(url)
       .then((res) => res.blob())
       .then((blob) => fileToDataUrl(blob))
@@ -220,5 +137,35 @@ export default function UnsplashDock({
 
         insertDraggable(editorState, __text__, name + parentId);
       });
- * 
+  }
+
+  return (
+    <div id={"subMenu" + name} className="subMenuWrapper">
+      <div className="subMenuHeading">
+        <button
+          onClick={() => onBack(document.getElementById("subMenu" + name))}
+        >
+          Back
+        </button>
+        <span>{loading ? "loading" : name}</span>
+      </div>
+      <div className="unsplashInput">
+        <input type="text" onChange={getImages} />
+      </div>
+      <div className="unsplashGallery">
+        {unslapshSearch?.items.map((item: unSplashResponse, index: any) => (
+          <img
+            src={item.urls.small}
+            alt={item.alt_description}
+            key={index}
+            onClick={() => handleUnsplashImage(item)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+/**
+ *
+ *
  */

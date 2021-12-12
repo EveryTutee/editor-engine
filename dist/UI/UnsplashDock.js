@@ -116,37 +116,20 @@ function UnsplashDock(_a) {
         var selfLink = item.links.self;
         var childId = (0, uuid_1.uuid)();
         var parentId = (0, uuid_1.uuid)();
-        setLoading(true);
         fetch(url)
             .then(function (res) { return res.blob(); })
             .then(function (blob) { return (0, fileToDataUrl_1.fileToDataUrl)(blob); })
             .then(function (src) {
-            setImage({
-                name: name,
-                userlink: userlink,
-                selfLink: selfLink,
-                childId: childId,
-                parentId: parentId,
-                src: src,
-            });
-            setLoading(false);
-        });
-    }
-    (0, react_1.useEffect)(function () {
-        if (!image)
-            return;
-        var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: image.name + image.parentId, childId: image.name + image.childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
-            react_1.default.createElement(react_1.Fragment, null,
-                !loading && (react_1.default.createElement("img", { "data-type": "unsplash", "data-name": image.name, "data-userlink": image.userlink, "data-selfLink": image.selfLink, src: image.src, style: {
+            var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
+                react_1.default.createElement("img", { "data-type": "unsplash", "data-name": name, "data-userlink": userlink, "data-selfLink": selfLink, src: src, style: {
                         width: "100%",
                         height: "100%",
                         pointerEvents: "none",
                         opacity: "inherit",
-                    } })),
-                loading && react_1.default.createElement("p", null, "Loading..."))));
-        (0, Draggable_1.insertDraggable)(editorState, __text__, name + image.parentId);
-        setImage(null);
-    }, [loading]);
+                    } })));
+            (0, Draggable_1.insertDraggable)(editorState, __text__, name + parentId);
+        });
+    }
     return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
         react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
@@ -158,38 +141,5 @@ function UnsplashDock(_a) {
 exports.default = UnsplashDock;
 /**
  *
-    fetch(url)
-      .then((res) => res.blob())
-      .then((blob) => fileToDataUrl(blob))
-      .then((src) => {
-        const __text__ = (
-          <Textbox
-            parentClassName="imageBoxWrapper"
-            childClassName="imageBox"
-            parentId={name + parentId}
-            childId={name + childId}
-            parentStyle={parentStyle}
-            childStyle={childStyle}
-            editorState={editorState}
-            contentEditable={false}
-          >
-            <img
-              data-type="unsplash"
-              data-name={name}
-              data-userlink={userlink}
-              data-selfLink={selfLink}
-              src={src}
-              style={{
-                width: "100%",
-                height: "100%",
-                pointerEvents: "none",
-                opacity: "inherit",
-              }}
-            />
-          </Textbox>
-        );
-
-        insertDraggable(editorState, __text__, name + parentId);
-      });
  *
  */
