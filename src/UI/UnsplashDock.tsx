@@ -5,6 +5,7 @@ import React, {
   useState,
   CSSProperties,
   useCallback,
+  Fragment,
 } from "react";
 import { EditorStateType } from "../base/base.types";
 import { insertDraggable, Textbox } from "../base/model/Draggable";
@@ -45,6 +46,7 @@ interface unSplashResponse {
   };
   urls: {
     raw: string;
+    regular: string;
     small: string;
   };
 }
@@ -59,6 +61,8 @@ export default function UnsplashDock({
     DataisLoaded: boolean;
   }>({ items: [], DataisLoaded: false });
   const [searchKey, setSearchKey] = useState<string>("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   function getImages(e: ChangeEvent<HTMLInputElement>) {
     const value = e ? e.target.value : "";
@@ -86,13 +90,82 @@ export default function UnsplashDock({
   }, [searchKey]);
 
   function handleUnsplashImage(item: unSplashResponse) {
-    const url = item.urls.raw;
+    const url = item.urls.regular;
     const name = item.user.name;
     const userlink = item.user.links.html;
     const selfLink = item.links.self;
     const childId = uuid();
     const parentId = uuid();
 
+    setLoading(true);
+    fetch(url)
+      .then((res) => res.blob())
+      .then((blob) => fileToDataUrl(blob))
+      .then((src) => {
+        setImage(src);
+        setLoading(false);
+      });
+    const __text__ = (
+      <Textbox
+        parentClassName="imageBoxWrapper"
+        childClassName="imageBox"
+        parentId={name + parentId}
+        childId={name + childId}
+        parentStyle={parentStyle}
+        childStyle={childStyle}
+        editorState={editorState}
+        contentEditable={false}
+      >
+        <Fragment>
+          <img
+            data-type="unsplash"
+            data-name={name}
+            data-userlink={userlink}
+            data-selfLink={selfLink}
+            src={image}
+            style={{
+              width: "100%",
+              height: "100%",
+              pointerEvents: "none",
+              opacity: "inherit",
+            }}
+          />
+          {loading && <p>Loading...</p>}
+        </Fragment>
+      </Textbox>
+    );
+
+    insertDraggable(editorState, __text__, name + parentId);
+  }
+
+  return (
+    <div id={"subMenu" + name} className="subMenuWrapper">
+      <div className="subMenuHeading">
+        <button
+          onClick={() => onBack(document.getElementById("subMenu" + name))}
+        >
+          Back
+        </button>
+        <span>{name}</span>
+      </div>
+      <div className="unsplashInput">
+        <input type="text" onChange={getImages} />
+      </div>
+      <div className="unsplashGallery">
+        {unslapshSearch?.items.map((item: unSplashResponse, index: any) => (
+          <img
+            src={item.urls.small}
+            alt={item.alt_description}
+            key={index}
+            onClick={() => handleUnsplashImage(item)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+/**
+ * 
     fetch(url)
       .then((res) => res.blob())
       .then((blob) => fileToDataUrl(blob))
@@ -126,31 +199,5 @@ export default function UnsplashDock({
 
         insertDraggable(editorState, __text__, name + parentId);
       });
-  }
-
-  return (
-    <div id={"subMenu" + name} className="subMenuWrapper">
-      <div className="subMenuHeading">
-        <button
-          onClick={() => onBack(document.getElementById("subMenu" + name))}
-        >
-          Back
-        </button>
-        <span>{name}</span>
-      </div>
-      <div className="unsplashInput">
-        <input type="text" onChange={getImages} />
-      </div>
-      <div className="unsplashGallery">
-        {unslapshSearch?.items.map((item: unSplashResponse, index: any) => (
-          <img
-            src={item.urls.small}
-            alt={item.alt_description}
-            key={index}
-            onClick={() => handleUnsplashImage(item)}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
+ * 
+ */
