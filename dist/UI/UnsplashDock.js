@@ -108,44 +108,24 @@ function UnsplashDock(_a) {
         };
     }, [searchKey]);
     function handleUnsplashImage(item) {
-        return __awaiter(this, void 0, void 0, function () {
-            var url, name, userlink, selfLink, res, blob, src, childId, parentId, __text__, error_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = item.urls.raw;
-                        name = item.user.name;
-                        userlink = item.user.links.html;
-                        selfLink = item.links.self;
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 5, , 6]);
-                        return [4 /*yield*/, fetch(url)];
-                    case 2:
-                        res = _a.sent();
-                        return [4 /*yield*/, res.blob()];
-                    case 3:
-                        blob = _a.sent();
-                        return [4 /*yield*/, (0, fileToDataUrl_1.fileToDataUrl)(blob)];
-                    case 4:
-                        src = _a.sent();
-                        childId = (0, uuid_1.uuid)();
-                        parentId = (0, uuid_1.uuid)();
-                        __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
-                            react_1.default.createElement("img", { "data-type": "unsplash", "data-name": name, "data-userlink": userlink, "data-selfLink": selfLink, src: src, style: {
-                                    width: "100%",
-                                    height: "100%",
-                                    pointerEvents: "none",
-                                    opacity: "inherit",
-                                } })));
-                        (0, Draggable_1.insertDraggable)(editorState, __text__, name + parentId);
-                        return [3 /*break*/, 6];
-                    case 5:
-                        error_1 = _a.sent();
-                        return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
-                }
-            });
+        var url = item.urls.raw;
+        var name = item.user.name;
+        var userlink = item.user.links.html;
+        var selfLink = item.links.self;
+        var childId = (0, uuid_1.uuid)();
+        var parentId = (0, uuid_1.uuid)();
+        fetch(url)
+            .then(function (res) { return res.blob(); })
+            .then(function (blob) { return (0, fileToDataUrl_1.fileToDataUrl)(blob); })
+            .then(function (src) {
+            var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
+                react_1.default.createElement("img", { "data-type": "unsplash", "data-name": name, "data-userlink": userlink, "data-selfLink": selfLink, src: src, style: {
+                        width: "100%",
+                        height: "100%",
+                        pointerEvents: "none",
+                        opacity: "inherit",
+                    } })));
+            (0, Draggable_1.insertDraggable)(editorState, __text__, name + parentId);
         });
     }
     return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
@@ -154,11 +134,6 @@ function UnsplashDock(_a) {
             react_1.default.createElement("span", null, name)),
         react_1.default.createElement("div", { className: "unsplashInput" },
             react_1.default.createElement("input", { type: "text", onChange: getImages })),
-        react_1.default.createElement("div", { className: "unsplashGallery" }, unslapshSearch === null || unslapshSearch === void 0 ? void 0 : unslapshSearch.items.map(function (item, index) { return (react_1.default.createElement("img", { src: item.urls.small, alt: item.alt_description, key: index, onClick: function () { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, handleUnsplashImage(item)];
-                    case 1: return [2 /*return*/, _a.sent()];
-                }
-            }); }); } })); }))));
+        react_1.default.createElement("div", { className: "unsplashGallery" }, unslapshSearch === null || unslapshSearch === void 0 ? void 0 : unslapshSearch.items.map(function (item, index) { return (react_1.default.createElement("img", { src: item.urls.small, alt: item.alt_description, key: index, onClick: function () { return handleUnsplashImage(item); } })); }))));
 }
 exports.default = UnsplashDock;

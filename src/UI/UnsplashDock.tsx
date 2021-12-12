@@ -85,47 +85,47 @@ export default function UnsplashDock({
     };
   }, [searchKey]);
 
-  async function handleUnsplashImage(item: unSplashResponse) {
+  function handleUnsplashImage(item: unSplashResponse) {
     const url = item.urls.raw;
     const name = item.user.name;
     const userlink = item.user.links.html;
     const selfLink = item.links.self;
+    const childId = uuid();
+    const parentId = uuid();
 
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const src = await fileToDataUrl(blob);
-      const childId = uuid();
-      const parentId = uuid();
-      const __text__ = (
-        <Textbox
-          parentClassName="imageBoxWrapper"
-          childClassName="imageBox"
-          parentId={name + parentId}
-          childId={name + childId}
-          parentStyle={parentStyle}
-          childStyle={childStyle}
-          editorState={editorState}
-          contentEditable={false}
-        >
-          <img
-            data-type="unsplash"
-            data-name={name}
-            data-userlink={userlink}
-            data-selfLink={selfLink}
-            src={src}
-            style={{
-              width: "100%",
-              height: "100%",
-              pointerEvents: "none",
-              opacity: "inherit",
-            }}
-          />
-        </Textbox>
-      );
+    fetch(url)
+      .then((res) => res.blob())
+      .then((blob) => fileToDataUrl(blob))
+      .then((src) => {
+        const __text__ = (
+          <Textbox
+            parentClassName="imageBoxWrapper"
+            childClassName="imageBox"
+            parentId={name + parentId}
+            childId={name + childId}
+            parentStyle={parentStyle}
+            childStyle={childStyle}
+            editorState={editorState}
+            contentEditable={false}
+          >
+            <img
+              data-type="unsplash"
+              data-name={name}
+              data-userlink={userlink}
+              data-selfLink={selfLink}
+              src={src}
+              style={{
+                width: "100%",
+                height: "100%",
+                pointerEvents: "none",
+                opacity: "inherit",
+              }}
+            />
+          </Textbox>
+        );
 
-      insertDraggable(editorState, __text__, name + parentId);
-    } catch (error) {}
+        insertDraggable(editorState, __text__, name + parentId);
+      });
   }
 
   return (
@@ -147,7 +147,7 @@ export default function UnsplashDock({
             src={item.urls.small}
             alt={item.alt_description}
             key={index}
-            onClick={async () => await handleUnsplashImage(item)}
+            onClick={() => handleUnsplashImage(item)}
           />
         ))}
       </div>
