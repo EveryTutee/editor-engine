@@ -50,6 +50,14 @@ interface unSplashResponse {
     small: string;
   };
 }
+interface ImageType {
+  name: string;
+  userlink: string;
+  selfLink: string;
+  childId: string;
+  parentId: string;
+  src: string;
+}
 
 export default function UnsplashDock({
   editorState,
@@ -61,7 +69,7 @@ export default function UnsplashDock({
     DataisLoaded: boolean;
   }>({ items: [], DataisLoaded: false });
   const [searchKey, setSearchKey] = useState<string>("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<ImageType | null>(null);
   const [loading, setLoading] = useState(false);
 
   function getImages(e: ChangeEvent<HTMLInputElement>) {
@@ -102,41 +110,54 @@ export default function UnsplashDock({
       .then((res) => res.blob())
       .then((blob) => fileToDataUrl(blob))
       .then((src) => {
-        setImage(src);
+        setImage({
+          name,
+          userlink,
+          selfLink,
+          childId,
+          parentId,
+          src,
+        });
         setLoading(false);
       });
+  }
+
+  useEffect(() => {
+    if (!image) return;
     const __text__ = (
       <Textbox
         parentClassName="imageBoxWrapper"
         childClassName="imageBox"
-        parentId={name + parentId}
-        childId={name + childId}
+        parentId={image.name + image.parentId}
+        childId={image.name + image.childId}
         parentStyle={parentStyle}
         childStyle={childStyle}
         editorState={editorState}
         contentEditable={false}
       >
         <Fragment>
-          <img
-            data-type="unsplash"
-            data-name={name}
-            data-userlink={userlink}
-            data-selfLink={selfLink}
-            src={image}
-            style={{
-              width: "100%",
-              height: "100%",
-              pointerEvents: "none",
-              opacity: "inherit",
-            }}
-          />
+          {!loading && (
+            <img
+              data-type="unsplash"
+              data-name={image.name}
+              data-userlink={image.userlink}
+              data-selfLink={image.selfLink}
+              src={image.src}
+              style={{
+                width: "100%",
+                height: "100%",
+                pointerEvents: "none",
+                opacity: "inherit",
+              }}
+            />
+          )}
           {loading && <p>Loading...</p>}
         </Fragment>
       </Textbox>
     );
-
-    insertDraggable(editorState, __text__, name + parentId);
-  }
+    insertDraggable(editorState, __text__, name + image.parentId);
+    setImage(null);
+  }, [loading]);
 
   return (
     <div id={"subMenu" + name} className="subMenuWrapper">
@@ -146,7 +167,7 @@ export default function UnsplashDock({
         >
           Back
         </button>
-        <span>{name}</span>
+        <span>{loading ? "loading" : name}</span>
       </div>
       <div className="unsplashInput">
         <input type="text" onChange={getImages} />

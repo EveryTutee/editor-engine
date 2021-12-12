@@ -77,7 +77,7 @@ function UnsplashDock(_a) {
     var editorState = _a.editorState, onBack = _a.onBack, name = _a.name;
     var _b = (0, react_1.useState)({ items: [], DataisLoaded: false }), unslapshSearch = _b[0], setUnsplashSearch = _b[1];
     var _c = (0, react_1.useState)(""), searchKey = _c[0], setSearchKey = _c[1];
-    var _d = (0, react_1.useState)(""), image = _d[0], setImage = _d[1];
+    var _d = (0, react_1.useState)(null), image = _d[0], setImage = _d[1];
     var _e = (0, react_1.useState)(false), loading = _e[0], setLoading = _e[1];
     function getImages(e) {
         var value = e ? e.target.value : "";
@@ -121,24 +121,36 @@ function UnsplashDock(_a) {
             .then(function (res) { return res.blob(); })
             .then(function (blob) { return (0, fileToDataUrl_1.fileToDataUrl)(blob); })
             .then(function (src) {
-            setImage(src);
+            setImage({
+                name: name,
+                userlink: userlink,
+                selfLink: selfLink,
+                childId: childId,
+                parentId: parentId,
+                src: src,
+            });
             setLoading(false);
         });
-        var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: name + parentId, childId: name + childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
+    }
+    (0, react_1.useEffect)(function () {
+        if (!image)
+            return;
+        var __text__ = (react_1.default.createElement(Draggable_1.Textbox, { parentClassName: "imageBoxWrapper", childClassName: "imageBox", parentId: image.name + image.parentId, childId: image.name + image.childId, parentStyle: parentStyle, childStyle: childStyle, editorState: editorState, contentEditable: false },
             react_1.default.createElement(react_1.Fragment, null,
-                react_1.default.createElement("img", { "data-type": "unsplash", "data-name": name, "data-userlink": userlink, "data-selfLink": selfLink, src: image, style: {
+                !loading && (react_1.default.createElement("img", { "data-type": "unsplash", "data-name": image.name, "data-userlink": image.userlink, "data-selfLink": image.selfLink, src: image.src, style: {
                         width: "100%",
                         height: "100%",
                         pointerEvents: "none",
                         opacity: "inherit",
-                    } }),
+                    } })),
                 loading && react_1.default.createElement("p", null, "Loading..."))));
-        (0, Draggable_1.insertDraggable)(editorState, __text__, name + parentId);
-    }
+        (0, Draggable_1.insertDraggable)(editorState, __text__, name + image.parentId);
+        setImage(null);
+    }, [loading]);
     return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
         react_1.default.createElement("div", { className: "subMenuHeading" },
             react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
-            react_1.default.createElement("span", null, name)),
+            react_1.default.createElement("span", null, loading ? "loading" : name)),
         react_1.default.createElement("div", { className: "unsplashInput" },
             react_1.default.createElement("input", { type: "text", onChange: getImages })),
         react_1.default.createElement("div", { className: "unsplashGallery" }, unslapshSearch === null || unslapshSearch === void 0 ? void 0 : unslapshSearch.items.map(function (item, index) { return (react_1.default.createElement("img", { src: item.urls.small, alt: item.alt_description, key: index, onClick: function () { return handleUnsplashImage(item); } })); }))));
