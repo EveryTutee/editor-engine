@@ -1,0 +1,29 @@
+.bulletWrapper {
+  display: flex;
+  margin: 2.25rem auto 0.25rem auto;
+}
+
+.prev,
+.next {
+  font-size: 12px;
+  font-weight: 800;
+
+  margin: 0 0.25rem;
+  padding: 0px 10px;
+  border-radius: 8px;
+  &:disabled {
+    background-color: rgb(185, 185, 185);
+  }
+}
+
+.bullet {
+  font-size: 12px;
+  margin: 0 0.25rem;
+  display: flex;
+  place-items: center;
+  p,
+  span {
+    color: white;
+    margin: 0 4px;
+  }
+}

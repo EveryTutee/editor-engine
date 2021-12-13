@@ -54,11 +54,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importStar(require("react"));
 var Draggable_1 = require("../base/model/Draggable");
 var fileToDataUrl_1 = require("../utils/fileToDataUrl");
+var usePaginator_1 = __importDefault(require("../utils/usePaginator"));
 var uuid_1 = require("../utils/uuid");
+var client_id = "n3uKfn5DuxU6jNwLwMUb5ehAL-bDxCJBwY8gLj5F-Wo";
 var parentStyle = {
     position: "absolute",
     width: "100px",
@@ -77,32 +82,19 @@ function UnsplashDock(_a) {
     var editorState = _a.editorState, onBack = _a.onBack, name = _a.name;
     var _b = (0, react_1.useState)({ items: [], DataisLoaded: false }), unslapshSearch = _b[0], setUnsplashSearch = _b[1];
     var _c = (0, react_1.useState)(""), searchKey = _c[0], setSearchKey = _c[1];
-    var _d = (0, react_1.useState)(null), image = _d[0], setImage = _d[1];
-    var _e = (0, react_1.useState)(false), loading = _e[0], setLoading = _e[1];
+    var _d = (0, react_1.useState)(false), searched = _d[0], setSearched = _d[1];
     function getImages(e) {
         var value = e ? e.target.value : "";
         console.log(value);
+        if (value.length === 0)
+            setSearched(false);
         setSearchKey(value);
     }
     (0, react_1.useEffect)(function () {
         var timeout = setTimeout(function () { return __awaiter(_this, void 0, void 0, function () {
-            var res, json;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, fetch("https://api.unsplash.com/search/photos/?page=1&query=" +
-                            searchKey +
-                            "&client_id=n3uKfn5DuxU6jNwLwMUb5ehAL-bDxCJBwY8gLj5F-Wo&sig=123")];
-                    case 1:
-                        res = _a.sent();
-                        return [4 /*yield*/, res.json()];
-                    case 2:
-                        json = _a.sent();
-                        setUnsplashSearch({
-                            items: json.results,
-                            DataisLoaded: true,
-                        });
-                        return [2 /*return*/];
-                }
+                searchKey.length > 0 && setSearched(true);
+                return [2 /*return*/];
             });
         }); }, 4000);
         return function () {
@@ -113,7 +105,7 @@ function UnsplashDock(_a) {
         var url = item.urls.regular;
         var __name = item.user.name;
         var userlink = item.user.links.html;
-        var selfLink = item.links.self;
+        var selfLink = item.links.html;
         var childId = (0, uuid_1.uuid)();
         var parentId = (0, uuid_1.uuid)();
         fetch(url)
@@ -132,14 +124,25 @@ function UnsplashDock(_a) {
     }
     return (react_1.default.createElement("div", { id: "subMenu" + name, className: "subMenuWrapper" },
         react_1.default.createElement("div", { className: "subMenuHeading" },
-            react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back"),
-            react_1.default.createElement("span", null, loading ? "loading" : name)),
+            react_1.default.createElement("button", { onClick: function () { return onBack(document.getElementById("subMenu" + name)); } }, "Back")),
         react_1.default.createElement("div", { className: "unsplashInput" },
             react_1.default.createElement("input", { type: "text", onChange: getImages })),
-        react_1.default.createElement("div", { className: "unsplashGallery" }, unslapshSearch === null || unslapshSearch === void 0 ? void 0 : unslapshSearch.items.map(function (item, index) { return (react_1.default.createElement("img", { src: item.urls.small, alt: item.alt_description, key: index, onClick: function () { return handleUnsplashImage(item); } })); }))));
+        searched && (react_1.default.createElement(UnSplashGallery, { searchKey: searchKey, handleUnsplashImage: handleUnsplashImage }))));
 }
 exports.default = UnsplashDock;
-/**
- *
- *
- */
+var UnSplashGallery = function (_a) {
+    var searchKey = _a.searchKey, handleUnsplashImage = _a.handleUnsplashImage;
+    var _b = (0, usePaginator_1.default)({
+        endpoint: "https://api.unsplash.com/search/photos/",
+        key: "page",
+        query: {
+            query: searchKey,
+            client_id: client_id,
+            sid: 123,
+        },
+    }, function (data) { return ({
+        list: data.results,
+        maxBullet: data.total_pages,
+    }); }), list = _b.list, index = _b.index, Paginator = _b.Paginator;
+    return (react_1.default.createElement(Paginator, { renderer: react_1.default.createElement("div", { className: "unsplashGallery" }, list.map(function (item, index) { return (react_1.default.createElement("img", { src: item.urls.small, alt: item.alt_description, key: index, onClick: function () { return handleUnsplashImage(item); } })); })) }));
+};

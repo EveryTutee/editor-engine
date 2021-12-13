@@ -11,7 +11,10 @@ import { EditorStateType } from "../base/base.types";
 import { insertDraggable, Textbox } from "../base/model/Draggable";
 import { UnsplashPicture } from "../components/components.types";
 import { fileToDataUrl } from "../utils/fileToDataUrl";
+import usePaginator from "../utils/usePaginator";
 import { uuid } from "../utils/uuid";
+
+const client_id = "n3uKfn5DuxU6jNwLwMUb5ehAL-bDxCJBwY8gLj5F-Wo";
 
 interface SubMenuProps {
   editorState: EditorStateType;
@@ -69,27 +72,18 @@ export default function UnsplashDock({
     DataisLoaded: boolean;
   }>({ items: [], DataisLoaded: false });
   const [searchKey, setSearchKey] = useState<string>("");
-  const [image, setImage] = useState<ImageType | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [searched, setSearched] = useState(false);
 
   function getImages(e: ChangeEvent<HTMLInputElement>) {
     const value = e ? e.target.value : "";
     console.log(value);
+    if (value.length === 0) setSearched(false);
     setSearchKey(value);
   }
 
   useEffect(() => {
     const timeout = setTimeout(async () => {
-      const res = await fetch(
-        "https://api.unsplash.com/search/photos/?page=1&query=" +
-          searchKey +
-          "&client_id=n3uKfn5DuxU6jNwLwMUb5ehAL-bDxCJBwY8gLj5F-Wo&sig=123"
-      );
-      const json = await res.json();
-      setUnsplashSearch({
-        items: json.results,
-        DataisLoaded: true,
-      });
+      searchKey.length > 0 && setSearched(true);
     }, 4000);
 
     return () => {
@@ -147,25 +141,51 @@ export default function UnsplashDock({
         >
           Back
         </button>
-        <span>{loading ? "loading" : name}</span>
       </div>
       <div className="unsplashInput">
         <input type="text" onChange={getImages} />
       </div>
-      <div className="unsplashGallery">
-        {unslapshSearch?.items.map((item: unSplashResponse, index: any) => (
-          <img
-            src={item.urls.small}
-            alt={item.alt_description}
-            key={index}
-            onClick={() => handleUnsplashImage(item)}
-          />
-        ))}
-      </div>
+      {searched && (
+        <UnSplashGallery
+          searchKey={searchKey}
+          handleUnsplashImage={handleUnsplashImage}
+        />
+      )}
     </div>
   );
 }
-/**
- *
- *
- */
+
+const UnSplashGallery = ({ searchKey, handleUnsplashImage }: any) => {
+  const { list, index, Paginator } = usePaginator(
+    {
+      endpoint: "https://api.unsplash.com/search/photos/",
+      key: "page",
+      query: {
+        query: searchKey,
+        client_id,
+        sid: 123,
+      },
+    },
+    (data) => ({
+      list: data.results,
+      maxBullet: data.total_pages,
+    })
+  );
+
+  return (
+    <Paginator
+      renderer={
+        <div className="unsplashGallery">
+          {list.map((item: unSplashResponse, index: any) => (
+            <img
+              src={item.urls.small}
+              alt={item.alt_description}
+              key={index}
+              onClick={() => handleUnsplashImage(item)}
+            />
+          ))}
+        </div>
+      }
+    />
+  );
+};
