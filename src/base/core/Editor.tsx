@@ -1,4 +1,3 @@
-import { Grammarly, GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import React, {
   Fragment,
   MouseEvent,
@@ -129,11 +128,7 @@ export default function Editor({
   }
 
   function handleFocus(e: React.FocusEvent<HTMLDivElement>) {
-    const div = e.target;
-    div.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+    const div = e.target as HTMLDivElement;
   }
 
   return (
