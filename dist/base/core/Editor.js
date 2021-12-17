@@ -59,7 +59,7 @@ function Editor(_a) {
             (0, utils_1.removeContext)(editorState.__document__);
             return;
         }
-        var parent = (0, getParent_1.default)(target, "." + Draggable_1.defaultName);
+        var parent = (0, getParent_1.default)(target, ".".concat(Draggable_1.defaultName));
         if (!parent)
             return;
         if (parent.classList.contains(Draggable_1.defaultName)) {
@@ -131,16 +131,12 @@ function Editor(_a) {
             .trim()
             .replaceAll(">", "&gt;")
             .replaceAll("<", "&lt;");
-        var final = "<p>" + pastedData.replaceAll("\n", "</p><p>") + "</p>";
+        var final = "<p>".concat(pastedData.replaceAll("\n", "</p><p>"), "</p>");
         console.log(final);
         editorState.__document__.execCommand("insertHTML", false, final);
     }
     function handleFocus(e) {
         var div = e.target;
-        div.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-        });
     }
     return (react_1.default.createElement(react_1.Fragment, null,
         react_1.default.createElement("div", { key: id, ref: editorRef, className: className + " main_editor " + id, contentEditable: !!!readonly, id: id, style: style, placeholder: placeholder, suppressContentEditableWarning: true, onClick: canvasClick, onFocus: handleFocus, onKeyDown: function (e) {

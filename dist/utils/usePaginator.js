@@ -60,9 +60,9 @@ function parseConfig(config, pos) {
     var key = config.key;
     var queryString = "";
     Object.keys(config.query).forEach(function (key) {
-        queryString += key + "=" + config.query[key] + "&";
+        queryString += "".concat(key, "=").concat(config.query[key], "&");
     });
-    return config.endpoint + "?" + queryString + config.key + "=" + pos;
+    return "".concat(config.endpoint, "?").concat(queryString).concat(config.key, "=").concat(pos);
 }
 function usePaginator(config, parser, reset) {
     var _this = this;
